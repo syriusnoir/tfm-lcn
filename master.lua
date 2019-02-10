@@ -4,10 +4,10 @@ SETUP = {flymode = false,challengemode = "thirty",autorespawn = "true",everyoneV
  
 -- [[LaChallengeNostra: LV]]
  
-version = "v.b32 (test)"
+version = "v.b32"
 title = "#LaChallengeNostra "..SETUP.challengemode
 player={}
-hosts={['Syrius#8114'] = true,['Acmexitee#0000'] = true,['Ertyezz#9819'] = false,['Sanija#1187'] = false} --,['Ertyezz#9819'] = true  ,['Laimesberns#3746'] = true
+hosts={['Syrius#8114'] = true,['Acmexitee#0000'] = true,['Ertyezz#9819'] = true,['Sanija#1187'] = true} --,['Ertyezz#9819'] = true  ,['Laimesberns#3746'] = true
 contestants={}
  
 -- Noklusējuma iestatījumi
