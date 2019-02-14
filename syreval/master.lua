@@ -1,11 +1,11 @@
-
--- **************/ SyrEval v.b32 \**************
+-- **************/ SyrEval v.b33 \**************
 
 mode = 30 -- pieejamie režīmi: -1 = parastais, 30 = 30 sekunžu
 
-eval1 = [[]] -- spied 1, lai palaistu šo mapi
+eval1 = [[]] -- spied 1, lai redzētu šo mapi
 eval2 = [[]]
 eval3 = [[]]
+eval4 = [[]]
 eval4 = [[]]
 eval5 = [[]]
 eval6 = [[]]
@@ -68,6 +68,15 @@ function eventNewGame()
 if mode==30 then
 tfm.exec.setGameTime(30)
 end
+    local Ptag = string.match(tfm.get.room.xmlMapInfo.xml, "<P (.-)/>")
+    local meta = string.match(Ptag, 'meta ?= ?"(.-)"')
+    local mapName
+
+    if meta then
+        mapName = string.gsub(meta, ",", "<BL> - $", 1).."</BL>" end
+
+	    ui.setMapName(mapName)
+
 end
 
 function eventTextAreaCallback(textAreaID, playerName, callback)
