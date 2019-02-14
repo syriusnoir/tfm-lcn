@@ -1,6 +1,6 @@
--- **************/ SyrEval v.b31 \**************
+-- **************/ SyrEval v.b31.1 \**************
 
-
+mode = "30" -- pieejamie režīmi: @ = parastais, 30 = 30 sekunžu
 evalmap = [[]]
 --         ^^ iekopē evaluējamo kodu šeit starpā
 
@@ -20,8 +20,14 @@ end
 
 function eventKeyboard(name, key, down, x, y)
 if key==18 then
-tfm.exec.newGame(evalmap) end 
+tfm.exec.newGame(tfm.get.room.xmlMapInfo.xml) end 
 -- ^^ kad uzspiež alt, tiek pārlādēta mape
+end
+
+function eventNewGame()
+if mode=="30" then
+tfm.exec.setGameTime(30)
+end
 end
 
 for name,player in pairs(tfm.get.room.playerList) do eventNewPlayer(name) end
