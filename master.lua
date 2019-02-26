@@ -1,12 +1,12 @@
--- "Vēsture" [[v1 - oriģināls|v2 - survival sakne|v3 - !spawn koordinātu pieejamība|v4 - !bc, !bc*, !utilcore, !utilcore*|v5 - survival pabeigts|v6 - beznaglu sakne|v7 - !r, !r*|v8 - ne-dalībnieku blokāde|v9 - kļūdu reorganizācija|v10 - !md|v11 - !md*|v12 - !cname, !host, !kill|v13 - !txt, !g|v14 - utilcore palaidējs|v15 - !txt*|v16 - !rhost|v17 - !g*|v18 - !col|v19 - !s*|v20 - !cmode, !size|v21 - !ce,!ce*|v22 - !np|v23 - !meep|v24 - !rmtxt|v25 - !score, all: !s, !kill, !r, !meep, !ce|v26 - jauns interfeiss; !tfm, !tfm*, !link, !link*|v27 - all: !tfm; !hlp kodols|v28 - !hlp uzlabojumi; atjaunināts survival|v29 - !nextmap survival režīmā automātiski parāda raunda ciparu|v30 - karte pagarinās build režīmā atbilstoši spēlētaju skaitam, !clear|v.b32 - HostCore (!hc); 30-sek. challenge kodols; everyoneVerified; !d|v.b33 - HTML iekš !bc* un !utilcore; 30-sekunžu mapēs tagad rādās veidotājs]]
+- "Vēsture" [[v1 - oriģināls|v2 - survival sakne|v3 - !spawn koordinātu pieejamība|v4 - !bc, !bc*, !utilcore, !utilcore*|v5 - survival pabeigts|v6 - beznaglu sakne|v7 - !r, !r*|v8 - ne-dalībnieku blokāde|v9 - kļūdu reorganizācija|v10 - !md|v11 - !md*|v12 - !cname, !host, !kill|v13 - !txt, !g|v14 - utilcore palaidējs|v15 - !txt*|v16 - !rhost|v17 - !g*|v18 - !col|v19 - !s*|v20 - !cmode, !size|v21 - !ce,!ce*|v22 - !np|v23 - !meep|v24 - !rmtxt|v25 - !score, all: !s, !kill, !r, !meep, !ce|v26 - jauns interfeiss; !tfm, !tfm*, !link, !link*|v27 - all: !tfm; !hlp kodols|v28 - !hlp uzlabojumi; atjaunināts survival|v29 - !nextmap survival režīmā automātiski parāda raunda ciparu|v30 - karte pagarinās build režīmā atbilstoši spēlētaju skaitam, !clear|v.b32 - HostCore (!hc); 30-sek. challenge kodols; everyoneVerified; !d|v.b33 - HTML iekš !bc* un !utilcore; 30-sekunžu mapēs tagad rādās veidotājs]]
  
 SETUP = {flymode = false,challengemode = "build",autorespawn = "true",everyoneVerified="true"}
  
 -- [[LaChallengeNostra: LV]]
  
-version = "v.b33.1"
+version = "v.b34"
 title = "#LaChallengeNostra "..SETUP.challengemode
-player={}
+player={} helpers={}
 hosts={['Syrius#8114'] = true,['Acmexitee#0000'] = true,['Ertyezz#9819'] = false,['Sanija#1187'] = true} --,['Ertyezz#9819'] = true  ,['Laimesberns#3746'] = true
 contestants={}
  
@@ -62,12 +62,12 @@ end
 -- Komandas
 function eventChatCommand(name,cmd,n)
 if cmd== cmd then annonce("<"..namecol.."><b>[~"..name.."]</b></"..namecol.."> <A:ACTIVE>!"..cmd) end
-if cmd:sub(1,1) == "s" and hosts[name] then tfm.exec.setShaman(cmd:sub(3)) end
-if cmd:sub(1,2) == "s*" and hosts[name] then tfm.exec.setShaman(cmd:sub(4),false) end
-if cmd:sub(1,2) == "ce" and hosts[name] then tfm.exec.giveCheese(cmd:sub(4)) end
-if cmd:sub(1,3) == "ce*" and hosts[name] then tfm.exec.removeCheese(cmd:sub(5)) end
-if cmd:sub(1,1) == "r" and hosts[name] then tfm.exec.respawnPlayer(cmd:sub(3)) end
-if cmd:sub(1,2) == "bc" and hosts[name] then ui.updateTextArea(0,"<p align='center'><font size='20'><A:ACTIVE>"..cmd:sub(4),nil) end
+if cmd:sub(1,1) == "s" and hosts[name] or helpers[name] and cmd:sub(1,1) == "s" then tfm.exec.setShaman(cmd:sub(3)) end
+if cmd:sub(1,2) == "s*" and hosts[name] or helpers[name] and cmd:sub(1,1) == "s*" then tfm.exec.setShaman(cmd:sub(4),false) end
+if cmd:sub(1,2) == "ce" and hosts[name] or helpers[name] and cmd:sub(1,1) == "ce" then tfm.exec.giveCheese(cmd:sub(4)) end
+if cmd:sub(1,3) == "ce*" and hosts[name] or helpers[name] and cmd:sub(1,1) == "ce*" then tfm.exec.removeCheese(cmd:sub(5)) end
+if cmd:sub(1,1) == "r" and hosts[name] or helpers[name] and cmd:sub(1,1) == "r" then tfm.exec.respawnPlayer(cmd:sub(3)) end
+if cmd:sub(1,2) == "bc" and hosts[name] or helpers[name] and cmd:sub(1,1) == "bc" then ui.updateTextArea(0,"<p align='center'><font size='20'><A:ACTIVE>"..cmd:sub(4),nil) end
 if cmd:sub(1,3) == "bc*" and hosts[name] then ui.updateTextArea(0,"<p align='center'><font size='20'><VP>"..string.gsub(string.gsub(cmd:sub(5), "&gt;", ">"), "&lt;", "<"),nil) end
 if cmd:sub(1,2) == "np" and hosts[name] then tfm.exec.newGame(cmd:sub(4)) end
 if cmd:sub(1,3) == "fly" and hosts[name] then SETUP.challengemode=cmd:sub(3) end
@@ -75,9 +75,7 @@ if cmd:sub(1,3) == "hlp" then helpcore(name,playerName) end
 if cmd:sub(1,4) == "kill" and hosts[name] then tfm.exec.killPlayer(cmd:sub(6)) end
 if cmd:sub(1,4) == "test" and hosts[name] then test() end
 if cmd:sub(1,4) == "meep" and hosts[name] then tfm.exec.giveMeep(cmd:sub(6)) end
-if cmd:sub(1,4) == "host" and hosts[name] then hosts[cmd:sub(6)] = true end
-if cmd:sub(1,5) == "rhost" and hosts[name] then hosts[cmd:sub(7)] = false annonce(syscore.." "..cmd:sub(7).." vairs nepieder konkursa vadītāja statuss.") end
-if cmd:sub(1,5) == "clear" and hosts[name] then clear() end
+if cmd:sub(1,5) == "clear" and hosts[name] or helpers[name] then clear() end
 if cmd:sub(1,5) == "cname" and hosts[name] then ui.setShamanName(cmd:sub(7)) end
 if cmd:sub(1,8) == "utilcore" and hosts[name] then ui.updateTextArea(32,"<V>["..name.."]<A:ACTIVE> "..string.gsub(string.gsub(cmd:sub(10), "&gt;", ">"), "&lt;", "<"),nil) end 
 if cmd:sub(1,9) == "utilcore*" and hosts[name] then ui.updateTextArea(32,syscore.." "..cmd:sub(11),nil) end
@@ -91,7 +89,7 @@ if cmd:sub(1,8) == "kill all" and hosts[name] then table.foreach(tfm.get.room.pl
 if cmd:sub(1,8) == "meep all" and hosts[name] then table.foreach(tfm.get.room.playerList, tfm.exec.giveMeep) end   
 
 -- HostCore izsaucējs
-if cmd=="hc" and hosts[name] then 
+if cmd=="hc" and hosts[name] or helpers[name] and cmd=="hc" then 
 		hostcore(name)
 		print(syscore.." HostCore ieslēgts. (<V>"..name.."</V>)")
 		ui.updateTextArea(65,syscore.." HostCore ieslēgts. (<V>"..name.."</V>)",nil)
@@ -181,12 +179,12 @@ end
     elseif c[1] == "score" then
         error0x1(name)
     end
-    if c[1] == "size" and hosts[name] then
+    if c[1] == "size" and hosts[name] or helpers[name] and c[1] == "size" then
         tfm.exec.changePlayerSize(c[2],c[3])
     elseif c[1] == "size" then
         error0x1(name)
         end
-    if c[1] == "cmode" and hosts[name] then
+    if c[1] == "cmode" and hosts[name] or helpers[name] and c[1] == "cmode" then
         tfm.exec.setShamanMode(c[2],c[3])
     elseif c[1] == "cmode" then
         error0x1(name)
@@ -216,10 +214,21 @@ end
     elseif c[1] == "d" then
         error0x1(name)
     end
+    if c[1] == "role" and hosts[name] then
+		    if c[2] == "+" then  
+			if c[3] == "host" then hosts[c[4]] = true annonce(syscore.." "..c[4].." tagad pieder konkursa vadītāja statuss.") end
+			if c[3] == "helper" then helpers[c[4]] = true annonce(syscore.." "..c[4].." tagad pieder konkursa palīga statuss.") end end
+		    if c[2] == "-" then  
+			if c[3] == "host" then hosts[c[4]] = false annonce(syscore.." "..c[4].." vairs nepieder konkursa vadītāja statuss.") end
+			if c[3] == "helper" then helpers[c[4]] = false annonce(syscore.." "..c[4].." vairs nepieder konkursa palīga statuss.") end end
+    elseif c[1] == "role" then
+        error0x1(name)
+    end
 end
+
 -- Slēptās komandas
 system.disableChatCommandDisplay(nil)
- 
+
 -- [[Utilijas]]
 
 -- Annonce
