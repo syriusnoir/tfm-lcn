@@ -4,7 +4,7 @@ SETUP = {flymode = false,challengemode = "build",autorespawn = "true",everyoneVe
  
 -- [[LaChallengeNostra: LV]]
  
-version = "v.b35 (test)"
+version = "v.b35"
 title = "#LaChallengeNostra "..SETUP.challengemode
 player={} helpers={}
 hosts={['Syrius#8114'] = true,['Acmexitee#0000'] = true,['Ertyezz#9819'] = true,['Sanija#1187'] = true} --,['Ertyezz#9819'] = true  ,['Laimesberns#3746'] = true
