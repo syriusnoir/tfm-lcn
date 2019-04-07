@@ -4,16 +4,16 @@ SETUP = {flymode = false,challengemode = "build",autorespawn = "true",everyoneVe
  
 -- [[LaChallengeNostra: LV]]
  
-version = "v.b35"
+version = "v.b36"
 title = "#LaChallengeNostra "..SETUP.challengemode
 player={} helpers={}
 hosts={['Syrius#8114'] = true,['Acmexitee#0000'] = true,['Ertyezz#9819'] = true,['Sanija#1187'] = true} --,['Ertyezz#9819'] = true  ,['Laimesberns#3746'] = true
 contestants={}
  
 -- Noklusējuma iestatījumi
-tfm.exec.newGame(7579168)
+tfm.exec.newGame('<C><P APS="169df582e29.png,0,100,100,100,100,200,40"/><Z><S><S P="0,0,0.3,0.2,0,0,0,0" X="0" L="3000" o="0" H="3000" c="4" Y="0" T="12" /><S P="0,0,0.3,0.2,0,0,0,0" L="10" o="324650" H="10" X="400" Y="240" T="12" /></S><D /><O /></Z></C>')
 tfm.exec.setUIMapName("<ROSE>"..version.."")
-ui.addTextArea(0,"<ROSE><p align='center'><font size='20'>"..title.."</font></p>", nil, 100, 25, 600, 30, 0x324650, 0x000000, 0.5, true)
+ui.addTextArea(0,"<ROSE><p align='center'><font size='20'>"..title.."</font></p>", nil, 100, 25, 600, 30, 0x324650, 0x000000,0.5, true)
 tfm.exec.disableAutoShaman(true)
 tfm.exec.disableAfkDeath(true)
 tfm.exec.disableAutoScore(true)
@@ -204,7 +204,7 @@ elseif cmd=="c build" then error0x1(name) end
         error0x1(name)
     end
     if c[1] == "tfm*" and hosts[name] then
-        tfm.exec.linkMice(c[2],false)
+        tfm.exec.giveTransformations(c[2],false)
     elseif c[1] == "tfm*" then
         error0x1(name)
     end
@@ -215,11 +215,11 @@ elseif cmd=="c build" then error0x1(name) end
     end
     if c[1] == "role" and hosts[name] then
 		    if c[2] == "+" then  
-			if c[3] == "host" then hosts[c[4]] = true annonce(syscore.." "..c[4].." tagad pieder konkursa vadītāja statuss.") end
-			if c[3] == "helper" then helpers[c[4]] = true annonce(syscore.." "..c[4].." tagad pieder konkursa palīga statuss.") end end
+			if c[3] == "host" then hosts[c[4]] = true annonce2(infpref..c[4].." tagad pieder konkursa vadītāja statuss.") end
+			if c[3] == "helper" then helpers[c[4]] = true annonce2(infpref..c[4].." tagad pieder konkursa palīga statuss.") end end
 		    if c[2] == "-" then  
-			if c[3] == "host" then hosts[c[4]] = false annonce(syscore.." "..c[4].." vairs nepieder konkursa vadītāja statuss.") end
-			if c[3] == "helper" then helpers[c[4]] = false annonce(syscore.." "..c[4].." vairs nepieder konkursa palīga statuss.") end end
+			if c[3] == "host" then hosts[c[4]] = false annonce2(infpref..c[4].." vairs nepieder konkursa vadītāja statuss.") end
+			if c[3] == "helper" then helpers[c[4]] = false annonce2(infpref..c[4].." vairs nepieder konkursa palīga statuss.") end end
     elseif c[1] == "role" then
         error0x1(name)
     end
@@ -330,7 +330,7 @@ syscore = "<ROSE><b>[SISTĒMA]</b>"
 infpref = "<PT><b>[<a href='event:getInfo'>•</a>]</b><T> "
 
 -- UtilCore
-ui.addTextArea(32, "<PS><b>["..version.."]</b> <S>Esi sveicināts La Cros Nostra ciltsmājā! Šis modulis tiek izmantots atvieglotai konkursu uzturēšanai.\n<b>PIEZĪME:</b> Ja ienāc konkursa vidū, lūdzu uzgaidi lidz nākamajam raundam/konkursam vai izej no ciltsmājas.",nil, 9, 377, 784, 27, 0x324650, 0x000000, 0, true)
+ui.addTextArea(32, "",nil, 9, 377, 784, 27, 0x324650, 0x000000, 0, true)
  
 -- HostCore
 function hostcore(name)
@@ -518,21 +518,6 @@ end
 
 debug = {}
 
-
--- [[HELP]]
-
-function helpcore(playerName,name)
-ui.addTextArea(3500, "", name, 85, 70, 640, 280, 0x324650, 0x000000, 0.5, true)
-ui.addTextArea(3501, "<ROSE><p align='center'><font size='20'>#lachallengenostra</font></p>", name, 200, 72, 400, 30, 0x324650, 0x000000, 0, true)
-ui.addTextArea(3502, "<a href='event:hlp.close'><S>X</a>", name, 709, 72, 12, 19, 0x324650, 0x000000, 0, true)
-ui.addTextArea(3503, "<S>[<a href='event:hlpid_1'><CE>?</a><S>|<a href='event:hlpid_x1'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_2'><CE>?</a><S>|<a href='event:hlpid_x2'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_3'><CE>?</a><S>|<a href='event:hlpid_x3'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_4'><CE>?</a><S>|<a href='event:hlpid_x4'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_5'><CE>?</a><S>|<a href='event:hlpid_x5'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_6'><CE>?</a><S>|<a href='event:hlpid_x6'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_7'><CE>?</a><S>|<a href='event:hlpid_x7'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_8'><CE>?</a><S>|<a href='event:hlpid_x8'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_9'><CE>?</a><S>|<a href='event:hlpid_x9'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_10'><CE>?</a><S>|<a href='event:hlpid_x10'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_11'><CE>?</a><S>|<a href='event:hlpid_x11'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_12'><CE>?</a><S>|<a href='event:hlpid_x12'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_13'><CE>?</a><S>|<a href='event:hlpid_x13'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_14'><CE>?</a><S>|<a href='event:hlpid_x14'><VP>P<S>]</a>", name, 95, 105, 35, 175, 0x324650, 0x000000, 0, true)
-ui.addTextArea(3504, "", name, 100, 286, 610, 55, 0x324650, 0x000000, 1, true)
-ui.addTextArea(3505, "<S>[<a href='event:hlpid_15'><CE>?</a><S>|<a href='event:hlpid_x15'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_16'><CE>?</a><S>|<a href='event:hlpid_x16'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_17'><CE>?</a><S>|<a href='event:hlpid_x17'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_18'><CE>?</a><S>|<a href='event:hlpid_x18'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_19'><CE>?</a><S>|<a href='event:hlpid_x19'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_20'><CE>?</a><S>|<a href='event:hlpid_x20'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_21'><CE>?</a><S>|<a href='event:hlpid_x21'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_22'><CE>?</a><S>|<a href='event:hlpid_x22'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_23'><CE>?</a><S>|<a href='event:hlpid_x23'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_24'><CE>?</a><S>|<a href='event:hlpid_x24'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_25'><CE>?</a><S>|<a href='event:hlpid_x25'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_26'><CE>?</a><S>|<a href='event:hlpid_x26'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_27'><CE>?</a><S>|<a href='event:hlpid_x27'><VP>P<S>]</a>\n<S>[<a href='event:hlpid_28'><CE>?</a><S>|<a href='event:hlpid_x28'><VP>P<S>]</a>\n", name, 185, 105, 35, 175, 0x324650, 0x000000, 0, true)
-ui.addTextArea(3593, "!c\n!g\n!s\n!r\n!bc\n!ce\n!np\n!md\n!col\n!tfm\n!txt\n!link\n!host\n!meep\n", name, 131, 105, 49, 176, 0x324650, 0x0, 0, true)
-ui.addTextArea(3595, "!size\n!cmode\n!cname\n!rhost\n!score\n!spawn\n!toggle\n!nextmap\n!utilcore\n\n\n", name, 222, 105, 59, 176, 0x324650, 0x0, 0, true)
-end
-
--- hlp.var = hlp.var_c.mode,hlp.var_g.[type,height,width,res,angle,friection,dyn,weight],hlp.var_x,hlp.var_id,hlp.var_y
 function eventTextAreaCallback(textAreaID, playerName, callback,id,other)
 	if callback=="spectate" then 
 		ui.removeTextArea(100,playerName)
@@ -556,5 +541,27 @@ function eventTextAreaCallback(textAreaID, playerName, callback,id,other)
 		clear()
 	end
 	if callback=="getInfo" then
-		ui.updateTextArea(64,infpref.."<T>Versija: <V>"..version.."</V> / Identifikators: <V>"..OWNER_ID.."</V>",playerName) end
+		ui.addTextArea(600, "<li>version: <T>"..version.."</T></li><li>OWNER_ID: <T>"..OWNER_ID.."</T></li><li>title: <T>"..title.."</T></li><br><b><font size='16'>SETUP</font></b><li>flymode: <R>false</R></li><li>challengemode: <T>"..SETUP.challengemode.."</T></li><li>autorespawn: <T>"..SETUP.autorespawn.."</T></li><li>everyoneVerified: <T>"..SETUP.everyoneVerified.."</T></li><br><hr><p align='right'><a href='event:hlp'><J>[palīdzība] </J></a><a href='event:about'><V>[par] </V></a><a href='event:infclose'><ROSE>[aizvērt]</ROSE></a></p>", playerName, 215, 134, 369, 131, 0x324650, 0x000000, 0.9, true)
+ end
+ 	if callback=="infclose" then 
+		ui.removeTextArea(600,playerName)
+	end
+ 	if callback=="about" then 
+		ui.addTextArea(600, "Veidoja <VP>Syrius#8114</VP>.<br><br>Paldies <VP>Sanija#1187</VP>, <VP>Ertyezz#9819</VP>, <VP>Acmexitee#0000</VP> un citiem cilts <VP>La Cros Nostra</VP> dalībniekiem par palīdzību moduļa veidošanas gaitā.<br><br><br><br><br><p align='right'><a href='event:infclose'><ROSE>[aizvērt]</ROSE></a></p>", playerName, 215, 134, 369, 131, 0x324650, 0x000000, 0.9, true)
+	end
+ 	if callback=="hlp" then 
+		ui.addTextArea(600, "<J><li><a href='event:hlp1'>A - F</a></li><li><a href='event:hlp2'>G - N</a></li><li><a href='event:hlp3'>O - SM</a></li><li><a href='event:hlp4'>SN - Z</a></li></J>\n\n\n\n\n\n<p align='right'><a href='event:infclose'><ROSE>[aizvērt]</ROSE></a></p>", playerName, 215, 134, 369, 131, 0x324650, 0x000000, 0.9, true)
+	end
+ 	if callback=="hlp1" then 
+		ui.addTextArea(600, "<font size='10'>Apzīmējumi: <BL>host</BL>, <PT>helper</PT>, <BV>contestant</BV>, <V>obligāts</V>, <R>ne-obligāts</R></font>\n<N2>____________________________________________________</N2>\n\n<b><PT>!bc</PT><BL>*</BL></b> <R>[teksts]</R>\n<font size='10'>Parāda tekstu augšējā interfeisā. Lietojot <BL>!bc*</BL>, ir pieejami HTML tagi.</font>\n\n<b><BL>!c</BL></b> <V>[režīms]</V> <R>[parametrs]</R>\n<font size='10'>Uzsāk semi-automatizēto konkursu. Parametrs ir papildus informācija modulim, t.i. '!c pkg 7'.</font>\n\n<b><PT>!ce*</PT></b> <V>[lietotājvārds]</V> \n<font size='10'>Iedod sieru spēlētājam. Lietojot <PT>!ce*</PT>, siers tiek atņemts.</font>\n\n<b><BL>!col</BL></b> <V>[lietotājvārds] [krāsa]</V>\n<font size='10'>Iekrāso spēlētāja vārdu. Krāsa ir #xxxx formāta heksadecimālie toņi. Neviena krāsa, kurā nepieciešams zilais, nav pieejama!</font>\n\n<b><PT>!clear</PT></b> \n<font size='10'>Nodzēš visus objektus.</font>\n\n<b><BL>!d</BL></b> <V>[lietotājvārds]</V>\n<font size='10'>Diskvalificē spēlētāju.</font>\n\n\n\n\n\n<p align='right'><a href='event:infclose'><ROSE>[aizvērt]</ROSE></a></p>", playerName, 215, 134, 369, 131, 0x324650, 0x000000, 0.9, true)
+	end
+ 	if callback=="hlp2" then 
+		ui.addTextArea(600, "<font size='10'>Apzīmējumi: <BL>host</BL>, <PT>helper</PT>, <BV>contestant</BV>, <V>obligāts</V>, <R>ne-obligāts</R></font>\n<N2>____________________________________________________</N2>\n\n<b><BL>!g*</BL></b> <font size='8'><V>[id] [tips] [x] [y] [platums] [augstums]</V> <R>[atsperība] [berze] [leņķis] [din.] [masa]</R></font>\n<font size='10'>Izveido zemi. Lietojot <BL>!g*</BL>, zemei var iziet cauri.</font>\n\n<b><BL>!kill</BL></b> <V>[lietotājvārds]</V>\n<font size='10'>Nogalina spēlētāju.</font>\n\n<b><BL>!link*</BL></b> <V>[lietotājvārds] [lietotājvārds2]</V>\n<font size='10'>Savieno spēlētājus. Lietojot <BL>!link*</BL>, spēlētāji tiek atvienoti viens no otra.</font>\n\n<b><BL>!md*</BL></b> <V>[id] [x1] [y1] [x2] [y2]</V> <R>[platums]</R>\n<font size='10'>Novelk līniju. Lietojot <BL>!md*</BL>, kļūst pieejami parametri <R>[krāsa] [caursp.]</R>, kurus raksta aiz esošajiem. Krāsa ir #xxxx formāta heksadecimālie toņi. Neviena krāsa, kurā nepieciešams zilais, nav pieejama!</font>\n\n<b><BL>!meep</BL></b> <V>[lietotājvārds]</V>\n<font size='10'>Piešķir spēlētajam meep.</font>\n\n<b><BL>!next</BL></b> \n<font size='10'>Pārslēdz mapi. Nav pieejams 'build' režīmā.</font>\n\n<b><BL>!np</BL></b> <V>[kods]</V>\n<font size='10'>Pārslēdz mapi uz konkrētu vai nejaušu rotācijas mapi.</font>\n\n\n\n\n\n<p align='right'><a href='event:infclose'><ROSE>[aizvērt]</ROSE></a></p>", playerName, 215, 134, 369, 131, 0x324650, 0x000000, 0.9, true)
+	end
+ 	if callback=="hlp3" then 
+		ui.addTextArea(600, "<font size='10'>Apzīmējumi: <BL>host</BL>, <PT>helper</PT>, <BV>contestant</BV>, <V>obligāts</V>, <R>ne-obligāts</R></font>\n<N2>____________________________________________________</N2>\n\n<b><BL>!p</BL></b> <V>[id] [tips] [teksts]</V>\n<font size='10'>Izveido aizveramu tekstlodziņu. Tekstā atstarpes jāaizstāj ar |.</font>\n\n<b><BL>!play</BL></b> <V>[lietotājvārds] [id] [parametrs]</V>\n<font size='10'>Liek spēlētājam izdarīt emociju. Parametrs ir papildus informācija modulim, t.i. '!play Syrius#8114 10 lv'.</font>\n\n<b><PT>!r</PT><BL>*</BL></b> <V>[lietotājvārds]</V>\n<font size='10'>Atdzīvina spēlētāju. Lietojot <BL>!r*</BL>, kļūst pieejami parametri <R>[x] [y]</R>, kurus raksta aiz esošajiem.</font>\n\n<b><BL>!role</BL></b> <V>[darbība] [statuss] [lietotājvārds]</V>\n<font size='10'>Nomaina spēlētāja statusu. Darbība ir + vai -. Statuss ir 'host' vai 'helper'.</font>\n\n<b><PT>!s*</PT></b> <V>[lietotājvārds]</V>\n<font size='10'>Padara spēlētāju par šamani. Lietojot <PT>!s*</PT>, šamanis kļūst par peli.</font>\n\n<b><BL>!score</BL></b> <V>[lietotājvārds] [vērtība]</V>\n<font size='10'>Maina spēlētāja punktus t.s. 'scoreboard' interfeisā.</font>\n\n<b><PT>!size</PT></b> <V>[lietotājvārds] [vērtība]</V>\n<font size='10'>Maina spēlētāja lielumu. Vērtība ir skaitlis no 0,1 līdz 5.</font>\n\n<b><PT>!smode</PT></b> <V>[lietotājvārds] [režīms]</V>\n<font size='10'>Maina šamaņa režīmu. 0 = normāls; 1 = grūts; 2 = dievišķais.</font>\n\n\n\n\n\n\n\n<p align='right'><a href='event:infclose'><ROSE>[aizvērt]</ROSE></a></p>", playerName, 215, 134, 369, 131, 0x324650, 0x000000, 0.9, true)
+	end
+ 	if callback=="hlp4" then 
+		ui.addTextArea(600, "<font size='10'>Apzīmējumi: <BL>host</BL>, <PT>helper</PT>, <BV>contestant</BV>, <V>obligāts</V>, <R>ne-obligāts</R></font>\n<N2>____________________________________________________</N2>\n\n<b><BL>!sname</BL></b> <V>[teksts]</V>\n<font size='10'>Nomaina šamaņa vārdu augšējā interfeisā uz tekstu.</font>\n\n<b><BV>!spawn</BV></b> <V>[tips] [x] [y]</V> <R>[x-paātr.] [y-paātr.] [caursp.]</R>\n<font size='10'>Izveido objektu.</font>\n\n<b><BL>!test</BL></b> \n<font size='10'>Nav funkcijas.</font>\n\n<b><BL>!tfm*</BL></b> <V>[lietotājvārds]</V>\n<font size='10'>Ļauj spēlētājam transformēties. Lietojot <BL>!tfm*</BL>, transformācijas spēja tiek atņemta.</font>\n\n<b><BL>!toggle</BL></b> <V>[parametrs]</V>\n<font size='10'>'build' režīma palīgkomanda, ar kuru pārveidot mapes. </font>\n\n<b><BL>!txt</BL></b> <V>[id] [x] [y] [platums] [augstums] [teksts] [formāts]</V>\n<font size='10'>Izveido tekstlodziņu. formāts = HTML tags bez V-veida iekavām. </font>\n\n<b><BL>!txt*</BL></b> <V>[id] [teksts] [formāts]</V>\n<font size='10'>Rediģē tekstlodziņu. Lai rediģētu ar !txt veidotus tekstlodziņus, pieliec id skaitlim priekšā -. Tekstā atstarpes aizstāj ar |.</font>\n\n<b><BL>!uc*</BL></b> <V>[teksts]</V>\n<font size='10'>Parāda tekstu apakšējā interfeisā (parasti neredzams). Lietojot <BL>!uc*</BL></font>, tekstā nevar lietot HTML un spēlētāja lietotājvārds ir slēpts.\n\n\n\n\n\n\n\n\n<p align='right'><a href='event:infclose'><ROSE>[aizvērt]</ROSE></a></p>", playerName, 215, 134, 369, 131, 0x324650, 0x000000, 0.9, true)
+	end
 end
