@@ -4,14 +4,19 @@ SETUP = {flymode = false,challengemode = "build",autorespawn = "true",everyoneVe
  
 -- [[LaChallengeNostra: LV]]
  
-version = "v.b36"
+version = "v.b38"
 title = "#LaChallengeNostra "..SETUP.challengemode
 player={} helpers={}
 hosts={['Syrius#8114'] = true,['Acmexitee#0000'] = true,['Ertyezz#9819'] = true,['Sanija#1187'] = true} --,['Ertyezz#9819'] = true  ,['Laimesberns#3746'] = true
 contestants={}
+userData={}
  
+-- customcolortag bibliotēka
+local setColorTag do local colors = { } setColorTag = function(tag, color) assert(tag, "Missing tag.") assert(color, "Missing color.") if type(color) == "number" then color = string.format("#%06x", color) else color = tostring(color) if not string.find(color, '#') then color = "#" .. color end end tag = tostring(tag) if not string.find(tag, "^<.->$") then tag = "<" .. tag .. ">" end colors[#colors + 1] = { tag = tag, color = color } end local putColors = function(str) for i = 1, #colors do str = string.gsub(str, colors[i].tag, "<font color=\"" .. colors[i].color .. "\">") end return str end local addTextArea, updateTextArea, chatMessage, p = ui.addTextArea, ui.updateTextArea, tfm.exec.chatMessage, print ui.addTextArea = function(id, str, ...) return addTextArea(id, putColors(str), ...) end ui.updateTextArea = function(id, str, ...) return updateTextArea(id, putColors(str), ...) end tfm.exec.chatMessage = function(str, ...) return chatMessage(putColors(str), ...) end print = function(str) return p(putColors(str)) end end
+setColorTag("warn", 0xeb1d51) setColorTag("purp", 0x8A2BE2) setColorTag("grbl",0x6497b1)
+
 -- Noklusējuma iestatījumi
-tfm.exec.newGame('<C><P APS="169df582e29.png,0,100,100,100,100,200,40"/><Z><S><S P="0,0,0.3,0.2,0,0,0,0" X="0" L="3000" o="0" H="3000" c="4" Y="0" T="12" /><S P="0,0,0.3,0.2,0,0,0,0" L="10" o="324650" H="10" X="400" Y="240" T="12" /></S><D /><O /></Z></C>')
+tfm.exec.newGame('<C><P meta="Lacrosnostra#2008,0"APS="169df582e29.png,0,100,100,100,100,200,40"/><Z><S><S P="0,0,0.3,0.2,0,0,0,0" X="0" L="3000" o="0" H="3000" c="4" Y="0" T="12" /><S P="0,0,0.3,0.2,0,0,0,0" L="10" o="324650" H="10" X="400" Y="240" T="12" /></S><D /><O /></Z></C>')
 tfm.exec.setUIMapName("<ROSE>"..version.."")
 ui.addTextArea(0,"<ROSE><p align='center'><font size='20'>"..title.."</font></p>", nil, 100, 25, 600, 30, 0x324650, 0x000000,0.5, true)
 tfm.exec.disableAutoShaman(true)
@@ -83,7 +88,7 @@ if cmd:sub(1,5) == "clear" and hosts[name] or helpers[name] and cmd:sub(1,5)=="c
 if cmd:sub(1,5) == "sname" and hosts[name] then ui.setShamanName(cmd:sub(7)) end
 if cmd:sub(1,2) == "uc" and hosts[name] then ui.updateTextArea(32,"<V>["..name.."]<A:ACTIVE> "..string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<"),nil) end 
 if cmd:sub(1,3) == "uc*" and hosts[name] then ui.updateTextArea(32,syscore.." "..cmd:sub(5),nil) end
-
+if cmd:sub(1,1) == "i" then ui.addTextArea(8999, "<font size='16'><warn><a href='event:user.cls'>X</a></warn> <rose><b>Iestatījumi</b></rose></font>\n______________\n\n<font size='14'><warn>Interfeiss</warn></font>\n<font size='12'><purp><li><a href='event:user.nogui'>[noņemt]</a>\n", name, 325, 100, 150, 200, 0x000001, 0x000000, 0.9, true) end
 -- 'all' komandas
 if cmd:sub(1,5) == "s all" and hosts[name] then table.foreach(tfm.get.room.playerList, tfm.exec.setShaman) end
 if cmd:sub(1,5) == "r all" and hosts[name] then table.foreach(tfm.get.room.playerList, tfm.exec.respawnPlayer) end  
@@ -91,6 +96,9 @@ if cmd:sub(1,6) == "ce all" and hosts[name] then table.foreach(tfm.get.room.play
 if cmd:sub(1,8) == "tfm all" and hosts[name] then table.foreach(tfm.get.room.playerList, tfm.exec.giveTransformations) end 
 if cmd:sub(1,8) == "kill all" and hosts[name] then table.foreach(tfm.get.room.playerList, tfm.exec.killPlayer) end 
 if cmd:sub(1,8) == "meep all" and hosts[name] then table.foreach(tfm.get.room.playerList, tfm.exec.giveMeep) end   
+
+-- [[DEBUG]]
+debug = {}
 
 -- HostCore izsaucējs
 if cmd=="hc" and hosts[name] or helpers[name] and cmd=="hc" then 
@@ -209,7 +217,11 @@ elseif cmd=="c build" then error0x1(name) end
         error0x1(name)
     end
     if c[1] == "d" and hosts[name] then
-			disq(c[2])
+			ui.addTextArea(101, "<R><font size='40'>TU ESI DISKVALIFICĒTS.</font>\n<font size='16'><A:ACTIVE>Konkursa vadītājs "..name.." ir tevi diskvalificējis.\nDrīksti pamest ciltsmāju.</J></font></R>", c[2], 100, 150, 600, 100, 0x000001, 0x000001, 1, true) 
+			tfm.exec.killPlayer(c[2])
+			tfm.exec.setPlayerScore(c[2],-32768,false) 
+			ui.updateTextArea(32,"<D>• "..c[2].." ir diskvalificēts.",nil)
+			print("<D>• "..c[2].." ir diskvalificēts.")			
     elseif c[1] == "d" then
         error0x1(name)
     end
@@ -253,26 +265,8 @@ function annonce2(text)
 	print(text)
 	ui.updateTextArea(64,text,nil)
 end
--- Diskvalifikācija
 
-function disq(c)
-ui.addTextArea(100, c,c, -600, -200, 2400, 1200, 0x000001, 0x000001, 1, true)
-ui.addTextArea(101, "<R><font size='40'><p align='center'>Tu esi diskvalificēts.</p></font>\n<N2><font size='24'><p align='center'>Drīksti pamest ciltsmāju.</p></font><p align='center'><G><a href='event:spectate'>[Skatīties konkursu]</a></p>", c, 0, 100, 800, 384, 0x324650, 0x000000, 0, true)
-ui.removeTextArea(0,c[2])
-ui.removeTextArea(32,c[2])
-contestants[c] = false
-end
 
--- Klaviatūra
-
-function eventKeyboard(name, key, down, x, y)
-if key==18 then
-tfm.exec.newGame(tfm.get.room.currentMap) 
-elseif key==33 and SETUP.challengemode=="vanilla" then
-nextMap()
-elseif key==33 and SETUP.challengemode=="survival" then 
-survRound() end
-end
  
 -- Clear
 
@@ -293,10 +287,10 @@ end
 -- Kļūdas
  
 function error0x1(name)
-ui.updateTextArea(32,syscore.."<A:ACTIVE><b>["..name.."]</b> KĻŪDA 0x1: Nav vadītāja tiesību.",nil)
+ui.updateTextArea(32,"<warn><b>• ["..name.."]</b> Nederīga komanda vai arī tev nav pietiekamu tiesību tās lietošanai.",nil)
 end
 function error0x2(name,cmd)
-ui.updateTextArea(32,syscore.."<A:ACTIVE><b>["..name.."]</b> KĻŪDA 0x2: Lūdzu izmaini SETUP.challengemode konfigurāciju uz ''"..cmd:sub(3).."'', lai veiktu šo darbību.",nil)
+ui.updateTextArea(32,"<warn><b>• ["..name.."]</b> Nederīgs spēles režīms: nomaini SETUP.challengemode uz atbilstošo režīmu.",nil)
 end
  
 -- Koordinātu printeris
@@ -307,19 +301,33 @@ function eventNewPlayer(n,name)
 
   system.bindKeyboard(n, SHIFT_KEY, true, true)
   system.bindKeyboard(n, SHIFT_KEY, false, true)
+  system.bindKeyboard(n, 18, true, true)
+  system.bindKeyboard(n, 33, true, true)
+  system.bindKeyboard(n, 34, true, true)
+  system.bindKeyboard(n, 73, true, true)
   system.bindMouse(n, true)
 end
 
 function eventKeyboard(n, key, down, x, y)
  
-  shifting[n] = down -- ieslēgts, ja tiek turēts SHIFT
-end
+if key==34 and hosts[n] then
+tfm.exec.newGame(tfm.get.room.currentMap) annonce2(infpref..n.." pārlādēja mapi.") 
+elseif key==33 and SETUP.challengemode=="vanilla" and hosts[n] then
+nextMap()
+elseif key==33 and SETUP.challengemode=="survival" and hosts[n] then 
+survRound() 
+elseif key==33 and SETUP.challengemode=="pkg" and hosts[n] then 
+packageutils() 
+elseif key==33 and SETUP.challengemode=="thirty" and hosts[n] then 
+newMap() 
+elseif key==SHIFT_KEY then shifting[n] = down
+end end 
  
 function eventMouse(n, x, y)
  
   if shifting[n] then
-    ui.updateTextArea(32,"<PT> [util-"..version.."] <N2>"..n .." kursora koordinātas ir - X:" .. x .. ", Y:" .. y,nil)
-    print("<PT>[util-"..version.."] <N2>"..n .." kursora koordinātas ir - X:" .. x .. ", Y:" .. y)
+    ui.updateTextArea(32,"<BV>• "..n .." kursora koordinātas ir - X:" .. x .. ", Y:" .. y,nil)
+    print("<BV>• "..n .." kursora koordinātas ir - X:" .. x .. ", Y:" .. y)
   end
 end
  
@@ -355,7 +363,7 @@ function eventPlayerDied(name)
         winnerFunction(winner)
     end
 
-print("<PT>[util-"..version.."] <N2>"..name.." ir zaudējis ;(")
+print("<BV>• "..name.." ir zaudējis ;(")
 ui.updateTextArea(0,"<p align='center'><font size='20'><ROSE>"..name.." ir zaudējis.</font></p>",nil)
 end
 	if SETUP.autorespawn == "true" then
@@ -365,17 +373,11 @@ end
  
 -- [[IZDZĪVOŠANAS CHALLENGE UTILIJAS]]
 survtest = [[<C><P H="800" L="1600" /><Z><S /><D><P X="0" P="0,0" C="5d6582" Y="400" T="34" /><P X="800" P="0,0" C="324650" Y="0" T="34" /><P X="0" P="0,0" C="719b9f" Y="0" T="34" /><P X="800" P="0,0" C="ffaf00" Y="400" T="34" /><P X="400" P="0,0" C="faff" Y="200" T="34" /></D><O /></Z></C>]]
-map1 = [[<C><P L="1600" H="800" /><Z><S><S H="185" P="1,0,0,1.2,0,0,0,0" L="34" X="205" Y="293" T="2" /><S H="185" P="1,0,0,1.2,0,0,0,0" L="34" X="305" Y="293" T="2" /><S H="185" P="1,0,0,1.2,0,0,0,0" L="34" X="405" Y="293" T="2" /><S H="10" P="1,0,0.3,0.2,0,0,0,0" L="32" o="324650" X="713" Y="95" T="13" /><S H="10" P="0,0,0.3,0.2,0,0,0,0" L="47" X="111" Y="123" T="9" /><S H="10" P="1,0,0,0.2,45,0,0,0" L="47" X="84" Y="107" T="1" /><S H="18" P="1,0,0.3,0.2,0,0,0,0" L="125" X="686" Y="256" T="0" /></S><D /><O /><L><JR M1="2" M2="3" /><JD M1="3" M2="6" /><JPL M1="0" P3="800,402" M2="1" P4="399,0" /><JP M1="2" M2="5" /><JPL M1="5" P3="0,250" M2="6" P4="797,249" /></L></Z></C>]]
-map2 = [[<C><P L="1600" H="800" /><Z><S><S H="10" P="1,0,0.3,0.2,0,0,0,0" L="50" o="5d6582" X="300" c="4" Y="258" T="13" /><S H="10" P="1,0,0.3,0.2,0,0,0,0" L="50" o="324650" X="500" Y="258" T="13" /><S H="10" P="1,0,20,0.2,0,0,0,0" L="17" X="135" Y="372" T="4" /><S H="210" P="1,0,0.3,0.2,0,0,0,0" L="20" X="730" Y="152" T="0" /><S H="10" P="1,0,0,0.2,25,0,0,0" L="256" X="179" Y="89" T="1" /><S H="20" P="1,0,0,1.2,0,0,0,0" L="200" X="400" Y="400" T="2" /></S><D /><O /><L><JR M1="0" M2="2" /><JR M1="1" M2="3" /><JPL P3="802,229" M1="4" P4="393,3" M2="5" /><JP M1="0" M2="1" /><JD M1="4" M2="3" /><JP M1="5" M2="3" /><JR M1="2" M2="4" /><JP M1="0" M2="3" /><JPL P3="1,598" M1="2" P4="797,-1" M2="5" /><JP M1="0" M2="5" /><JR M1="2" M2="5" /></L></Z></C>]]
-map4 = [[<C><P L="1600" H="800" /><Z><S><S H="31" P="1,0,0.3,0.2,0,0,0,0" L="187" X="210" Y="128" T="0" /><S H="42" P="1,0,0,1.2,0,0,0,0" L="42" X="612" Y="202" T="2" /><S H="334" P="0,0,0.3,0.2,0,0,0,0" L="10" X="641" Y="204" T="9" /><S H="150" P="1,0,20,0.2,0,0,0,0" L="40" X="169" Y="286" T="4" /></S><D /><O /><L><JR M1="1" M2="0" /><JPL P3="639,368" M1="3" P4="641,33" M2="0" /></L></Z></C>]]
--- map702 = [[<C><P L="1600" H="800" meta="Ertyezz#9819,702"/><Z><S><S T="0" X="198" Y="193" L="34" H="185" P="1,0,0.3,0.2,0,0,0,0" /><S T="0" X="519" Y="253" L="38" H="172" P="1,0,0.3,0.2,0,0,0,0" /><S T="2" X=""628" Y="94" L="186" H="32" P="1,0,0,1.2,0,0,0,0" /><S T="13" X="355" Y="99" L="40" H="10" P="1,0,0.3,0.2,0,0,0,0" o="324650" /><S T="4" X="52" Y="173" L="31" H="160" P="1,0,20,0.2,0,0,0,0" /></S><D /><O /><L><JR M1="2" M2="1" /><JR M1="3" M2="4" /><JPL M1="0" M2="2" P3="0,0" P4="0,0" /><JPL M1="3" M2="1" P3="765,53" P4="764,53" /><JPL M1="1" M2="3" P3="447,34" P4="764,54" /><JD M1="4" M2="1" /><JD M1="0" M2="3" /></L></Z></C>]]
-map703 = [[<C><P L="1600" H="800" meta="Ertyezz#9819,703"/><Z><S><S X="202" L="24" Y="181" H="181" P="1,0,0,0.2,-80,0,0,0" T="1" /><S X="560" L="21" Y="231" H="193" P="1,0,0,0.2,40,0,0,0" T="1" /><S X="375" L="163" Y="310" H="27" P="1,0,0.3,0.2,0,0,0,0" T="0" /><S X="344" o="324650" L="35" Y="210" H="10" P="1,0,0.3,0.2,0,0,0,0" T="13" /></S><D /><O /><L><JPL P3="681,132" P4="682,134" M2="3" M1="1" /><JPL P3="682,134" P4="683,132" M2="3" M1="2" /><JPL P3="683,132" P4="680,134" M2="1" M1="0" /><JD M2="2" M1="0" /><JD M2="0" M1="3" /><JD M2="2" M1="1" /><JR M2="1" M1="3" /><JR M2="2" M1="3" /></L></Z></C>]]
-map704 = [[<C><P L="1600" H="800" meta="Ertyezz#9819,704"/><Z><S><S X="148" L="26" Y="152" H="195" P="1,0,0.3,0.2,120,0,0,0" T="0" /><S X="523" L="31" Y="326" H="199" P="1,0,0.3,0.2,40,0,0,0" T="0" /><S X="209" L="37" Y="312" H="187" P="1,0,0,0.2,80,0,0,0" T="1" /><S X="514" L="41" Y="104" H="226" P="1,0,0,1.2,100,0,0,0" T="2" /></S><D /><O /><L><JPL M2="3" P4="694,14" M1="0" P3="692,14" /><JPL M2="2" P4="696,14" M1="1" P3="696,14" /><JPL M2="1" P4="462,21" M1="3" P3="350,17" /><JD M2="0" M1="3" /><JR M2="0" M1="2" /></L></Z></C>]]
-fap1 = [[<C><P L="1600" H="800" /><Z><S><S H="10" P="0,0,0.3,0.2,0,0,0,0" L="52" X="39" Y="47" T="9" /><S H="10" P="0,0,0.3,0.2,0,0,0,0" L="52" X="91" Y="52" T="9" /><S H="30" P="1,0,0,20,0,0,0,0" L="30" X="666" Y="150" T="3" /><S H="20" P="1,0,0.3,0.2,0,0,0,0" L="120" X="330" Y="300" T="0" /><S H="20" P="1,0,0.3,0.2,0,0,0,0" L="120" X="450" Y="320" T="0" /><S H="216" P="1,0,0,1.2,15,0,0,0" L="17" X="228" Y="144" T="2" /><S H="13" P="1,0,0,0.2,0,0,0,0" L="144" X="666" Y="185" T="1" /></S><D /><O /><L><JD M2="3" M1="0" /><JP M2="6" M1="2" /><JPL M1="5" M2="6" P4="382,2" P3="799,220" /><JR M2="6" M1="4" /><JR M2="1" M1="2" /><JPL M1="3" M2="6" P4="799,-2" P3="798,595" /><JD M2="5" M1="2" /></L></Z></C>]]
 
 if SETUP.challengemode == "survival" then
 survrounds = 0 
-survrot = {7479177,7482494,7485763,map1,map2,map4,map703,map704}
+--###################################$201###$202####$703#####$701
+survrot = {7479177,7482494,7485763,7602083,7602098,7605138,7605136}
 finalrot = {fap1}
 function survutils(name)
 ui.updateTextArea(0,"<VP><p align='center'><font size='20'>Izdzīvošanas challenge ir sācies!</font></p>", nil)
@@ -390,7 +392,6 @@ survrounds = survrounds + 1
 
 if survrounds ~= 10 then
 srv = survrot[math.random(#survrot)]
-print("<VI>[DEBUG]<V> Karte: "..srv)
 tfm.exec.newGame(srv)
 elseif survrounds == 10 then
 tfm.exec.newGame(finalrot[math.random(#finalrot)])
@@ -404,8 +405,8 @@ end
 end
 function winnerFunction(winner)
 ui.updateTextArea(0,"<p align='center'><font size='20'><ROSE>"..winner.." uzvarēja!</font></p>",nil)
-ui.updateTextArea(32,syscore.." Raunds beidzies: "..winner.." uzvarēja!",nil)
-print('<CE><b>[#]</b><CEP> '..survrounds..'. raunds - '..winner..' uzvarēja!')
+ui.updateTextArea(32,"<D>• "..survrounds..". raunds beidzies: "..winner.." uzvarēja!",nil)
+print('<D>• '..survrounds..'. raunds - '..winner..' uzvarēja!')
 tfm.exec.giveCheese(winner)
 tfm.exec.playerVictory(winner)
 tfm.exec.setPlayerScore(winner,60,true)
@@ -466,12 +467,28 @@ function hostinterfaces(name)
 	end
 end
 
+
 -- [[MAPJU PAKOTŅU UTILIJAS]]
 pkg = {round = -1}
 function packageutils(c)
 tfm.exec.newGame('#'..pkg.data)
 end
 
+ 		first = 0
+
+-- eventPlayerWon
+function eventPlayerWon(playerName, timeElapsed, timeElapsedSinceRespawn)
+	if SETUP.challengemode == "pkg" then
+		if first == 0 then
+        	first = first + 1
+			if first == 1 then
+			tfm.exec.setPlayerScore(playerName,60,true)   
+			ui.updateTextArea(32,"<D>• "..pkg.round..".raunds: "..playerName.." uzvarēja!",nil)
+			print("<D>• "..pkg.round..".raunds: "..playerName.." uzvarēja!")	
+ elseif first < 2 then tfm.exec.setPlayerScore(playerName,10,true) 
+		end end 
+	end
+end
 if tfm.get.room.owner ~= OWNER_ID then ui.addTextArea(100, "", nil, -2000, -2000, 4000, 4000, 0x000001, 0x000001, 1, true)
 ui.addTextArea(101, "<R><font size='40'>NEDERĪGA AUTORIZĀCIJA.</font>\n<font size='16'>Šis kods ir paredzēts <J>"..OWNER_ID.."</J>.</font></R>", nil, 100, 150, 600, 100, 0x324650, 0x000000, 0.1, true) end
 
@@ -489,23 +506,24 @@ function newMap()
 function eventNewGame(name)
 	if SETUP.challengemode=="thirty" then
 		tfm.exec.setGameTime(30)
-
+	end
     local Ptag = string.match(tfm.get.room.xmlMapInfo.xml, "<P (.-)/>")
     local meta = string.match(Ptag, 'meta ?= ?"(.-)"')
     local mapName
 
     if meta then
         mapName = string.gsub(meta, ",", "<BL> - $", 1).."</BL>"
-    else
-        mapName = "Nav atrasts metatags."
     end
 
     ui.setMapName(mapName)
-	end
+	
 	if SETUP.challengemode == "pkg" then
 	pkg.round = pkg.round + 1
 	ui.updateTextArea(0,"<ROSE><p align='center'><font size='20'>"..pkg.round..". raunds</font></p>", nil)
 	
+	end
+	if SETUP.challengemode=="pkg" then
+		first=0
 	end
 end
 
@@ -514,9 +532,6 @@ function test()
 tfm.exec.newGame(survtest)
 end
 
--- [[DEBUG]]
-
-debug = {}
 
 function eventTextAreaCallback(textAreaID, playerName, callback,id,other)
 	if callback=="spectate" then 
@@ -548,6 +563,12 @@ function eventTextAreaCallback(textAreaID, playerName, callback,id,other)
 	end
  	if callback=="about" then 
 		ui.addTextArea(600, "Veidoja <VP>Syrius#8114</VP>.<br><br>Paldies <VP>Sanija#1187</VP>, <VP>Ertyezz#9819</VP>, <VP>Acmexitee#0000</VP> un citiem cilts <VP>La Cros Nostra</VP> dalībniekiem par palīdzību moduļa veidošanas gaitā.<br><br><br><br><br><p align='right'><a href='event:infclose'><ROSE>[aizvērt]</ROSE></a></p>", playerName, 215, 134, 369, 131, 0x324650, 0x000000, 0.9, true)
+	end
+ 	if callback=="user.nogui" then 
+		ui.removeTextArea(0,playerName)	ui.removeTextArea(32,playerName)
+	end
+ 	if callback=="user.cls" then 
+		ui.removeTextArea(8999,playerName)
 	end
  	if callback=="hlp" then 
 		ui.addTextArea(600, "<J><li><a href='event:hlp1'>A - F</a></li><li><a href='event:hlp2'>G - N</a></li><li><a href='event:hlp3'>O - SM</a></li><li><a href='event:hlp4'>SN - Z</a></li></J>\n\n\n\n\n\n<p align='right'><a href='event:infclose'><ROSE>[aizvērt]</ROSE></a></p>", playerName, 215, 134, 369, 131, 0x324650, 0x000000, 0.9, true)
