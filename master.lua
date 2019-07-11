@@ -4,16 +4,16 @@ SETUP = {autoplay = false,challengemode = "build",autorespawn = false,everyoneVe
 
 -- [[LaChallengeNostra: LV, EN, DE]]
  
-version = "v.b43"
+version = "v.b44"
 title = "#LaChallengeNostra "..SETUP.challengemode
-player={} helpers={}
+player={} helpers={} disq={}
 hosts={['Syrius#8114'] = true,['Acmexitee#0000'] = true,['Sanija#1187'] = true} --,['Ertyezz#9819'] = true  ,['Laimesberns#3746'] = true
 contestants={}
 userData={} -- Piezīme Syrius (dist 88, 292) 
 
 -- Tulkojumi
 
-local t = {lv={[40]=".",[70]="jā",[71]="ieslēgts",[72]="izslēgts",[73]="nē",[80]="<warn>Nav zināms.</warn>",[81]="Bez-naglu challenge",[82]="Divine challenge",[83]="Izdzīvošanas challenge",[84]="Cilts racing",[85]="Defilante sacensības",[86]="30-sekunžu challenge",[87]="Būvdarbu cīņas",[100]="LCN versija:",[101]="Esi sveicināts #LaChallengeNostra modulī!",[102]="Šis modulis tiek izmantots atvieglotai konkursu uzturēšanai.",[103]="Ja ienāc konkursa vidū, lūdzu izej no ciltsmājas.",[104]="Tūlīt notiks:",[200]="ir ienācis ciltsmājā.",[201]="Darbojas #LaChallengeNostra.",[202]="Tu neesi cilts eventa dalībnieks/vadītājs.",[203]="Iestatījumi",[204]="Interfeiss",[205]="[noņemt]",[206]="HostCore ieslēgts:",[207]="(nospied •, lai redzētu moduļa informāciju)",[208]="iestatīja krāsu tagu",[209]="TU ESI DISKVALIFICĒTS.",[210]="Konkursa vadītājs ir tevi diskvalificējis.",[211]="Drīksti pamest ciltsmāju.",[212]="ir diskvalificēts.",[213]="tagad pieder konkursa vadītāja statuss.",[214]="tagad pieder konkursa palīga statuss.",[215]="vairs nepieder konkursa vadītāja statuss.",[216]="vairs nepieder konkursa palīga statuss.",[217]="Nederīga komanda vai arī tev nav pietiekamu tiesību tās lietošanai.",[218]="Nederīgs spēles režīms: nomaini SETUP.challengemode uz atbilstošo režīmu.",[219]="pārlādēja mapi.",[220]="kursora koordinātas ir -",[221]="[SISTĒMA]",[222]="Konkursa vadītāj, esi sveicināts šajā moduļa versijā.",[223]="Versija:",[224]="Identifikators:",[225]="ir zaudējis ;(",[226]="ir zaudējis.",[227]="Izdzīvošanas challenge ir sācies!",[228]="Darbojas t.s. <i>survival challenge.</i>",[229]="raunds",[230]="Fināla raunds",[231]="uzvarēja!",[232]="raunds beidzies:",[233]="raunds -",[234]="Bez-naglu challenge ir sācies!",[235]="Asistences interfeiss ielādēts.",[236]="Īsinājumtaustiņi",[237]="NEDERĪGA AUTORIZĀCIJA.",[238]="Šis kods ir paredzēts",[239]="Tu esi diskvalificēts.",[240]="[palīdzība]",[241]="[par]",[242]="[aizvērt]",[243]="Veidoja <lbrp>Syrius#8114</font>.",[244]="<br><br>Paldies <lbrp>Sanija#1187</font>, <lbrp>Ertyezz#9819</font>, <lbrp>Acmexitee#0000</font> un citiem cilts <lbrp>La Cros Nostra</font> dalībniekiem par palīdzību moduļa veidošanas gaitā.",[245]="Atdzīvošanās (visi) -",[246]="Notīrīt -",[247]="Paldies par dalību.",[248]="Visi nomira ;(",[249]="Vai esi pārliecināts?",[250]="izgāja no ciltsmājas.",[251]="Ziņa no",[252]="Tulkojums",[253]="Tu nevari diskvalificēt vadītāju/palīgu.",[254]="Diskvalificēt",[255]="Automātiskā mapju ieslēgšana:",[256]="Ir atstāts ieslēgts SETUP.autorespawn!"}, en={[40]="th",[70]="yes",[71]="on",[72]="off",[73]="no",[80]="<warn>Unknown.</warn>",[81]="No nail challenge",[82]="Divine challenge",[83]="Survival challenge",[84]="Tribe's racing",[85]="Defilante race",[86]="30-second challenge",[87]="Builders' Battle",[100]="LCN version:",[101]="Welcome to #LaChallengeNostra module!",[102]="This module is used to simplify the hosting of contests.",[103]="If you come here in the middle of the contest, please leave the tribe house.",[104]="Will be hosted soon:",[200]="entered the tribe house.",[201]="#LaChallengeNostra is active.",[202]="You aren't a contestant or a host.",[203]="Settings",[204]="Interface",[205]="[remove]",[206]="HostCore enabled:",[207]="(press • to see the info panel)",[208]="has set color tag",[209]="YOU ARE DISQUALIFIED.",[210]="A host has disqualified you.",[211]="You may leave the tribe house.",[212]="has been disqualified.",[213]="is now a host.",[214]="is now a helper.",[215]="is no longer a host.",[216]="is no longer a helper.",[217]="Invalid command or you have insufficient permissions to use it.",[218]="Invalid game mode: change SETUP.challengemode to the corresponding mode.",[219]="reloaded the map.",[220]="'s pointer's coordinates are -",[221]="[SYSTEM]",[222]="Host, welcome to this version of the module.",[223]="Version:",[224]="Identificator:",[225]="died ;(",[226]="died.",[227]="Survival challenge has begun!",[228]="<i>Survival challenge</i> is active.",[229]="round",[230]="Final round",[231]="won!",[232]="round has ended:",[233]="round -",[234]="No nail challenge has begun!",[235]="Loaded assistance interface.", [236]="Keybinds", [237]="INVALID AUTHENTICATION.",[238]="This code is intended for",[239]="You are disqualified.",[240]="[help]",[241]="[about]",[242]="[close]",[243]="Created by <VP>Syrius#8114</VP>.",[244]="<br><br>Thanks to <VP>Sanija#1187</VP>, <VP>Ertyezz#9819</VP>, <VP>Acmexitee#0000</VP> and other members of the tribe <VP>La Cros Nostra</VP> for help in the module's development.",[245]="Respawn (all) -",[246]="Clear -",[247]="<font size='50'>Thanks for partipication.",[248]="Everyone died ;(",[249]="Are you sure?",[250]="left the tribehouse.",[251]="A message from",[252]="Translation",[253]="You can't disqualify a host or a helper.",[254]="Disqualify",[255]="Map autoplay:",[256]="SETUP.autorespawn is left on!"}, de={[40]=".",[70]="ja",[71]="auf",[72]="aus",[73]="nein",[80]="<warn>Nicht bekannt.</warn>",[81]="Ohne Nagel Herausforderung",[82]="Göttlicher Modus Herausforderung",[83]="Überlebens Herausforderung",[84]="Stamm racing",[85]="Defilante Herausforderung",[86]="30-Sekunden Herausforderung",[87]="Bauschlachten",[100]="LCN version:",[101]="Willkommen zum #LaChallengeNostra Modul!",[102]="Dieses Modul dient zur Pflege von Wettbeverben.",[103]="Wenn Sie mitten im Wettbeverb hereinkommen, bitte verlassen Sie das Stammeshaus.",[104]="Gleich passiert:",[200]="betrat das Stammeshaus.",[201]="#LaChallengeNostra ist aktiv.",[202]="Sie sind kein Teilnehmer oder Anführer des Stammesereignesses.",[203]="Einstellungen",[204]="Schnittstelle",[205]="[entfernen]",[206]="HostCore auf:",[207]="(Drück • um die Moduldetails zu sehen)",[208]="hat den Farbetikett eingestellen",[209]="DU BIST DISQUALIFIZIERT.",[210]="Der Wettbewerbs Anführer hat Sie disqualifiziert.",[211]="Du kannst das Stammeshaus verlassen.",[212]="wurde disqualifiziert.",[213]="hat jetzt den Status eines Wettbewerb Anführers.",[214]="hat jetzt den Status eines Wettbeverbasissten.",[215]="hat nicht mehr den Status eines Wettbewerb Anführers.",[216]="hat nicht mehr den Status eines Wettbeverbasissten.",[217]="Ungültiges commando oder Sie haben nicht genügend Rechte um es auszuführen.",[218]="Ungültiger Spielemodus: Ändern Sie den SETUP.challengemode in den entsprechenden Modus.",[219]="hat die mape neu gestartet.",[220]="'s Cursor Koordinaten sind -",[221]="[SYSTEM]",[222]="Anführer des Wettbewerbs, willkommen zu dieser Version des Moduls.",[223]="Version:",[224]="Identifikator:",[225]="ist gestorben ;(",[226]="ist gestorben.",[227]="Überlebens Herausforderung hat begonnen!",[228]="<i>Überlebens Herausforderung</i> ist aktiv.",[229]="runde",[230]="Letzte runde",[231]="hat gewonnen!",[232]="runde hat geendet:",[233]="runde -",[234]="Die Ohne Nagel Herausforderung hat begonnen!",[235]="Geladene Asissten Schnittstelle.",[237]="UNGÜLTIGE AUTORISIERUNG.",[238]="Dieser Code ist für",[239]="Du bist disqualifiziert.",[240]="[hilfe]",[241]="[über]",[242]="[schließen]",[243]="Erstellt von <VP>Syrius#8114</VP>.",[244]="<br><br>Danke an <VP>Sanija#1187</VP>, <VP>Ertyezz#9819</VP>, <VP>Acmexitee#0000</VP> und andere Stamm <VP>La Cros Nostra</VP> Teilnehmer für der Unterstützung beim Aufbau des Moduls.",[245]=" Wiederbelebung (alle) -",[246]="Löschen -",[247]="<font size='50'>Vielen Dank für Ihre Teilnahme.",[248]="Alle sind gestorben ;(",[249]="Bist du dir sicher?",[250]="hat das Stammeshaus verlassen.",[251]="Eine Nachricht von",[252]="Übersetzung",[253]="Sie können einen Anführer oder Assistenten nicht disqualifizieren.",[254]="Disqualifizieren",[255]="Karten Autoplay:",[256]="SETUP.autorespawn ist aufgeblieben!"}}
+local t = {lv={[40]=".",[70]="jā",[71]="ieslēgts",[72]="izslēgts",[73]="nē",[80]="<warn>Nav zināms.</warn>",[81]="Bez-naglu challenge",[82]="Divine challenge",[83]="Izdzīvošanas challenge",[84]="Cilts racing",[85]="Defilante sacensības",[86]="30-sekunžu challenge",[87]="Būvdarbu cīņas",[100]="LCN versija:",[101]="Esi sveicināts #LaChallengeNostra modulī!",[102]="Šis modulis tiek izmantots atvieglotai konkursu uzturēšanai.",[103]="Ja ienāc konkursa vidū, lūdzu izej no ciltsmājas.",[104]="Tūlīt notiks:",[200]="ir ienācis ciltsmājā.",[201]="Darbojas #LaChallengeNostra.",[202]="Tu neesi cilts eventa dalībnieks/vadītājs.",[203]="Iestatījumi",[204]="Interfeiss",[205]="[noņemt]",[206]="HostCore ieslēgts:",[207]="(nospied •, lai redzētu moduļa informāciju)",[208]="iestatīja krāsu tagu",[209]="TU ESI DISKVALIFICĒTS.",[210]="Konkursa vadītājs ir tevi diskvalificējis.",[211]="Drīksti pamest ciltsmāju.",[212]="ir diskvalificēts.",[213]="tagad pieder konkursa vadītāja statuss.",[214]="tagad pieder konkursa palīga statuss.",[215]="vairs nepieder konkursa vadītāja statuss.",[216]="vairs nepieder konkursa palīga statuss.",[217]="Nederīga komanda vai arī tev nav pietiekamu tiesību tās lietošanai.",[218]="Nederīgs spēles režīms: nomaini SETUP.challengemode uz atbilstošo režīmu.",[219]="pārlādēja mapi.",[220]="kursora koordinātas ir -",[221]="[SISTĒMA]",[222]="Konkursa vadītāj, esi sveicināts šajā moduļa versijā.",[223]="Versija:",[224]="Identifikators:",[225]="ir zaudējis ;(",[226]="ir zaudējis.",[227]="Izdzīvošanas challenge ir sācies!",[228]="Darbojas t.s. <i>survival challenge.</i>",[229]="raunds",[230]="Fināla raunds",[231]="uzvarēja!",[232]="raunds beidzies:",[233]="raunds -",[234]="Bez-naglu challenge ir sācies!",[235]="Asistences interfeiss ielādēts.",[236]="Īsinājumtaustiņi",[237]="NEDERĪGA AUTORIZĀCIJA.",[238]="Šis kods ir paredzēts",[239]="Tu esi diskvalificēts.",[240]="[palīdzība]",[241]="Par",[242]="[aizvērt]",[243]="Veidoja <lbrp>Syrius#8114</font>.",[244]="<br><br>Paldies <lbrp>Sanija#1187</font>, <lbrp>Ertyezz#9819</font>, <lbrp>Acmexitee#0000</font> un citiem cilts <lbrp>La Cros Nostra</font> dalībniekiem par palīdzību moduļa veidošanas gaitā.",[245]="Atdzīvošanās (visi) -",[246]="Notīrīt -",[247]="Paldies par dalību.",[248]="Visi nomira ;(",[249]="Vai esi pārliecināts?",[250]="izgāja no ciltsmājas.",[251]="Ziņa no",[252]="Tulkojums",[253]="Tu nevari diskvalificēt vadītāju/palīgu.",[254]="Diskvalificēt",[255]="Automātiskā mapju ieslēgšana:",[256]="Ir atstāts ieslēgts SETUP.autorespawn!",[257]="Iestatīt lietotājvārda krāsu",[258]="Iestatīt līnijas krāsu",[259]="Definēt krāsu tagu",[260]="Vadītāju iestatījumi",[261]="[mainīt v.p. pozīciju]"}, en={[40]="th",[70]="yes",[71]="on",[72]="off",[73]="no",[80]="<warn>Unknown.</warn>",[81]="No nail challenge",[82]="Divine challenge",[83]="Survival challenge",[84]="Tribe's racing",[85]="Defilante race",[86]="30-second challenge",[87]="Builders' Battle",[100]="LCN version:",[101]="Welcome to #LaChallengeNostra module!",[102]="This module is used to simplify the hosting of contests.",[103]="If you come here in the middle of the contest, please leave the tribe house.",[104]="Will be hosted soon:",[200]="entered the tribe house.",[201]="#LaChallengeNostra is active.",[202]="You aren't a contestant or a host.",[203]="Settings",[204]="Interface",[205]="[remove]",[206]="HostCore enabled:",[207]="(press • to see the info panel)",[208]="has set color tag",[209]="YOU ARE DISQUALIFIED.",[210]="A host has disqualified you.",[211]="You may leave the tribe house.",[212]="has been disqualified.",[213]="is now a host.",[214]="is now a helper.",[215]="is no longer a host.",[216]="is no longer a helper.",[217]="Invalid command or you have insufficient permissions to use it.",[218]="Invalid game mode: change SETUP.challengemode to the corresponding mode.",[219]="reloaded the map.",[220]="'s pointer's coordinates are -",[221]="[SYSTEM]",[222]="Host, welcome to this version of the module.",[223]="Version:",[224]="Identificator:",[225]="died ;(",[226]="died.",[227]="Survival challenge has begun!",[228]="<i>Survival challenge</i> is active.",[229]="round",[230]="Final round",[231]="won!",[232]="round has ended:",[233]="round -",[234]="No nail challenge has begun!",[235]="Loaded assistance interface.", [236]="Keybinds", [237]="INVALID AUTHENTICATION.",[238]="This code is intended for",[239]="You are disqualified.",[240]="[help]",[241]="About",[242]="[close]",[243]="Created by <VP>Syrius#8114</VP>.",[244]="<br><br>Thanks to <VP>Sanija#1187</VP>, <VP>Ertyezz#9819</VP>, <VP>Acmexitee#0000</VP> and other members of the tribe <VP>La Cros Nostra</VP> for help in the module's development.",[245]="Respawn (all) -",[246]="Clear -",[247]="<font size='50'>Thanks for partipication.",[248]="Everyone died ;(",[249]="Are you sure?",[250]="left the tribehouse.",[251]="A message from",[252]="Translation",[253]="You can't disqualify a host or a helper.",[254]="Disqualify",[255]="Map autoplay:",[256]="SETUP.autorespawn is left on!",[257]="Set username color",[258]="Set line color",[259]="Define color tag",[260]="Host settings",[261]="[change c.p. position]"}, de={[40]=".",[70]="ja",[71]="auf",[72]="aus",[73]="nein",[80]="<warn>Nicht bekannt.</warn>",[81]="Ohne Nagel Herausforderung",[82]="Göttlicher Modus Herausforderung",[83]="Überlebens Herausforderung",[84]="Stamm racing",[85]="Defilante Herausforderung",[86]="30-Sekunden Herausforderung",[87]="Bauschlachten",[100]="LCN version:",[101]="Willkommen zum #LaChallengeNostra Modul!",[102]="Dieses Modul dient zur Pflege von Wettbeverben.",[103]="Wenn Sie mitten im Wettbeverb hereinkommen, bitte verlassen Sie das Stammeshaus.",[104]="Gleich passiert:",[200]="betrat das Stammeshaus.",[201]="#LaChallengeNostra ist aktiv.",[202]="Sie sind kein Teilnehmer oder Anführer des Stammesereignesses.",[203]="Einstellungen",[204]="Schnittstelle",[205]="[entfernen]",[206]="HostCore auf:",[207]="(Drück • um die Moduldetails zu sehen)",[208]="hat den Farbetikett eingestellen",[209]="DU BIST DISQUALIFIZIERT.",[210]="Der Wettbewerbs Anführer hat Sie disqualifiziert.",[211]="Du kannst das Stammeshaus verlassen.",[212]="wurde disqualifiziert.",[213]="hat jetzt den Status eines Wettbewerb Anführers.",[214]="hat jetzt den Status eines Wettbeverbasissten.",[215]="hat nicht mehr den Status eines Wettbewerb Anführers.",[216]="hat nicht mehr den Status eines Wettbeverbasissten.",[217]="Ungültiges commando oder Sie haben nicht genügend Rechte um es auszuführen.",[218]="Ungültiger Spielemodus: Ändern Sie den SETUP.challengemode in den entsprechenden Modus.",[219]="hat die mape neu gestartet.",[220]="'s Cursor Koordinaten sind -",[221]="[SYSTEM]",[222]="Anführer des Wettbewerbs, willkommen zu dieser Version des Moduls.",[223]="Version:",[224]="Identifikator:",[225]="ist gestorben ;(",[226]="ist gestorben.",[227]="Überlebens Herausforderung hat begonnen!",[228]="<i>Überlebens Herausforderung</i> ist aktiv.",[229]="runde",[230]="Letzte runde",[231]="hat gewonnen!",[232]="runde hat geendet:",[233]="runde -",[234]="Die Ohne Nagel Herausforderung hat begonnen!",[235]="Geladene Asissten Schnittstelle.",[237]="UNGÜLTIGE AUTORISIERUNG.",[238]="Dieser Code ist für",[239]="Du bist disqualifiziert.",[240]="[hilfe]",[241]="Über",[242]="[schließen]",[243]="Erstellt von <VP>Syrius#8114</VP>.",[244]="<br><br>Danke an <VP>Sanija#1187</VP>, <VP>Ertyezz#9819</VP>, <VP>Acmexitee#0000</VP> und andere Stamm <VP>La Cros Nostra</VP> Teilnehmer für der Unterstützung beim Aufbau des Moduls.",[245]=" Wiederbelebung (alle) -",[246]="Löschen -",[247]="<font size='50'>Vielen Dank für Ihre Teilnahme.",[248]="Alle sind gestorben ;(",[249]="Bist du dir sicher?",[250]="hat das Stammeshaus verlassen.",[251]="Eine Nachricht von",[252]="Übersetzung",[253]="Sie können einen Anführer oder Assistenten nicht disqualifizieren.",[254]="Disqualifizieren",[255]="Karten Autoplay:",[256]="SETUP.autorespawn ist aufgeblieben!",[257]="Benutzernamfarbe einstellen",[258]="Linienfarbe einstellen",[259]="Farbetikett definieren",[260]="Anführer Einstellungen",[261]="[s.s. Position ändern]"}}
 local trans = t[tfm.get.room.community] or t.lv
 
 -- Konkursu parādīšanās
@@ -38,6 +38,8 @@ end
 syscore = "<ROSE><b>"..trans[221].."</b>" 
 infpref = "<brp><b>[<a href='event:hostmenu'>•</a>]</b><lbrp> "
 miscpref = "<vi><b>[•]</b><rose> "
+
+local colqueue
 
 -- customcolortag bibliotēka
 local setColorTag do local colors = {} setColorTag = function(tag, color) assert(tag, "Missing tag.") assert(color, "Missing color.") if type(color) == "number" then color = string.format("#%06x", color) else color = tostring(color) if not string.find(color, '#') then color = "#" .. color end end tag = tostring(tag) if not string.find(tag, "^<.->$") then tag = "<" .. tag .. ">" end colors[#colors + 1] = { tag = tag, color = color } end local putColors = function(str) for i = 1, #colors do str = string.gsub(str, colors[i].tag, "<font color=\"" .. colors[i].color .. "\">") end return str end local addTextArea, updateTextArea, chatMessage, p = ui.addTextArea, ui.updateTextArea, tfm.exec.chatMessage, print ui.addTextArea = function(id, str, ...) return addTextArea(id, putColors(str), ...) end ui.updateTextArea = function(id, str, ...) return updateTextArea(id, putColors(str), ...) end tfm.exec.chatMessage = function(str, ...) return chatMessage(putColors(str), ...) end print = function(str) return p(putColors(str)) end end
@@ -70,12 +72,19 @@ function eventNewPlayer(name)
 	--	tfm.exec.killPlayer(name)
 	--	tfm.exec.setPlayerScore(name,-32767)
 	end
+  system.bindKeyboard(name, 16, true, true)
+  system.bindKeyboard(name, 16, false, true)
+  system.bindKeyboard(name, 18, true, true)
+  system.bindKeyboard(name, 33, true, true)
+  system.bindKeyboard(name, 34, true, true)
+  system.bindKeyboard(name, 73, true, true)
+  system.bindKeyboard(name, 192, true, true)
+  system.bindKeyboard(name, 192, false, true)
+  system.bindMouse(name, true)
 end
 
 -- Sāknēšana
- 
 for playerName in next, tfm.get.room.playerList do
-if hosts[playerName] or contestants[playerName] then eventNewPlayer(playerName) end
 	if hosts[playerName] == true then namecol = "ROSE"
 		elseif hosts[playerName] == false then namecol = "V" end
 
@@ -104,6 +113,7 @@ OWNER_ID = 'Syrius#8114'
 
 
 settingState = {respawn="v",clear="v"}
+
 -- Komandas
 function eventChatCommand(name,cmd,n,playerName)
 if cmd== cmd then annonce("<"..namecol.."><b>[~"..name.."]</b></"..namecol.."> <A:ACTIVE>!"..cmd) end
@@ -123,8 +133,7 @@ if cmd:sub(1,5) == "clear" and hosts[name] or helpers[name] and cmd:sub(1,5)=="c
 if cmd:sub(1,5) == "sname" and hosts[name] then ui.setShamanName(cmd:sub(7)) end
 if cmd:sub(1,2) == "uc" and hosts[name] then ui.updateTextArea(32,"<V>["..name.."]<A:ACTIVE> "..string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<"),nil) end 
 if cmd:sub(1,3) == "uc*" and hosts[name] then ui.updateTextArea(32,"<ROSE> "..string.gsub(string.gsub("<b>• [~"..name.."]</b> "..cmd:sub(5), "&gt;", ">"), "&lt;", "<"),nil) end
-if cmd:sub(1,1) == "i" then ui.addTextArea(8999, "<font size='16'><grbl><a href='event:user.cls'>X</a></font> <purp><b>"..trans[203].."</b></font></font>\n______________\n\n<font size='14'><bv>"..trans[204].."</bv></font>\n<font size='12'><v><li><a href='event:user.nogui'>"..trans[205].."</a>\n", name, 325, 100, 150, 200, 0x000022, 0x00022, 0.65, true) end
--- if cmd:sub(1,2) == "i*" then ui.addTextArea(8999, "<font size='16'><grbl><a href='event:user.cls'>X</a></font> <purp><b>"..trans[203].."</b></purp></font>\n______________\n\n<font size='14'><bv>"..trans[236].."</bv></font>\n<font size='12'><v><li><a href='event:host.keybind-respawn'><"..settingState.respawn..">"..trans[245].."</a></"..settingState.respawn.."> TAB\n<li><a href='event:host.keybind-clear'><"..settingState.clear..">"..trans[246].."</a></"..settingState.clear.."> DEL", name, 325, 100, 150, 200, 0x000022, 0x000000, 0.65, true) end
+if cmd:sub(1,1) == "i" then ui.addTextArea(8999, "<font size='16'><grbl><a href='event:user.cls'>X</a></font> <purp><b>"..trans[203].."</b></font></font>\n___________________________\n\n<font size='14'><bv>"..trans[260].."</bv></font>\n<font size='12'><v><li><a href='event:host.chpos'>"..trans[261].."</a></li>\n<font size='14'><bv>"..trans[204].."</bv></font>\n<font size='12'><v><li><a href='event:user.nogui'>"..trans[205].."</a>", name, 300, 100, 200, 200, 0x000022, 0x00022, 0.65, true) end
 -- 'all' komandas
 if cmd:sub(1,5) == "s all" and hosts[name] then table.foreach(tfm.get.room.playerList, tfm.exec.setShaman) end
 if cmd:sub(1,5) == "r all" and hosts[name] then table.foreach(tfm.get.room.playerList, tfm.exec.respawnPlayer) end  
@@ -209,7 +218,8 @@ elseif cmd=="c build" then error0x1(name) end
         error0x1(name)
     end
     if c[1] == "col" and hosts[name] then
-        tfm.exec.setNameColor(c[2],"0x"..c[3].."00")  
+        colqueue = c[2]
+        ui.showColorPicker(300,name,0x000022,trans[257])
     elseif c[1] == "col" then
         error0x1(name)
     end
@@ -231,7 +241,7 @@ elseif cmd=="c build" then error0x1(name) end
     if c[1] == "smode" and hosts[name] or helpers[name] and c[1] == "smode" then
 		tfm.exec.setShaman(c[2])
 		tfm.exec.setShamanMode(c[2],c[3])
-    elseif c[1] == "cmode" then
+    elseif c[1] == "smode" then
         error0x1(name)
     end
     if c[1] == "link" and hosts[name] then
@@ -250,9 +260,9 @@ elseif cmd=="c build" then error0x1(name) end
         error0x1(name)
     end
     if c[1] == "defcol" and hosts[name] then
-			setColorTag(c[2], c[3])
-			annonce2(infpref..""..name.." "..trans[208].." <"..c[2]..">"..c[2].."</"..c[2]..">.")
-    elseif c[1] == "defcol" then
+        	defqueue = c[2]
+			ui.showColorPicker(302,name,0x000022,trans[259])
+   elseif c[1] == "defcol" then
         error0x1(name)
     end
     if c[1] == "tfm*" and hosts[name] then
@@ -319,6 +329,11 @@ system.disableChatCommandDisplay(nil)
 -- [[Utilijas]]
 
 OWNER_ID2 = 'Syrius#8114' 
+
+-- Markdown komanda
+function md()
+tfm.exec.addPhysicObject(1,400,-600,{type=0,width=10,height=10,foreground=true,friction=0.3,restitution=0,dynamic=false,miceCollision=true,groundCollision=true})
+end
  
 -- Clear
 
@@ -332,10 +347,6 @@ tfm.exec.removeObject(object)
 end
 end
 
--- Markdown komanda
-function md()
-tfm.exec.addPhysicObject(1,400,-600,{type=0,width=10,height=10,foreground=true,friction=0.3,restitution=0,dynamic=false,miceCollision=true,groundCollision=true})
-end
 -- Kļūdas
  
 function error0x1(name)
@@ -351,37 +362,26 @@ end
 -- Hostu interfeiss
 hidata = {[1] = "<p align='center'><font size='14'><VP><a href='event:hipage'>1</a></VP>\n<vi>－</vi>\n<a href='event:say_vn'><bv><font face='Wingdings'>L</font></bv></a>\n<a href='event:nextmap'><bv><font face='Webdings'>8</font></bv></a>\n<a href='event:reload'><bv><font face='Wingdings 3'>P</font></bv></a>\n<a href='event:printtemp'><bv><font face='Wingdings'>1</font></bv></a>\n<a href='event:r_all'><bv><font face='Webdings'>h</font></bv></a>\n<vi>－</vi>\n<a href='event:conf'><warn><font face='Wingdings'>N</font></font></a>",[2] = "<p align='center'><font size='14'><VP><a href='event:hipage'>2</a></VP>\n<vi>－</vi>\n<a href='event:disq'><bv><font face='Wingdings 3'>7</font></bv></a>"}
 histate = 1
-
+hipos = {x = -23,y = 27}
 function hostinterfaces(name)
 	if hosts[name] then
-		ui.addTextArea(450, hidata[histate], name, -23, 27, 20, 165, 0x000022, 0x000022, 0.65, true)
+		ui.addTextArea(450, hidata[histate], name, hipos.x, hipos.y, 20, 165, 0x000022, 0x000022, 0.65, true)
 		if SETUP.challengemode == "build" then
-			ui.addTextArea(451, "<font size='14'><p align='center'><a href='event:toggleborder'><bv><font face='Wingdings 3'>F</font></bv></a>\n<a href='event:togglesailwater'><bv><font face='Wingdings'>h</font></bv></a>\n<vi>－</vi>\n<a href='event:togglemgoc'><grbl><font face='Webdings'>;</font></font></a>\n<a href='event:togglesail'><grbl><font face='Webdings'>J</font></font></a></p></font>", name, -23, 213, 20, 100, 0x000022, 0x000022, 0.65, true)
+			ui.addTextArea(451, "<font size='14'><p align='center'><a href='event:toggleborder'><bv><font face='Wingdings 3'>F</font></bv></a>\n<a href='event:togglesailwater'><bv><font face='Wingdings'>h</font></bv></a>\n<vi>－</vi>\n<a href='event:togglemgoc'><grbl><font face='Webdings'>;</font></font></a>\n<a href='event:togglesail'><grbl><font face='Webdings'>J</font></font></a></p></font>", name, hipos.x, hipos.y + 185, 20, 100, 0x000022, 0x000022, 0.65, true)
 		end
 		annonce2(infpref..trans[235].." (<grbl>"..name.."</grbl><lbrp>)") 
 	end
 end
  
 -- Koordinātu printeris
-local SHIFT_KEY = 16
 local shifting = {}
- 
-function eventNewPlayer(n,name)
-
-  system.bindKeyboard(n, SHIFT_KEY, true, true)
-  system.bindKeyboard(n, SHIFT_KEY, false, true)
-  system.bindKeyboard(n, 18, true, true)
-  system.bindKeyboard(n, 33, true, true)
-  system.bindKeyboard(n, 34, true, true)
-  system.bindKeyboard(n, 73, true, true)
-  system.bindMouse(n, true)
-end
-
+local apoing = {}
+local conjtime = 999999
 function eventKeyboard(n, key, down, x, y)
- 
 if key==34 and hosts[n] then rel(n)
 elseif key==33 then nm(n) 
-elseif key==SHIFT_KEY then shifting[n] = down
+elseif key==16 then shifting[n] = down
+elseif key==192 then apoing[n] = down 
 end end 
  
 function eventMouse(n, x, y)
@@ -389,6 +389,9 @@ function eventMouse(n, x, y)
   if shifting[n] then
     ui.updateTextArea(32,"<BV>• "..n .." "..trans[220].." X:" .. x .. ", Y:" .. y,nil)
     print("<BV>• "..n .." "..trans[220].." X:" .. x .. ", Y:" .. y)
+  end
+  if apoing[n] and hosts[n] then
+    tfm.exec.addConjuration(x/10,y/10,9999999)
   end
 end
  
@@ -442,8 +445,8 @@ survtest = [[<C><P H="800" L="1600" /><Z><S /><D><P X="0" P="0,0" C="5d6582" Y="
 
 if SETUP.challengemode == "survival" then
 survrounds = 0 
---###################################$201###$202####$703#####$701
-survrot = {7479177,7482494,7485763,7602083,7602098,7605138,7605136}
+--##########################$201###$202####$703#####$701#####$203
+survrot = {7479177,7482494,7602083,7602098,7605138,7605136,7622015}
 finalrot = {fap1}
 function survutils(name)
 ui.updateTextArea(0,"<VP><font size='14'>"..trans[227].."</font>", nil)
@@ -551,13 +554,13 @@ if tfm.get.room.owner ~= OWNER_ID then ui.addTextArea(100, "", nil, -2000, -2000
 if OWNER_ID ~= OWNER_ID2 then error("<R>BRĪDINĀJUMS: Pieķerta preturķēšanās sistēmas noņemšana. Pieķerta urķēšanās gar piederības informāciju. Ja neesi modificējis kodu un šis kods ir no <i>dist</i> rīka, tad kontaktē Syrius#8114.") end
 ui.addTextArea(101, "<R><font size='40'>"..trans[237].."</font>\n<font size='16'>"..trans[238].." <J>"..OWNER_ID.."</J>.</font></R>", nil, 100, 150, 600, 100, 0x324650, 0x000000, 0.1, true) end
 
---##########$302#####$303#####$304###$307###$308#####$309####$310###$311###$312####$313######$314###$315####$316#####$317####$318##$319####$320######$321####$322####$323###$324####$325#####$326#####$327###$328####$329###$330###$331######$332####$333
-threerot = {7612717,6265169,6847550,6370623,6333089,6565399,7612788,6975155,7574375,7612773,7612785,6370622,6334320,7612776,7612782,7574389,7574667,7574973,7574975,7574982,7574984,7574997,7574999,7576032,7575113,7576033,7576035,7576224,7576229,7614125}
+--##########$302#####$303#####$304###$307###$308#####$309####$310###$311###$312####$313######$314###$315####$316#####$317####$318##$319####$320######$321####$322####$323###$324####$325#####$326#####$327###$328####$329###$330###$331######$332####$333####$334
+threerot = {7612717,6265169,6847550,6370623,6333089,6565399,7612788,6975155,7574375,7612773,7612785,6370622,6334320,7612776,7612782,7574389,7574667,7574973,7574975,7574982,7574984,7574997,7574999,7576032,7575113,7576033,7576035,7576224,7576229,7614125,7620702}
 
 function newMap()
 	tfm.exec.newGame(threerot[math.random(#threerot)]) end
 
-function eventNewGame(name)
+function eventNewGame()
 	if SETUP.challengemode=="thirty" then
 		tfm.exec.setGameTime(30)
  		ui.addTextArea(24,"", nil, 745, 25, 70, 40, 0x000022, 0x000022, 0, true)
@@ -584,6 +587,9 @@ end
 
 -- eventLoop
 function eventLoop(elaps,rmng)
+	for name,player in pairs(tfm.get.room.playerList) do
+		if disq[name] then tfm.exec.killPlayer(name) tfm.exec.setPlayerScore(name,-32768) end
+	end
 	if SETUP.challengemode=="thirty" then
  		ui.updateTextArea(24, "<p align='center'><font size='14'><D>"..math.ceil(rmng/1000), nil)
  		if rmng <= 0 then table.foreach(tfm.get.room.playerList,tfm.exec.killPlayer) end
@@ -627,10 +633,14 @@ function eventTextAreaCallback(textAreaID, playerName, callback,id,other)
 		clear()
 	end
 	if callback=="getInfo" then
-		ui.addTextArea(600, "<li>version: <T>"..version.."</T></li><li>OWNER_ID: <T>"..OWNER_ID.."</T></li><li>title: <T>"..title.."</T></li><br><b><font size='16'>SETUP</font></b><li>flymode: <R>false</R></li><li>challengemode: <T>"..SETUP.challengemode.."</T></li><li>autorespawn: <T>"..SETUP.autorespawn.."</T></li><li>everyoneVerified: <T>"..SETUP.everyoneVerified.."</T></li><br><hr><p align='right'><a href='event:hlp'><J>"..trans[240].." </J></a><a href='event:about'><V>"..trans[241].." </V></a><a href='event:infclose'><ROSE>"..trans[242].."</ROSE></a></p>", playerName, 215, 134, 369, 131, 0x000022, 0x000022, 0.65, true)
+		ui.removeTextArea(5678,playerName)
+		ui.addTextArea(600, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<p align='right'><rose><a href='event:infclose'>[aizvērt]</a></rose></p>\n", playerName, 50, 90, 700, 260, 0x000022, 0x000022, 0.6, true)
+		ui.addTextArea(601, "<p align='center'><font size='16' ><S><b>SETUP</b></S></font>\n<PS>－－－－－－－－－－－－－－－</PS></p><ul><li>autoplay: <lbrp>"..tostring(SETUP.autoplay).."</font></li><li>challengemode: <lbrp>"..SETUP.challengemode.."</font></li><li>autorespawn: <lbrp>"..tostring(SETUP.autorespawn).."</font></li><li>everyoneVerified: <lbrp>"..tostring(SETUP.everyoneVerified).."</font></li></ul>", playerName, 70, 110, 200, 100, 0x000022, 0x000022, 0.3, true)
+		ui.addTextArea(602, "\n<ul><li>version: <lbrp>"..version.."</font></li><li>title: <font size='8'><lbrp>"..title.."</font></font></li><li>OWNER_ID: <lbrp>"..OWNER_ID.."</font></li><li>OWNER_ID2: <lbrp>"..OWNER_ID.."</font></li></ul>", playerName, 70, 230, 200, 100, 0x000022, 0x000022, 0.3, true)
+		ui.addTextArea(603, "<p align='center'><font size='16' ><S><b>"..trans[241].."</b></S></font>\n<PS>－－－－－－－－－－－－－－－</PS></p>"..trans[243]..trans[244], playerName, 290, 110, 440, 100, 0x000022, 0x000022, 0.3, true)
  end
- 	if callback=="infclose" then 
-		ui.removeTextArea(600,playerName)
+ 	if callback=="infclose" then  
+		ui.removeTextArea(600,playerName) ui.removeTextArea(601,playerName) ui.removeTextArea(602,playerName) ui.removeTextArea(603,playerName)
 	end
  	if callback=="about" then 
 		ui.updateTextArea(600, trans[243]..trans[244], playerName)
@@ -640,21 +650,6 @@ function eventTextAreaCallback(textAreaID, playerName, callback,id,other)
 	end
  	if callback=="user.cls" then 
 		ui.removeTextArea(8999,playerName)
-	end
- 	if callback=="hlp" then 
-		ui.updateTextArea(600, "<warn><b>!!! Šī palīdzība dokumentē visu līdz v.b36 versijai un ir novecojusi !!!</b></font><br><br><J><li><a href='event:hlp1'>A - F</a></li><li><a href='event:hlp2'>G - N</a></li><li><a href='event:hlp3'>O - SM</a></li><li><a href='event:hlp4'>SN - Z</a></li></J>\n\n\n\n\n\n<p align='right'><a href='event:infclose'><ROSE>[aizvērt]</ROSE></a></p>", playerName)
-	end
- 	if callback=="hlp1" then 
-		ui.updateTextArea(600, "<font size='10'>Apzīmējumi: <BL>host</BL>, <PT>helper</PT>, <BV>contestant</BV>, <V>obligāts</V>, <R>ne-obligāts</R></font>\n<N2>____________________________________________________</N2>\n\n<b><PT>!bc</PT><BL>*</BL></b> <R>[teksts]</R>\n<font size='10'>Parāda tekstu augšējā interfeisā. Lietojot <BL>!bc*</BL>, ir pieejami HTML tagi.</font>\n\n<b><BL>!c</BL></b> <V>[režīms]</V> <R>[parametrs]</R>\n<font size='10'>Uzsāk semi-automatizēto konkursu. Parametrs ir papildus informācija modulim, t.i. '!c pkg 7'.</font>\n\n<b><PT>!ce*</PT></b> <V>[lietotājvārds]</V> \n<font size='10'>Iedod sieru spēlētājam. Lietojot <PT>!ce*</PT>, siers tiek atņemts.</font>\n\n<b><BL>!col</BL></b> <V>[lietotājvārds] [krāsa]</V>\n<font size='10'>Iekrāso spēlētāja vārdu. Krāsa ir #xxxx formāta heksadecimālie toņi. Neviena krāsa, kurā nepieciešams zilais, nav pieejama!</font>\n\n<b><PT>!clear</PT></b> \n<font size='10'>Nodzēš visus objektus.</font>\n\n<b><BL>!d</BL></b> <V>[lietotājvārds]</V>\n<font size='10'>Diskvalificē spēlētāju.</font>\n\n\n\n\n\n<p align='right'><a href='event:infclose'><ROSE>[aizvērt]</ROSE></a></p>", playerName)
-	end
- 	if callback=="hlp2" then 
-		ui.updateTextArea(600, "<font size='10'>Apzīmējumi: <BL>host</BL>, <PT>helper</PT>, <BV>contestant</BV>, <V>obligāts</V>, <R>ne-obligāts</R></font>\n<N2>____________________________________________________</N2>\n\n<b><BL>!g*</BL></b> <font size='8'><V>[id] [tips] [x] [y] [platums] [augstums]</V> <R>[atsperība] [berze] [leņķis] [din.] [masa]</R></font>\n<font size='10'>Izveido zemi. Lietojot <BL>!g*</BL>, zemei var iziet cauri.</font>\n\n<b><BL>!kill</BL></b> <V>[lietotājvārds]</V>\n<font size='10'>Nogalina spēlētāju.</font>\n\n<b><BL>!link*</BL></b> <V>[lietotājvārds] [lietotājvārds2]</V>\n<font size='10'>Savieno spēlētājus. Lietojot <BL>!link*</BL>, spēlētāji tiek atvienoti viens no otra.</font>\n\n<b><BL>!md*</BL></b> <V>[id] [x1] [y1] [x2] [y2]</V> <R>[platums]</R>\n<font size='10'>Novelk līniju. Lietojot <BL>!md*</BL>, kļūst pieejami parametri <R>[krāsa] [caursp.]</R>, kurus raksta aiz esošajiem. Krāsa ir #xxxx formāta heksadecimālie toņi. Neviena krāsa, kurā nepieciešams zilais, nav pieejama!</font>\n\n<b><BL>!meep</BL></b> <V>[lietotājvārds]</V>\n<font size='10'>Piešķir spēlētajam meep.</font>\n\n<b><BL>!next</BL></b> \n<font size='10'>Pārslēdz mapi. Nav pieejams 'build' režīmā.</font>\n\n<b><BL>!np</BL></b> <V>[kods]</V>\n<font size='10'>Pārslēdz mapi uz konkrētu vai nejaušu rotācijas mapi.</font>\n\n\n\n\n\n<p align='right'><a href='event:infclose'><ROSE>[aizvērt]</ROSE></a></p>", playerName)
-	end
- 	if callback=="hlp3" then 
-		ui.updateTextArea(600, "<font size='10'>Apzīmējumi: <BL>host</BL>, <PT>helper</PT>, <BV>contestant</BV>, <V>obligāts</V>, <R>ne-obligāts</R></font>\n<N2>____________________________________________________</N2>\n\n<b><BL>!p</BL></b> <V>[id] [tips] [teksts]</V>\n<font size='10'>Izveido aizveramu tekstlodziņu. Tekstā atstarpes jāaizstāj ar |.</font>\n\n<b><BL>!play</BL></b> <V>[lietotājvārds] [id] [parametrs]</V>\n<font size='10'>Liek spēlētājam izdarīt emociju. Parametrs ir papildus informācija modulim, t.i. '!play Syrius#8114 10 lv'.</font>\n\n<b><PT>!r</PT><BL>*</BL></b> <V>[lietotājvārds]</V>\n<font size='10'>Atdzīvina spēlētāju. Lietojot <BL>!r*</BL>, kļūst pieejami parametri <R>[x] [y]</R>, kurus raksta aiz esošajiem.</font>\n\n<b><BL>!role</BL></b> <V>[darbība] [statuss] [lietotājvārds]</V>\n<font size='10'>Nomaina spēlētāja statusu. Darbība ir + vai -. Statuss ir 'host' vai 'helper'.</font>\n\n<b><PT>!s*</PT></b> <V>[lietotājvārds]</V>\n<font size='10'>Padara spēlētāju par šamani. Lietojot <PT>!s*</PT>, šamanis kļūst par peli.</font>\n\n<b><BL>!score</BL></b> <V>[lietotājvārds] [vērtība]</V>\n<font size='10'>Maina spēlētāja punktus t.s. 'scoreboard' interfeisā.</font>\n\n<b><PT>!size</PT></b> <V>[lietotājvārds] [vērtība]</V>\n<font size='10'>Maina spēlētāja lielumu. Vērtība ir skaitlis no 0,1 līdz 5.</font>\n\n<b><PT>!smode</PT></b> <V>[lietotājvārds] [režīms]</V>\n<font size='10'>Maina šamaņa režīmu. 0 = normāls; 1 = grūts; 2 = dievišķais.</font>\n\n\n\n\n\n\n\n<p align='right'><a href='event:infclose'><ROSE>[aizvērt]</ROSE></a></p>", playerName)
-	end
- 	if callback=="hlp4" then 
-		ui.updateTextArea(600, "<font size='10'>Apzīmējumi: <BL>host</BL>, <PT>helper</PT>, <BV>contestant</BV>, <V>obligāts</V>, <R>ne-obligāts</R></font>\n<N2>____________________________________________________</N2>\n\n<b><BL>!sname</BL></b> <V>[teksts]</V>\n<font size='10'>Nomaina šamaņa vārdu augšējā interfeisā uz tekstu.</font>\n\n<b><BV>!spawn</BV></b> <V>[tips] [x] [y]</V> <R>[x-paātr.] [y-paātr.] [caursp.]</R>\n<font size='10'>Izveido objektu.</font>\n\n<b><BL>!test</BL></b> \n<font size='10'>Nav funkcijas.</font>\n\n<b><BL>!tfm*</BL></b> <V>[lietotājvārds]</V>\n<font size='10'>Ļauj spēlētājam transformēties. Lietojot <BL>!tfm*</BL>, transformācijas spēja tiek atņemta.</font>\n\n<b><BL>!toggle</BL></b> <V>[parametrs]</V>\n<font size='10'>'build' režīma palīgkomanda, ar kuru pārveidot mapes. </font>\n\n<b><BL>!txt</BL></b> <V>[id] [x] [y] [platums] [augstums] [teksts] [formāts]</V>\n<font size='10'>Izveido tekstlodziņu. formāts = HTML tags bez V-veida iekavām. </font>\n\n<b><BL>!txt*</BL></b> <V>[id] [teksts] [formāts]</V>\n<font size='10'>Rediģē tekstlodziņu. Lai rediģētu ar !txt veidotus tekstlodziņus, pieliec id skaitlim priekšā -. Tekstā atstarpes aizstāj ar |.</font>\n\n<b><BL>!uc*</BL></b> <V>[teksts]</V>\n<font size='10'>Parāda tekstu apakšējā interfeisā (parasti neredzams). Lietojot <BL>!uc*</BL></font>, tekstā nevar lietot HTML un spēlētāja lietotājvārds ir slēpts.\n\n\n\n\n\n\n\n\n<p align='right'><a href='event:infclose'><ROSE>[aizvērt]</ROSE></a></p>", playerName)
 	end
 	if callback=="say_vn" then
 		print("<D>• "..pkg.round..trans[40].." "..trans[229].." - "..trans[248])
@@ -667,6 +662,11 @@ function eventTextAreaCallback(textAreaID, playerName, callback,id,other)
 		ui.addTextArea(5678, "<p align='center'>\n<rose><a href='event:getInfo'>[infopanelis]</a> <a href='event:hi'>[vadības panelis]</a> <a href='event:clsconf'>[aizvērt]</a></p>\n", playerName, 275, 175, 250, 50, 0x000022, 0x000022, 0.6, true)
 	end
 	if callback=="hi" then
+		hostinterfaces(playerName)
+	end
+	if callback=="host.chpos" then
+		hipos.x = 5
+		hipos.y = 55
 		hostinterfaces(playerName)
 	end
 	if callback=="reload" then
@@ -686,11 +686,11 @@ function eventTextAreaCallback(textAreaID, playerName, callback,id,other)
 		else print(syscore.."Nav pieejams.") end 
 	end 
 	if callback=="conf" then
-		ui.addTextArea(5678, "<p align='center'><font size='16'><b><grbl>"..trans[249].."</font></b></font>\n\n<rose><a href='event:kill'>["..trans[70].."]</a> <a href='event:clsconf'>["..trans[74].."]</a><p>", playerName, 275, 175, 250, 50, 0x000022, 0x000022, 0.6, true)
+		ui.addTextArea(5678, "<p align='center'><font size='16'><b><grbl>"..trans[249].."</font></b></font>\n\n<rose><a href='event:kill'>["..trans[70].."]</a> <a href='event:clsconf'>["..trans[73].."]</a><p>", playerName, 275, 175, 250, 50, 0x000022, 0x000022, 0.6, true)
 	end 
 	if callback=="hipage" then
 		if histate == 1 then histate = 2 elseif histate == 2 then histate = 1 end
-		ui.addTextArea(450, hidata[histate], playerName, -23, 27, 20, 165, 0x000022, 0x000022, 0.65, true)
+		ui.updateTextArea(450,hidata[histate],name)
 	end 
 	if callback=="disq" then
 		ui.addPopup(800,2,"<p align='center'><font size='16' color='#84b7d1'><b>"..trans[254].."</b></font>",playerName,595,300,200,true) 
@@ -717,6 +717,7 @@ tfm.exec.newGame(tfm.get.room.currentMap) annonce2(infpref..name.." "..trans[219
 
 -- Diskvalifikācija 
 function d(targ,tr,col,msgx,msgy)
+	disq[targ] = true
 	ui.addTextArea(100, "", targ, -1500, -1500, 3000, 3000, col, col, tr, true)
 	ui.removeTextArea(0,targ)
 	ui.removeTextArea(32,targ)
@@ -730,4 +731,15 @@ end
 -- autorespawn brīdinājums
 if SETUP.autorespawn == true then
 		ui.updateTextArea(0,"<CE>"..trans[251].." "..trans[221]..":<CS> "..trans[256],OWNER_ID)
+end
+
+-- eventColorPicked
+function eventColorPicked(id,name,color)
+	if id==300 then -- vārda krāsošana
+		tfm.exec.setNameColor(colqueue,color)
+	end
+	if id==302 then -- tagu definīcija
+		setColorTag(defqueue, color)
+		annonce2(infpref..""..name.." "..trans[208].." <"..defqueue..">"..defqueue.."</font>.") 
+	end
 end
