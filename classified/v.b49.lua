@@ -580,7 +580,7 @@ function eventMouse(n, x, y)
     print("<BV>• "..n .." "..trans[220].." X:" .. x .. ", Y:" .. y)
   end
   if apoing[n] and hosts[n] or apoing[n] and helpers[n] then
-    trainingcore(n,"superpowers:getcoordinates;"..x..";"..y)
+    trainingcore(n,"superpowers:conjuration;"..x..";"..y)
     tfm.exec.addConjuration(x/10,y/10,9999999)
   end
   if eing[n] and hosts[n] or eing[n] and helpers[n] then
