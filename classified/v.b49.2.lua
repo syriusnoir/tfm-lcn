@@ -292,8 +292,8 @@ elseif cmd=="c build" then error0x1(name) end
 		  	g_restitution = c[8]
 		  	g_friction = c[9]
 		  	g_angle = c[10]
-			if c[11] then g_dyn=toboolean(c[11]) else g_dyn=false end
-		  	g_mass = c[12]
+			if c[11] == "true" or tonumber(c[11]) == 1 then g_dyn=true else g_dyn=false end
+			g_mass = c[12]
         	ui.showColorPicker(304,name,0x000022,trans[281])
 		else
         tfm.exec.addPhysicObject(c[2],c[4],c[5],{type=c[3],restitution=c[8],friction=c[9],angle=c[10],width=c[6],height=c[7],dynamic=c[11],mass=c[12],miceCollision=false,groundCollision=false})
