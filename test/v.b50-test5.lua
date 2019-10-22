@@ -449,7 +449,7 @@ if hosts[name] then
     end
     if c[1] == "debug" and hosts[name] then
 		if SETUP.debug==true then
-			_G[c[2]](c[3],c[4],c[5],c[6],c[7],c[8],c[8],c[9],c[10],c[11],c[12],c[13],c[14],c[15],c[16])
+			_G[c[2]](c[3],c[4],c[5],c[6],c[7],c[8],c[9],c[10],c[11],c[12],c[13],c[14],c[15],c[16])
 		else error0x1(name,cmd) end
     end
     if c[1] == "role" and hosts[name] then
