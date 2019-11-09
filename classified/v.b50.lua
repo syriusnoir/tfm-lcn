@@ -156,7 +156,7 @@ end
 settingState = {respawn="v",clear="v"}
 
 -- Komandas
-function eventChatCommand(name,cmd,n,playerName)
+function eventChatCommand(name,cmd)
 if cmd== cmd then annonce("<"..userData[name].ncol.."><b>[~"..name.."]</b></"..userData[name].ncol.."> <A:ACTIVE>!"..cmd) end
 if cmd:sub(1,1) == "s" and hosts[name] or helpers[name] and cmd:sub(1,1) == "s" then tfm.exec.setShaman(cmd:sub(3)) end
 if cmd:sub(1,2) == "ce" and hosts[name] or helpers[name] and cmd:sub(1,1) == "ce" then tfm.exec.giveCheese(cmd:sub(4)) end
@@ -210,8 +210,11 @@ if cmd == "toggle border" and hosts[name] and SETUP.challengemode=="build" then 
     end)
 
 if validcmds.helpers[c[1]] then 
-	if not helpers[name] or not hosts[name] then error0x1(name,cmd,1) end
+	if not helpers[name] then
+		if not hosts[name] then error0x1(name,cmd,1) end
+	end
 end
+
 if validcmds.hosts[c[1]] then 
 	if not hosts[name] then error0x1(name,cmd,2) end
 end
