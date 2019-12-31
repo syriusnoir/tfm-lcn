@@ -775,7 +775,7 @@ function hostcore(name)
 ui.addTextArea(10, "", name,theme[SETUP.theme].bcX, 25, theme[SETUP.theme].bcWidth, theme[SETUP.theme].hcHeight, theme[SETUP.theme].bcBackground, theme[SETUP.theme].windowBorderColor, theme[SETUP.theme].bcTransparency, true)
 ui.addTextArea(65, miscpref..trans[222], name, theme[SETUP.theme].bcX, 25, theme[SETUP.theme].bcWidth, 20, 0x324650, 0x000000, 0, true)
 ui.addTextArea(0, "<p align='center'><font size='"..theme[SETUP.theme].bcFontSize.."'><ROSE>"..title.."</font></p>",name,5, -25, 790, 22, 0x000022, 0x000022, 0.65, true)
-ui.addTextArea(64, infpref..trans[223].." <V>"..version.."</V> / "..trans[224].." <V>"..OWNER_ID.."</V>", name, theme[SETUP.theme].bcX, 40, theme[SETUP.theme].bcWidth, 20, 0x324650, 0x000000, 0, true)
+ui.addTextArea(64, infpref..trans[223].." <V>"..version.."</V> / "..trans[224].." <V>"..tfm.get.room.owner.."</V>", name, theme[SETUP.theme].bcX, 40, theme[SETUP.theme].bcWidth, 20, 0x324650, 0x000000, 0, true)
 end
 
 -- eventPlayerDied
@@ -1006,7 +1006,6 @@ function eventTextAreaCallback(textAreaID, playerName, callback)
 		ui.removeTextArea(5678,playerName)
 		ui.addTextArea(600, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<p align='right'><rose><a href='event:infclose'>"..trans[242].."</a></rose></p>\n", playerName, 50, 90, 700, 260, 0x000022, 0x000022, 0.6, true)
 		ui.addTextArea(601, "<p align='center'><font size='16' ><S><b>SETUP</b></S></font>\n<PS>－－－－－－－－－－－－－－－</PS></p><ul><li>autoplay: <lbrp>"..tostring(SETUP.autoplay).."</font></li><li>challengemode: <lbrp>"..SETUP.challengemode.."</font></li><li>autorespawn: <lbrp>"..tostring(SETUP.autorespawn).."</font></li><li>lang: <lbrp>"..tostring(SETUP.lang).."</font></li><li>nocontrast: <lbrp>"..tostring(SETUP.nocontrast).."</font></li>", playerName, 70, 110, 200, 100, 0x000022, 0x000022, 0.3, true)
-		ui.addTextArea(602, "\n<ul><li>version: <lbrp>"..version.."</font></li><li>title: <lbrp>"..title.."</font></li><li>OWNER_ID: <lbrp>"..OWNER_ID.."</font></li><li>OWNER_ID2: <lbrp>"..OWNER_ID.."</font></li></ul>", playerName, 70, 230, 300, 100, 0x000022, 0x000022, 0.3, true)
 		ui.addTextArea(603, "<p align='center'><font size='16' ><S><b>"..trans[241].."</b></S></font>\n<PS>－－－－－－－－－－－－－－－</PS></p>"..trans[243]..trans[244], playerName, 290, 110, 440, 100, 0x000022, 0x000022, 0.3, true)
 		trainingcore(playerName,"hostcore:about")
  end
