@@ -7,10 +7,10 @@ SETUP = {challengemode="build",title="lacrosnostra",autorespawn = false,lang="lv
 version = "v.b51"
 
 function errstp() fail = true ui.addTextArea(13000, "", nil, -2600, -2800, 6000, 6000, 0x6a7495, 0x000022, 1, false) ui.addTextArea(13001, "<V>[EN]</V> <A:ACTIVE>Invalid configuration! A SETUP variable has an invalid value or isn't existing.</A:ACTIVE>\n<V>[LV]</V> <A:ACTIVE>Nederīga konfigurācija! Kāds no SETUP mainīgajiem satur nederīgu vērtību vai neeksistē.</A:ACTIVE>", nil, 5, 25, 790, 30, 0x324650, 0x324650, 1, true) ui.addTextArea(13002, "<vp><p align='center'>"..version.."</p></vp>", nil, 5, 380, 790, 20, 0x324650, 0x324650, 1, true) end 
-if SETUP == nil then SETUP = {challengemode = "@",lang = "lv",title="lacrosnostra"} errstp() end if SETUP.lsimage==nil then SETUP.lsimage = "16f09800dd9.png" end if SETUP.challengemode == nil or type(SETUP.challengemode) == "boolean" then SETUP.challengemode = "@" errstp() end if SETUP.lang == "lv" or SETUP.lang == "en"  or SETUP.lang == "de" then else SETUP.lang = "lv" errstp() end if SETUP.title == nil or type(SETUP.title) == "boolean" then SETUP.title = "lacrosnostra" errstp() end
+if SETUP == nil then SETUP = {challengemode = "@",lang = "lv",title="lacrosnostra"} errstp() end if SETUP.lsimage==nil then SETUP.lsimage = "16f09800dd9.png" end if SETUP.challengemode == nil or type(SETUP.challengemode) == "boolean" then SETUP.challengemode = "@" errstp() end if SETUP.lang == "lv" or SETUP.lang == "en"  or SETUP.lang == "de" then else SETUP.lang = "lv" errstp() end if SETUP.title == nil or type(SETUP.title) == "boolean" then SETUP.title = "lacrosnostra" errstp() end do    local _, nickname = pcall(nil)    tfm.get.room.owner = string.match(nickname, "(.-)%.")end
 
 player={} helpers={} disq={} spectators={}
-hosts={['Syrius#8114'] = true,['Yeet#7143'] = true,['Creativemice#7925'] = true,['Sanija#1187'] = true,['Hanakotoba#7318'] = true,['Awesomz#2736'] = true}
+hosts={['Syrius#8114'] = true,['Yeet#7143'] = true,[tfm.get.room.owner] = true}
 contestants={}
 userData={} -- Piezīme Syrius (dist 88, 292)
 theme = {modern = {hcHeight = 30,windowHeadingColor = "vi",windowBorderColor = 0x000022,windowColor = 0x000022,windowColor2 = 0x000022,closeBtnColor = "grbl",startScreenColor = 000022,startScreenGround = 12,bcBackground = 0x000022,bcTransparency = 0.65,bcHeight = 22,bcFontSize = 14,bcWidth = 790,bcX = 5,welcomeScreenColor = 0x000022,commonColor1 = "grbl",commonColor2 = "brp",commonColor3 = "lbrp",commonColor4 = "vi",commonColor5 = "rose"},classic = {hcHeight = 30,windowHeadingColor = "rose",windowBorderColor = 0x000000,windowColor = 0x324650,windowColor2 = 0x000001,closeBtnColor = "warn",startScreenColor = 000000,startScreenGround = 12,bcBackground = 0x324650,bcTransparency = 0.5,bcHeight = 30,bcFontSize = 20,bcWidth = 600,bcX = 100,welcomeScreenColor = 0x000001,commonColor1 = "grbl",commonColor2 = "PT",commonColor3 = "T",commonColor4 = "PS",commonColor5 = "S"}}
@@ -138,12 +138,6 @@ function eventNewPlayer(name)
   system.bindMouse(name, true)
 end
 -- Testēšana
-
--- Sāknēšana
-do
-    local _, nickname = pcall(nil)
-    tfm.get.room.owner = string.match(nickname, "(.-)%.")
-end
 
 -- Starta izvēlne hostiem
 local startmenuy = 200
