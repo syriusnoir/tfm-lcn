@@ -26,7 +26,7 @@ function eventChatCommand(name,cmd,n)
         c[#c + 1] = arg
     end)
 
-if c[1]=="map" then tfm.exec.newGame(eval[c[2]]) end
+if c[1]=="map" then tfm.exec.newGame(eval[tonumber(c[2])]) end
 end
 
 function gui()
@@ -54,7 +54,7 @@ if mode==30 then
 tfm.exec.setGameTime(30)
 end
     local Ptag = string.match(tfm.get.room.xmlMapInfo.xml, "<P (.-)/>")
-    local meta = string.match(Ptag, 'meta ?= ?"(.-)"')
+    if Ptag then local meta = string.match(Ptag, 'meta ?= ?"(.-)"') end
     local mapName
 
     if meta then
