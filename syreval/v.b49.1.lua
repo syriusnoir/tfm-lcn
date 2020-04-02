@@ -83,7 +83,8 @@ if callback=="a" then ui.addPopup(0, 2, "<p align='center'>Versija</p>", playerN
 if callback=="r" then ui.addPopup(1, 2, "<p align='center'>Komentārs</p>", playerName, 581, 289, 200, true) end
 if callback=="al" then ui.addPopup(2, 2, "<p align='center'>Komentārs</p>", playerName, 581, 289, 200, true) end
 if callback=="ar" then ui.addPopup(3, 2, "<p align='center'>Komentārs</p>", playerName, 581, 289, 200, true) end 
-if callback=="arg" then ui.addPopup(4, 2, "<p align='center'>Komentārs</p>", playerName, 581, 289, 200, true) end 
+if callback=="arg" then ui.addPopup(4, 2, "<p align='center'>Komentārs</p>", playerName, 581, 289, 200, true) end
+if callback=="a2" then ui.addPopup(5, 2, "<p align='center'>Versija</p>", playerName, 581, 289, 100, true) end 
 end
 
 function eventPopupAnswer(popupID, playerName, answer)
@@ -92,6 +93,8 @@ if popupID==1 then print("<N><b>[b]<font color='#eb1d51'>[color=#eb1d51]Nav pie�
 if popupID==2 then print("<N><b>[b]<font color='#eb1d51'>[color=#eb1d51]Pieņemu ar labojumiem[/color]</font>[/b]</b><R> - "..answer) end
 if popupID==3 then print("<N><b>[b]<CE>[color=#e68d43]Pieņemts[/color]</CE>[/b]</b>[color=#f0a78e]<CEP> - būs pieejama kā rezerves mape! <font size='10'>[size=10]"..answer.."[/size]</font></CEP>[/color]") end
 if popupID==4 then print("<N><b>[b]<CE>[color=#e68d43]Pieņemts[/color]</CE>[/b]</b>[color=#f0a78e]<CEP> - atstāju rezerves rotācijā, līdz izlaboju dizainu. <font size='10'>[size=10]"..answer.."[/size]</font></CEP>[/color]") end
+if popupID==5 then ver=answer ui.addPopup(6, 2, "<p align='center'>Komentārs</p>", playerName, 581, 289, 200, true) end
+if popupID==6 then print("<N><b>[b]<VP>[color=#30ba76]Pieņemts[/color]</VP>[/b]</b>[color=#92cf91]<T> - būs pieejams "..ver.." versijā.</T> <font size='10'>[size=10]"..answer.."[/size]</font>[/color]") end  
 end
 
 for name,player in pairs(tfm.get.room.playerList) do eventNewPlayer(name) end
