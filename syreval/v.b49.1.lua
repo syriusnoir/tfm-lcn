@@ -21,14 +21,23 @@ tfm.exec.disableAutoShaman(true)
 
 
 function eventChatCommand(name,cmd,n)
+
     local c = { }
     string.gsub(cmd, "%S+", function(arg)
         c[#c + 1] = arg
     end)
+
+if c[1] == "a" then print("<N><b>[b]<VP>[color=#30ba76]Pieņemts[/color]</VP>[/b]</b>[color=#92cf91]<T> - būs pieejams "..cmd:sub(3).." versijā.</T>[/color]") end
+if c[1] == "r" then print("<N><b>[b]<font color='#eb1d51'>[color=#eb1d51]Nav pieņemts[/color]</font>[/b]</b><R> - "..cmd:sub(3)) end
+if c[1] == "al" then print("<N><b>[b]<font color='#eb1d51'>[color=#eb1d51]Pieņemu ar labojumiem[/color]</font>[/b]</b><R> - "..cmd:sub(4)) end
+if c[1] == "ar" then print("<N><b>[b]<CE>[color=#e68d43]Pieņemts[/color]</CE>[/b]</b>[color=#f0a78e]<CEP> - būs pieejama kā rezerves mape! <font size='10'>[size=10]"..cmd:sub(4).."[/size]</font></CEP>[/color]") end
+if c[1] == "arg" then print("<N><b>[b]<CE>[color=#e68d43]Pieņemts[/color]</CE>[/b]</b>[color=#f0a78e]<CEP> - atstāju rezerves rotācijā, līdz izlaboju dizainu. <font size='10'>[size=10]"..cmd:sub(4).."[/size]</font></CEP>[/color]") end
+
+
 end
 
 function gui()
-ui.addTextArea(32, "<font size='10'><p align='center'><CH2><a href='event:r'>[noraidīt]</a> <a href='event:al'>[pieņemt ar labojumiem]</a></CH2><D> <a href='event:ar'>[pieņemt kā rezerves]</a> <a href='event:arg'>[atstāt uz gaidīšanu]</a></D><CH> <a href='event:a'>[pieņemt]</a> <a href='event:a2'>[pieņemt ar komentāru]</a>", nil, 6, 379, 790, 27, 0x000022, 0x000022, 0.65, true)
+ui.addTextArea(32, "<font size='10'><p align='center'><CH2><a href='event:r'>[noraidīt]</a> <a href='event:al'>[pieņemt ar labojumiem]</a></CH2><D> <a href='event:ar'>[pieņemt kā rezerves]</a> <a href='event:arg'>[atstāt uz gaidīšanu]</a></D><CH> <a href='event:a'>[pieņemt]</a>", nil, 9, 380, 784, 27, 0x000022, 0x000022, 0.65, true)
 end
 
 function rmgui()
@@ -42,7 +51,6 @@ end
 end
 
 function eventKeyboard(name, key, down, x, y)
-print(name .. "|" .. key)
 if key==18 then
 tfm.exec.newGame(tfm.get.room.xmlMapInfo.xml) 
 end
@@ -60,7 +68,7 @@ if mode==30 then
 tfm.exec.setGameTime(30)
 end
     local Ptag = string.match(tfm.get.room.xmlMapInfo.xml, "<P (.-)/>")
-    local meta = string.match(Ptag, 'meta ?= ?"(.-)"')
+    if meta then local meta = string.match(Ptag, 'meta ?= ?"(.-)"') end
     local mapName
 
     if meta then
@@ -75,8 +83,7 @@ if callback=="a" then ui.addPopup(0, 2, "<p align='center'>Versija</p>", playerN
 if callback=="r" then ui.addPopup(1, 2, "<p align='center'>Komentārs</p>", playerName, 581, 289, 200, true) end
 if callback=="al" then ui.addPopup(2, 2, "<p align='center'>Komentārs</p>", playerName, 581, 289, 200, true) end
 if callback=="ar" then ui.addPopup(3, 2, "<p align='center'>Komentārs</p>", playerName, 581, 289, 200, true) end 
-if callback=="arg" then ui.addPopup(4, 2, "<p align='center'>Komentārs</p>", playerName, 581, 289, 200, true) end
-if callback=="a2" then ui.addPopup(5, 2, "<p align='center'>Versija</p>", playerName, 581, 289, 100, true) end 
+if callback=="arg" then ui.addPopup(4, 2, "<p align='center'>Komentārs</p>", playerName, 581, 289, 200, true) end 
 end
 
 function eventPopupAnswer(popupID, playerName, answer)
@@ -85,8 +92,6 @@ if popupID==1 then print("<N><b>[b]<font color='#eb1d51'>[color=#eb1d51]Nav pie�
 if popupID==2 then print("<N><b>[b]<font color='#eb1d51'>[color=#eb1d51]Pieņemu ar labojumiem[/color]</font>[/b]</b><R> - "..answer) end
 if popupID==3 then print("<N><b>[b]<CE>[color=#e68d43]Pieņemts[/color]</CE>[/b]</b>[color=#f0a78e]<CEP> - būs pieejama kā rezerves mape! <font size='10'>[size=10]"..answer.."[/size]</font></CEP>[/color]") end
 if popupID==4 then print("<N><b>[b]<CE>[color=#e68d43]Pieņemts[/color]</CE>[/b]</b>[color=#f0a78e]<CEP> - atstāju rezerves rotācijā, līdz izlaboju dizainu. <font size='10'>[size=10]"..answer.."[/size]</font></CEP>[/color]") end
-if popupID==5 then ver=answer ui.addPopup(6, 2, "<p align='center'>Komentārs</p>", playerName, 581, 289, 200, true) end
-if popupID==6 then print("<N><b>[b]<VP>[color=#30ba76]Pieņemts[/color]</VP>[/b]</b>[color=#92cf91]<T> - būs pieejams "..ver.." versijā.</T> <font size='10'>[size=10]"..answer.."[/size]</font>[/color]") end  
 end
 
 for name,player in pairs(tfm.get.room.playerList) do eventNewPlayer(name) end
