@@ -37,7 +37,7 @@ if c[1] == "arg" then print("<N><b>[b]<CE>[color=#e68d43]Pieņemts[/color]</CE>[
 end
 
 function gui()
-ui.addTextArea(32, "<font size='10'><p align='center'><CH2><a href='event:r'>[noraidīt]</a> <a href='event:al'>[pieņemt ar labojumiem]</a></CH2><D> <a href='event:ar'>[pieņemt kā rezerves]</a> <a href='event:arg'>[atstāt uz gaidīšanu]</a></D><CH> <a href='event:a'>[pieņemt]</a>", nil, 9, 380, 784, 27, 0x000022, 0x000022, 0.65, true)
+ui.addTextArea(32, "<font size='10'><p align='center'><CH2><a href='event:r'>[noraidīt]</a> <a href='event:al'>[pieņemt ar labojumiem]</a></CH2><D> <a href='event:ar'>[pieņemt kā rezerves]</a> <a href='event:arg'>[atstāt uz gaidīšanu]</a></D><CH> <a href='event:a'>[pieņemt]</a> <a href='event:a2'>[pieņemt ar komentāru]</a>", nil, 6, 379, 790, 27, 0x000022, 0x000022, 0.65, true)
 end
 
 function rmgui()
