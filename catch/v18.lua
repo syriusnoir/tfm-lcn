@@ -1,4 +1,4 @@
--- **************/ Ķereņu kods v17 - veidots uz syreval v.b42 kodola \**************
+-- **************/ Ķereņu kods v18 - veidots uz syreval v.b42 kodola \**************
 objects = {}
 conf = {noportals = false,flymode = false}
 players = {} 
