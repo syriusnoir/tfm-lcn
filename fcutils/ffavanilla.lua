@@ -34,7 +34,7 @@ text.en = {
 text.es = {
 	welcome = "<VP>¡Bienvenido a la sala FunCorp! Aquí no cuentan los stats."
 }
-
+ 
 despawnTime = 1000
 fireDelay = 250
 offsetX = -17
