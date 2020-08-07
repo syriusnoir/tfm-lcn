@@ -4,20 +4,21 @@ SETUP = {challengemode="build",title="lacrosnostra",autorespawn = false,lang="lv
 
 -- [[LCN: LV, EN, DE]]
 
-version = "v.b51"
+version = "v.b52"
 
 function errstp() fail = true ui.addTextArea(13000, "", nil, -2600, -2800, 6000, 6000, 0x6a7495, 0x000022, 1, false) ui.addTextArea(13001, "<V>[EN]</V> <A:ACTIVE>Invalid configuration! A SETUP variable has an invalid value or isn't existing.</A:ACTIVE>\n<V>[LV]</V> <A:ACTIVE>Nederīga konfigurācija! Kāds no SETUP mainīgajiem satur nederīgu vērtību vai neeksistē.</A:ACTIVE>", nil, 5, 25, 790, 30, 0x324650, 0x324650, 1, true) ui.addTextArea(13002, "<vp><p align='center'>"..version.."</p></vp>", nil, 5, 380, 790, 20, 0x324650, 0x324650, 1, true) end 
-if SETUP == nil then SETUP = {challengemode = "@",lang = "lv",title="lacrosnostra"} errstp() end if SETUP.lsimage==nil then SETUP.lsimage = "16f09800dd9.png" end if SETUP.challengemode == nil or type(SETUP.challengemode) == "boolean" then SETUP.challengemode = "@" errstp() end if SETUP.lang == "lv" or SETUP.lang == "en"  or SETUP.lang == "de" then else SETUP.lang = "lv" errstp() end if SETUP.title == nil or type(SETUP.title) == "boolean" then SETUP.title = "lacrosnostra" errstp() end do    local _, nickname = pcall(nil)    tfm.get.room.owner = string.match(nickname, "(.-)%.")end
+if SETUP == nil then SETUP = {challengemode = "@",lang = "lv",title="lacrosnostra"} errstp() end if SETUP.lsimage==nil then SETUP.lsimage = "16f09800dd9.png" end if SETUP.challengemode == nil or type(SETUP.challengemode) == "boolean" then SETUP.challengemode = "@" errstp() end if SETUP.lang == "lv" or SETUP.lang == "en" or SETUP.lang == "de" or SETUP.lang == "debug" then else SETUP.lang = "lv" errstp() end if SETUP.title == nil or type(SETUP.title) == "boolean" then SETUP.title = "lacrosnostra" errstp() end do    local _, nickname = pcall(nil)    tfm.get.room.owner = string.match(nickname, "(.-)%.")end
 
 player={} helpers={} disq={} spectators={}
 hosts={['Syrius#8114'] = true,['Yeet#7143'] = true,[tfm.get.room.owner] = true}
 contestants={}
 userData={} -- Piezīme Syrius (dist 88, 292)
-theme = {modern = {hcHeight = 30,windowHeadingColor = "vi",windowBorderColor = 0x000022,windowColor = 0x000022,windowColor2 = 0x000022,closeBtnColor = "grbl",startScreenColor = 000022,startScreenGround = 12,bcBackground = 0x000022,bcTransparency = 0.65,bcHeight = 22,bcFontSize = 14,bcWidth = 790,bcX = 5,welcomeScreenColor = 0x000022,commonColor1 = "grbl",commonColor2 = "brp",commonColor3 = "lbrp",commonColor4 = "vi",commonColor5 = "rose"},classic = {hcHeight = 30,windowHeadingColor = "rose",windowBorderColor = 0x000000,windowColor = 0x324650,windowColor2 = 0x000001,closeBtnColor = "warn",startScreenColor = 000000,startScreenGround = 12,bcBackground = 0x324650,bcTransparency = 0.5,bcHeight = 30,bcFontSize = 20,bcWidth = 600,bcX = 100,welcomeScreenColor = 0x000001,commonColor1 = "grbl",commonColor2 = "PT",commonColor3 = "T",commonColor4 = "PS",commonColor5 = "S"}}
+theme = {modern = {hcHeight = 30,windowHeadingColor = "vi",windowBorderColor = 0x000030,windowColor = 0x000022,highlightedWindowColor = 0x000044,contestSelWindowColor = 0x000033,contestSelWindowBorder = 0x000066,contestSelWindowTransparency = 1,windowColor2 = 0x000022,closeBtnColor = "grbl",startScreenColor = 000022,startScreenGround = 12,bcBackground = 0x000022,bcTransparency = 0.65,bcHeight = 22,bcFontSize = 14,bcWidth = 790,bcX = 5,welcomeScreenColor = 0x000022,welcomeScreenTextColor="BV",welcomeScreenDecoColor="V",welcomeScreenHeadingColor="grbl",welcomeScreenHighlightColor="lgrbl",commonColor1 = "grbl",commonColor2 = "brp",commonColor3 = "lbrp",commonColor4 = "vi",commonColor5 = "rose",panelCommonItemColor="BV",panelWarningItemColor="warn"},classic = {hcHeight = 30,windowHeadingColor = "rose",windowBorderColor = 0x000000,windowColor = 0x324650,windowColor2 = 0x000001,highlightedWindowColor = 0x324650,contestSelWindowColor = 0x324650,contestSelWindowBorder = 0x000001,contestSelWindowTransparency = 0.5,closeBtnColor = "warn",startScreenColor = 000000,startScreenGround = 12,bcBackground = 0x324650,bcTransparency = 0.5,bcHeight = 30,bcFontSize = 20,bcWidth = 600,bcX = 100,welcomeScreenColor = 0x000001,welcomeScreenTextColor="V",welcomeScreenDecoColor="VP",welcomeScreenHeadingColor="J",welcomeScreenHighlightColor="pt",commonColor1 = "V",commonColor2 = "PT",commonColor3 = "T",commonColor4 = "PS",commonColor5 = "S",panelCommonItemColor="V",panelWarningItemColor="warn"}}
 title = "#"..SETUP.title:lower().."LCN " .. SETUP.challengemode
 
 -- Tulkojumi
-local t = {lv={[40]=".",[70]="jā",[71]="ieslēgts",[72]="izslēgts",[73]="nē",[80]="<warn>Nav zināms.</warn>",[81]="Bez-naglu challenge",[82]="Divine challenge",[83]="Izdzīvošanas challenge",[84]="Cilts racing",[85]="Defilante sacensības",[86]="30-sekunžu challenge",[87]="Būvdarbu cīņas",[88]="Izaicinājumu izaicinājums",[100]="LCN versija:",[101]="Esi sveicināts #LCN modulī!",[102]="Šis modulis tiek izmantots atvieglotai konkursu uzturēšanai.",[103]="Ja ienāc konkursa vidū, lūdzu izej no ciltsmājas.",[104]="Tūlīt notiks:",[181]="Lai gan ar naglām būvēt ir elementāri, tomēr cik radošs vari būt bez tām? Parādi savas spējas šeit!",[182]="Tavs uzdevums ir izglābt pēc iespējas vairāk peļu vanilla mapēs. Ir tikai viens āķis - tu esi dievišķajā režīmā.",[183]="Turies pie visa iespējamā un esi pēdējais izdzīvojušais - ja vien nenokritīsi...",[184]="Mēs visi zinām veco, labo racing - vismaz cerams... Nu ko, uzmanību... gatavību... STARTS!",[185]="Kas gan notiktu, ja racing apvienotu ar defilante? Sanāktu šis - konkurss, kurā tu defilante mapēs pirmais mēģini nokļūt alā!",[186]="Tev ir dotas īpaši dizainētas mapes, dažas vieglākas, dažas grūtākas, bet, ja nepaspēsi iziet mapi 30 sekundēs - mirsi.",[187]="Kopīga tematika... kopīgi noteikumi... Lai uzvar labākais!",[188]="Tavs mērķis ikreiz ir citāds - vienreiz tas būs īpašas trases iziešana, citreiz varbūt peļu karš vai pat antīku konkursu spēlēšana!",[200]="ir ienācis ciltsmājā.",[201]="Darbojas #LaChallengeNostra.",[202]="Tu neesi cilts eventa dalībnieks/vadītājs.",[203]="Iestatījumi",[204]="Interfeiss",[205]="[noņemt]",[206]="HostCore ieslēgts:",[207]="(nospied •, lai redzētu moduļa informāciju)",[208]="iestatīja krāsu tagu",[209]="TU ESI DISKVALIFICĒTS.",[210]="Konkursa vadītājs ir tevi diskvalificējis.",[211]="Drīksti pamest ciltsmāju.",[212]="ir diskvalificēts.",[213]="tagad pieder konkursa vadītāja statuss.",[214]="tagad pieder konkursa palīga statuss.",[215]="vairs nepieder konkursa vadītāja statuss.",[216]="vairs nepieder konkursa palīga statuss.",[217]="Nederīga komanda vai arī tev nav pietiekamu tiesību tās lietošanai.",[218]="Nederīgs spēles režīms: nomaini SETUP.challengemode uz atbilstošo režīmu.",[219]="pārlādēja mapi.",[220]="kursora koordinātas ir -",[221]="[SISTĒMA]",[222]="Konkursa vadītāj, esi sveicināts šajā moduļa versijā.",[223]="Versija:",[224]="Identifikators:",[225]="ir zaudējis ;(",[226]="ir zaudējis.",[227]="Izdzīvošanas challenge ir sācies!",[228]="Darbojas t.s. <i>survival challenge.</i>",[229]="raunds",[230]="Fināla raunds",[231]="uzvarēja!",[232]="raunds beidzies:",[233]="raunds -",[234]="Bez-naglu challenge ir sācies!",[235]="Vadības panelis atvērts.",[236]="Īsinājumtaustiņi",[237]="NEDERĪGA AUTORIZĀCIJA.",[238]="Šis kods ir paredzēts",[239]="Tu esi diskvalificēts.",[240]="[palīdzība]",[241]="Par",[242]="[aizvērt]",[243]="Veidoja <lbrp>Syrius#8114</font>.",[244]="<br><br>Paldies <lbrp>Sanija#1187</font>, <lbrp>Ertyezz#9819</font>, <lbrp>Acmexitee#0000</font> un citiem cilts <lbrp>La Cros Nostra</font> dalībniekiem par palīdzību moduļa veidošanas gaitā.",[245]="Atdzīvošanās (visi) -",[246]="Notīrīt -",[247]="Paldies par dalību.",[248]="Visi nomira ;(",[249]="Vai esi pārliecināts?",[250]="izgāja no ciltsmājas.",[251]="Ziņa no",[252]="Tulkojums",[253]="Tu nevari diskvalificēt vadītāju/palīgu.",[254]="Diskvalificēt",[255]="Automātiskā mapju ieslēgšana:",[256]="Ir atstāts ieslēgts SETUP.autorespawn!",[257]="Iestatīt lietotājvārda krāsu",[258]="Iestatīt līnijas krāsu",[259]="Definēt krāsu tagu",[260]="Vadītāju iestatījumi",[261]="[mainīt v.p. pozīciju]",[262]="Statuss:",[263]="Komūna:",[264]="Pārsniegts objektu limits! Objekti:",[265]="[infopanelis]",[266]="[vadības panelis]",[267]="Mainīt utilcore caurspīdīgumu",[268]="[mainīt uc. caursp.]",[269]="Iemesls:",[270]="Kļūda",[271]="Ir transformējies:",[272]="Tu esi padarīts par skatītāju.",[273]="Tu nevari padarīt vadītāju par skatītāju!",[274]="[augsta kontrasta uc.]",[275]="Kādu konkursu vadīsi?",[276]="Konkursa vārds",[277]="Konkursa apraksts" ,[278]="Pielāgots",[279]="Pārsniegts barjeru blīvums! Blīvums:",[280]="(apmācību režīms)",[281]="Iestatīt zemes krāsu",[282]="Kāds ir tavs viedoklis par šo konkursu?",[283]="Šis saturs nav pieejams šajā valodā.",[284]="Vadītāji",[285]="Palīgi",[286]="Kļūdu vēsture",[287]="Komandu vēsture",[288]="Darbību vēsture"}, en={[40]="th",[70]="yes",[71]="on",[72]="off",[73]="no",[80]="<warn>Unknown.</warn>",[81]="No nail challenge",[82]="Divine challenge",[83]="Survival challenge",[84]="Tribe's racing",[85]="Defilante race",[86]="30-second challenge",[87]="Builders' Battle",[88]="The Challenge",[100]="LCN version:",[101]="Welcome to #LCN module!",[102]="This module is used to simplify the hosting of contests.",[103]="If you come here in the middle of the contest, please leave the tribe house.",[104]="Will be hosted soon:",[181]="Yes, building with nails is easy, but how creative can you be without them? Show your skills here!",[182]="Your goal is to save as many mice as possible in vanilla maps. But there's a catch - you're in divine mode!",[183]="Hold on to everything you see and be the last survivor... unless you fall...",[184]="We all know racing - at least hopefully... No time to waste, ready... set... GO!",[185]="What would happen, if racing and defilante was merged? This would get made - a contest where mice in defilante maps race to be the first mouse in the hole!",[186]="You've got specially designed maps, some easier, some harder, but if you will not complete map in 30 seconds - you'll die.",[187]="Everyone has the same theme, the same rules... May the best builder win!",[188]="Your goal is different every time - one time it will be winning in a custom map, other time maybe a mice war or even participation in legacy contests!",[200]="entered the tribe house.",[201]="#LaChallengeNostra is active.",[202]="You aren't a contestant or a host.",[203]="Settings",[204]="Interface",[205]="[remove]",[206]="HostCore enabled:",[207]="(press • to see the info panel)",[208]="has set color tag",[209]="YOU ARE DISQUALIFIED.",[210]="A host has disqualified you.",[211]="You may leave the tribe house.",[212]="has been disqualified.",[213]="is now a host.",[214]="is now a helper.",[215]="is no longer a host.",[216]="is no longer a helper.",[217]="Invalid command or you have insufficient permissions to use it.",[218]="Invalid game mode: change SETUP.challengemode to the corresponding mode.",[219]="reloaded the map.",[220]="'s pointer's coordinates are -",[221]="[SYSTEM]",[222]="Host, welcome to this version of the module.",[223]="Version:",[224]="Identificator:",[225]="died ;(",[226]="died.",[227]="Survival challenge has begun!",[228]="<i>Survival challenge</i> is active.",[229]="round",[230]="Final round",[231]="won!",[232]="round has ended:",[233]="round -",[234]="No nail challenge has begun!",[235]="Control panel has been opened.", [236]="Keybinds", [237]="INVALID AUTHENTICATION.",[238]="This code is intended for",[239]="You are disqualified.",[240]="[help]",[241]="About",[242]="[close]",[243]="Created by <lbrp>Syrius#8114</font>.",[244]="<br><br>Thanks to <lbrp>Sanija#1187</font>, <lbrp>Ertyezz#9819</font>, <lbrp>Acmexitee#0000</font> and other members of the tribe <lbrp>La Cros Nostra</font> for help in the module's development.",[245]="Respawn (all) -",[246]="Clear -",[247]="<font size='50'>Thanks for participation.",[248]="Everyone died ;(",[249]="Are you sure?",[250]="left the tribehouse.",[251]="A message from",[252]="Translation",[253]="You can't disqualify a host or a helper.",[254]="Disqualify",[255]="Map autoplay:",[256]="SETUP.autorespawn is left on!",[257]="Set username color",[258]="Set line color",[259]="Define color tag",[260]="Host settings",[261]="[change c.p. position]",[262]="Role:",[263]="Community:",[264]="Object limit exceeded! Objects:",[265]=" [info]",[266]="[control panel]",[267]="Change utilcore transparency",[268]="[change uc. transp.]",[269]="Reason:",[270]="Error",[271]="Is transformed:",[272]="You are a spectator now.",[273]="You can't make a host a spectator!",[274]="[high contrast uc.]",[275]="What are you going to host?",[276]="Contest name",[277]="Contest description" ,[278]="Custom",[279]="Barrier density exceeded! Density:",[280]="(training mode)",[281]="Set ground color",[282]="What's your feedback about this contest?",[283]="This feature is not available in this language.",[284]="Hosts",[285]="Helpers",[286]="Error log",[287]="Command log",[288]="Action log"}, de={[40]=".",[70]="ja",[71]="auf",[72]="aus",[73]="nein",[80]="<warn>Nicht bekannt.</warn>",[81]="Ohne Nagel Herausforderung",[82]="Göttlicher Modus Herausforderung",[83]="Überlebens Herausforderung",[84]="Stamm racing",[85]="Defilante Herausforderung",[86]="30-Sekunden Herausforderung",[87]="Bauschlachten",[88]="Die Herausforderung",[100]="LCN version:",[101]="Willkommen zum #LCN Modul!",[102]="Dieses Modul dient zur Pflege von Wettbeverben.",[103]="Wenn Sie mitten im Wettbeverb hereinkommen, bitte verlassen Sie das Stammeshaus.",[104]="Gleich passiert:",[181]="Obwohl Bauen mit Nägeln einfach ist, wie kreativ kannst du ohne Nägel sein? Zeig hier was du Kannst!",[182]="Dein Ziel ist es, so viele Mäuse wie möglich in Vanillekarten zu retten. Aber es gibt einen Haken - du bist im göttlichen Modus!",[183]="Halte an allem fest, was du siest, und sei der letzte Überlebende - es sei denn, du fällst ...",[184]="Wir alle kennen den guten, alten Racing - zumindest hoffentlich ... Nun, Aufmerksamkeit ... Bereitschaft ... START!",[185]="Was würde passieren, wenn racing mit defilante kombiniert würde? Dies würde gemacht werden - ein Wettbewerb, bei dem Mäuse in defilante Karten versuchen, die erste in der Höhle zu sein!",[186]="Du hast speziell gestaltete Karten, einige einfacher, andere schwieriger, aber wenn du die Karte nicht in 30 Sekunden fertigstellen - stribst du.",[187]="Jeder hat das gleiche Thema... die gleichen Regeln ... Möge der beste Baumeister gewinnen!",[188]="Dein Ziel ist jedes Mal anders - einmal wird es eine schwierige Karte gewinnen sein, ein anderes Mal vielleicht ein Mäusekrieg oder sogar die Teilnahme an früheren Wettbewerben sein!",[200]="betrat das Stammeshaus.",[201]="#LaChallengeNostra ist aktiv.",[202]="Sie sind kein Teilnehmer oder Anführer des Stammesereignesses.",[203]="Einstellungen",[204]="Schnittstelle",[205]="[entfernen]",[206]="HostCore auf:",[207]="(Drück • um die Moduldetails zu sehen)",[208]="hat den Farbetikett eingestellen",[209]="DU BIST DISQUALIFIZIERT.",[210]="Der Wettbewerbs Anführer hat Sie disqualifiziert.",[211]="Du kannst das Stammeshaus verlassen.",[212]="wurde disqualifiziert.",[213]="hat jetzt den Status eines Wettbewerb Anführers.",[214]="hat jetzt den Status eines Wettbeverbasissten.",[215]="hat nicht mehr den Status eines Wettbewerb Anführers.",[216]="hat nicht mehr den Status eines Wettbeverbasissten.",[217]="Ungültiges commando oder Sie haben nicht genügend Rechte um es auszuführen.",[218]="Ungültiger Spielemodus: Ändern Sie den SETUP.challengemode in den entsprechenden Modus.",[219]="hat die mape neu gestartet.",[220]="'s Cursor Koordinaten sind -",[221]="[SYSTEM]",[222]="Anführer des Wettbewerbs, willkommen zu dieser Version des Moduls.",[223]="Version:",[224]="Identifikator:",[225]="ist gestorben ;(",[226]="ist gestorben.",[227]="Überlebens Herausforderung hat begonnen!",[228]="<i>Überlebens Herausforderung</i> ist aktiv.",[229]="runde",[230]="Letzte runde",[231]="hat gewonnen!",[232]="runde hat geendet:",[233]="runde -",[234]="Die Ohne Nagel Herausforderung hat begonnen!",[235]="Systemsteuerung wurde geöffnet.",[237]="UNGÜLTIGE AUTORISIERUNG.",[238]="Dieser Code ist für",[239]="Du bist disqualifiziert.",[240]="[hilfe]",[241]="Über",[242]="[schließen]",[243]="Erstellt von <lbrp>Syrius#8114</font>.",[244]="<br><br>Danke an <lbrp>Sanija#1187</font>, <lbrp>Ertyezz#9819</font>, <lbrp>Acmexitee#0000</font> und andere Stamm <lbrp>La Cros Nostra</font> Teilnehmer für der Unterstützung beim Aufbau des Moduls.",[245]=" Wiederbelebung (alle) -",[246]="Löschen -",[247]="<font size='50'>Vielen Dank für Ihre Teilnahme.",[248]="Alle sind gestorben ;(",[249]="Bist du dir sicher?",[250]="hat das Stammeshaus verlassen.",[251]="Eine Nachricht von",[252]="Übersetzung",[253]="Sie können einen Anführer oder Assistenten nicht disqualifizieren.",[254]="Disqualifizieren",[255]="Karten Autoplay:",[256]="SETUP.autorespawn ist aufgeblieben!",[257]="Benutzernamfarbe einstellen",[258]="Linienfarbe einstellen",[259]="Farbetikett definieren",[260]="Anführer Einstellungen",[261]="[s.s. Position ändern]",[262]="Status:",[263]="Gemeinshaft:",[264]="Objekt Limit überschritten! Objekte:",[265]="[infopanel]",[266]="[Systemsteuerung]",[267]="Die Ulticore-Transparenz ändern",[268]="[die Uc. Transp. ändern]",[269]="Grund:",[270]="Fehler",[271]="Hat sich verwandelt:",[272]="Du bist jetzt ein Zuschauer.",[273]="Sie können einen Anführer nicht zum Zuschauer Machen!",[274]="[hoher Kontrast uc.]",[275]="Welchen Wettbewerb wirst du anführen?",[276]="Wettbewerb name",[277]="Wettbewerb beschreibung" ,[278]="Angepasst",[279]="Barrierendichte überschritten! Dichte:",[280]="(Trainingsmods)",[281]="Erdfarbe einstellen",[282]="Was ist deine Meinung über diesem Wettbewerb?",[283]="Diese Funktion ist in dieser Sprache nicht verfügbar.",[284]="Anführer",[285]="Assistent",[286]="Fehlergeschichte",[287]="Kommandogeschichte",[288]="Aktiongeschichte"}}
+local t = {lv={[40]=".",[70]="jā",[71]="ieslēgts",[72]="izslēgts",[73]="nē",[74]="izvēlēts",[80]="<warn>Nav zināms.</warn>",[81]="Bez-naglu challenge",[82]="Divine challenge",[83]="Izdzīvošanas challenge",[84]="Cilts racing",[85]="Defilante sacensības",[86]="30-sekunžu challenge",[87]="Būvdarbu cīņas",[88]="Izaicinājumu izaicinājums",[89]="Vienzemju challenge",[100]="LCN versija:",[101]="Esi sveicināts #LCN modulī!",[102]="Šis modulis tiek izmantots atvieglotai konkursu uzturēšanai.",[103]="Ja ienāc konkursa vidū, lūdzu izej no ciltsmājas.",[104]="Tūlīt notiks:",[140]="Tab",[141]="AltGr",[142]="PgUp",[143]="PgDn",[144]="Del",[145]="Shift",[181]="Lai gan ar naglām būvēt ir elementāri, tomēr cik radošs vari būt bez tām? Parādi savas spējas šeit!",[182]="Tavs uzdevums ir izglābt pēc iespējas vairāk peļu vanilla mapēs. Ir tikai viens āķis - tu esi dievišķajā režīmā.",[183]="Turies pie visa iespējamā un esi pēdējais izdzīvojušais - ja vien nenokritīsi...",[184]="Mēs visi zinām veco, labo racing - vismaz cerams... Nu ko, uzmanību... gatavību... STARTS!",[185]="Kas gan notiktu, ja racing apvienotu ar defilante? Sanāktu šis - konkurss, kurā tu defilante mapēs pirmais mēģini nokļūt alā!",[186]="Tev ir dotas īpaši dizainētas mapes, dažas vieglākas, dažas grūtākas, bet, ja nepaspēsi iziet mapi 30 sekundēs - mirsi.",[187]="Kopīga tematika... kopīgi noteikumi... Lai uzvar labākais!",[188]="Tavs mērķis ikreiz ir citāds - vienreiz tas būs īpašas trases iziešana, citreiz varbūt peļu karš vai pat antīku konkursu spēlēšana!",[189]="Tavs mērķis ir iegūt pēc iespējas mazāk punktu. Par katru nāvi saņemsi tos, tāpēc uzmanies!",[200]="ir ienācis ciltsmājā.",[201]="Darbojas #LaChallengeNostra.",[202]="Tu neesi cilts eventa dalībnieks/vadītājs.",[203]="Iestatījumi",[204]="Interfeiss",[205]="[noņemt]",[206]="HostCore ieslēgts:",[207]="(nospied •, lai redzētu moduļa informāciju)",[208]="iestatīja krāsu tagu",[209]="TU ESI DISKVALIFICĒTS.",[210]="Konkursa vadītājs ir tevi diskvalificējis.",[211]="Drīksti pamest ciltsmāju.",[212]="ir diskvalificēts.",[213]="tagad pieder konkursa vadītāja statuss.",[214]="tagad pieder konkursa palīga statuss.",[215]="vairs nepieder konkursa vadītāja statuss.",[216]="vairs nepieder konkursa palīga statuss.",[217]="Nederīga komanda vai arī tev nav pietiekamu tiesību tās lietošanai.",[218]="Nederīgs spēles režīms: nomaini SETUP.challengemode uz atbilstošo režīmu.",[219]="pārlādēja mapi.",[220]="kursora koordinātas ir -",[221]="[SISTĒMA]",[222]="Konkursa vadītāj, esi sveicināts šajā moduļa versijā.",[223]="Versija:",[224]="Identifikators:",[225]="ir zaudējis ;(",[226]="ir zaudējis.",[227]="Izdzīvošanas challenge ir sācies!",[228]="Darbojas t.s. <i>survival challenge.</i>",[229]="raunds",[230]="Fināla raunds",[231]="uzvarēja!",[232]="raunds beidzies:",[233]="raunds -",[234]="Bez-naglu challenge ir sācies!",[235]="Vadības panelis atvērts.",[236]="īsinājumtaustiņi",[237]="NEDERĪGA AUTORIZĀCIJA.",[238]="Šis kods ir paredzēts",[239]="Tu esi diskvalificēts.",[240]="[palīdzība]",[241]="Par",[242]="[aizvērt]",[243]="Veidoja <CH>Syrius#8114</CH>.",[244]="\n\nPaldies <CH>Yeet#7143</CH>, <CH>Creativemice#7925</CH>, <CH>Sanija#1187</CH>, <CH>Acmexitee#0000</CH> un citiem cilts <CH>La Cros Nostra</CH> dalībniekiem par palīdzību moduļa veidošanas gaitā.",[245]="Atdzīvošanās (visi)",[246]="Notīrīt",[247]="Paldies par dalību.",[248]="Visi nomira ;(",[249]="Vai esi pārliecināts?",[250]="izgāja no ciltsmājas.",[251]="Ziņa no",[252]="Tulkojums",[253]="Tu nevari diskvalificēt vadītāju/palīgu.",[254]="Diskvalificēt",[255]="Automātiskā mapju ieslēgšana:",[256]="Ir atstāts ieslēgts SETUP.autorespawn!",[257]="Iestatīt lietotājvārda krāsu",[258]="Iestatīt līnijas krāsu",[259]="Definēt krāsu tagu",[260]="Vadītāju iestatījumi",[261]="[mainīt v.p. pozīciju]",[262]="Statuss:",[263]="Komūna:",[264]="Pārsniegts objektu limits! Objekti:",[265]="[infopanelis]",[266]="[vadības panelis]",[267]="Mainīt utilcore caurspīdīgumu",[268]="[mainīt uc. caursp.]",[269]="Iemesls:",[270]="Kļūda",[271]="Ir transformējies:",[272]="Tu esi padarīts par skatītāju.",[273]="Tu nevari padarīt vadītāju par skatītāju!",[274]="[augsta kontrasta uc.]",[275]="Kādu konkursu vadīsi?",[276]="Konkursa vārds",[277]="Konkursa apraksts" ,[278]="Pielāgots",[279]="Pārsniegts barjeru blīvums! Blīvums:",[280]="(apmācību režīms)",[281]="Iestatīt zemes krāsu",[282]="Kāds ir tavs viedoklis par šo konkursu?",[283]="Šis saturs nav pieejams šajā valodā.",[284]="Vadītāji",[285]="Palīgi",[286]="Kļūdu vēsture",[287]="Komandu vēsture",[288]="Darbību vēsture",[289]="Brīdinājums",[290]="Maksimālais mapes augstums, kurā sānu barjeras darbojas pareizi, ir 2050 pikseļi!",[291]="Šī komanda šīs funkcijas argumentā nav atbalstīta.",[292]="tehniskā informācija",[293]="atpakaļ",[294]="Darbība",[295]="nav pieejama tiešā veidā, tā vietā lieto",[296]="Pašlaik ir atbalstītas tikai <i>superpowers</i> tipa darbības.",[297]="tagad var veikt darbību",[298]="vairs nevar veikt darbību",[299]="Pārlādēt karti",[300]="Nākošā mape",[301]="Pārlādēt kā XML",[302]="Variants",[303]="lietotāja dati"}, en={[40]="th",[70]="yes",[71]="on",[72]="off",[73]="no",[74]="selected",[80]="<warn>Unknown.</warn>",[81]="No nail challenge",[82]="Divine challenge",[83]="Survival challenge",[84]="Tribe's racing",[85]="Defilante race",[86]="30-second challenge",[87]="Builders' Battle",[88]="The Challenge",[89]="Monoground challenge",[100]="LCN version:",[101]="Welcome to #LCN module!",[102]="This module is used to simplify the hosting of contests.",[103]="If you come here in the middle of the contest, please leave the tribe house.",[104]="Will be hosted soon:",[140]="Tab",[141]="AltGr",[142]="PgUp",[143]="PgDn",[144]="Del",[145]="Shift",[181]="Yes, building with nails is easy, but how creative can you be without them? Show your skills here!",[182]="Your goal is to save as many mice as possible in vanilla maps. But there's a catch - you're in divine mode!",[183]="Hold on to everything you see and be the last survivor... unless you fall...",[184]="We all know racing - at least hopefully... No time to waste, ready... set... GO!",[185]="What would happen, if racing and defilante was merged? This would get made - a contest where mice in defilante maps race to be the first mouse in the hole!",[186]="You've got specially designed maps, some easier, some harder, but if you will not complete map in 30 seconds - you'll die.",[187]="Everyone has the same theme, the same rules... May the best builder win!",[188]="Your goal is different every time - one time it will be winning in a custom map, other time maybe a mice war or even participation in legacy contests!",[189]="Your goal is to get as less points as possible. You will receive them if you die, so be careful!",[200]="entered the tribe house.",[201]="#LaChallengeNostra is active.",[202]="You aren't a contestant or a host.",[203]="Settings",[204]="Interface",[205]="[remove]",[206]="HostCore enabled:",[207]="(press • to see the info panel)",[208]="has set color tag",[209]="YOU ARE DISQUALIFIED.",[210]="A host has disqualified you.",[211]="You may leave the tribe house.",[212]="has been disqualified.",[213]="is now a host.",[214]="is now a helper.",[215]="is no longer a host.",[216]="is no longer a helper.",[217]="Invalid command or you have insufficient permissions to use it.",[218]="Invalid game mode: change SETUP.challengemode to the corresponding mode.",[219]="reloaded the map.",[220]="'s pointer's coordinates are -",[221]="[SYSTEM]",[222]="Host, welcome to this version of the module.",[223]="Version:",[224]="Identificator:",[225]="died ;(",[226]="died.",[227]="Survival challenge has begun!",[228]="<i>Survival challenge</i> is active.",[229]="round",[230]="Final round",[231]="won!",[232]="round has ended:",[233]="round -",[234]="No nail challenge has begun!",[235]="Control panel has been opened.",[236]="keybinds", [237]="INVALID AUTHENTICATION.",[238]="This code is intended for",[239]="You are disqualified.",[240]="[help]",[241]="About",[242]="[close]",[243]="Created by <CH>Syrius#8114</CH>.",[244]="\n\nThanks to <CH>Yeet#7143</CH>, <CH>Creativemice#7925</CH>, <CH>Sanija#1187</CH>, <CH>Acmexitee#0000</CH> and other members of tribe <CH>La Cros Nostra</CH> for help in the development of the module.",[245]="Respawn (all)",[246]="Clear",[247]="<font size='50'>Thanks for participation.",[248]="Everyone died ;(",[249]="Are you sure?",[250]="left the tribehouse.",[251]="A message from",[252]="Translation",[253]="You can't disqualify a host or a helper.",[254]="Disqualify",[255]="Map autoplay:",[256]="SETUP.autorespawn is left on!",[257]="Set username color",[258]="Set line color",[259]="Define color tag",[260]="Host settings",[261]="[change c.p. position]",[262]="Role:",[263]="Community:",[264]="Object limit exceeded! Objects:",[265]=" [info]",[266]="[control panel]",[267]="Change utilcore transparency",[268]="[change uc. transp.]",[269]="Reason:",[270]="Error",[271]="Is transformed:",[272]="You are a spectator now.",[273]="You can't make a host a spectator!",[274]="[high contrast uc.]",[275]="What are you going to host?",[276]="Contest name",[277]="Contest description" ,[278]="Custom",[279]="Barrier density exceeded! Density:",[280]="(training mode)",[281]="Set ground color",[282]="What's your feedback about this contest?",[283]="This feature is not available in this language.",[284]="Hosts",[285]="Helpers",[286]="Error log",[287]="Command log",[288]="Action log",[289]="Warning",[290]="Side barriers only work correctly if the map's height doesn't exceed 2050 pixels!",[291]="This command is not supported in this function's argument.",[292]="technical information",[293]="back",[294]="Action",[295]="is not available directly, instead use",[296]="Only <i>superpowers</i> type actions are supported for now.",[297]="can now perform action",[298]="can no longer perform action",[299]="Reload map",[300]="Next map",[301]="Reload as XML",[302]="Set",[303]="user data"}, de={[40]=".",[70]="ja",[71]="auf",[72]="aus",[73]="nein",[74]="ausgewählt",[80]="<warn>Nicht bekannt.</warn>",[81]="Ohne Nagel Herausforderung",[82]="Göttlicher Modus Herausforderung",[83]="Überlebens Herausforderung",[84]="Stamm racing",[85]="Defilante Herausforderung",[86]="30-Sekunden Herausforderung",[87]="Bauschlachten",[88]="Die Herausforderung",[89]="Die Monoland Herausforderung",[100]="LCN version:",[101]="Willkommen zum #LCN Modul!",[102]="Dieses Modul dient zur Pflege von Wettbeverben.",[103]="Wenn Sie mitten im Wettbeverb hereinkommen, bitte verlassen Sie das Stammeshaus.",[104]="Gleich passiert:",[140]="Tab",[141]="AltGr",[142]="PgUp",[143]="PgDn",[144]="Del",[145]="Shift",[181]="Obwohl Bauen mit Nägeln einfach ist, wie kreativ kannst du ohne Nägel sein? Zeig hier was du Kannst!",[182]="Dein Ziel ist es, so viele Mäuse wie möglich in Vanillekarten zu retten. Aber es gibt einen Haken - du bist im göttlichen Modus!",[183]="Halte an allem fest, was du siest, und sei der letzte Überlebende - es sei denn, du fällst ...",[184]="Wir alle kennen den guten, alten Racing - zumindest hoffentlich ... Nun, Aufmerksamkeit ... Bereitschaft ... START!",[185]="Was würde passieren, wenn racing mit defilante kombiniert würde? Dies würde gemacht werden - ein Wettbewerb, bei dem Mäuse in defilante Karten versuchen, die erste in der Höhle zu sein!",[186]="Du hast speziell gestaltete Karten, einige einfacher, andere schwieriger, aber wenn du die Karte nicht in 30 Sekunden fertigstellen - stribst du.",[187]="Jeder hat das gleiche Thema... die gleichen Regeln ... Möge der beste Baumeister gewinnen!",[188]="Dein Ziel ist jedes Mal anders - einmal wird es eine schwierige Karte gewinnen sein, ein anderes Mal vielleicht ein Mäusekrieg oder sogar die Teilnahme an früheren Wettbewerben sein!",[189]="Dein Ziel ist es, so wenig Punkte wie möglich zu sammeln. Du wirst sie für jeden Tod bekommen, also pass auf!",[200]="betrat das Stammeshaus.",[201]="#LaChallengeNostra ist aktiv.",[202]="Sie sind kein Teilnehmer oder Anführer des Stammesereignesses.",[203]="Einstellungen",[204]="Schnittstelle",[205]="[entfernen]",[206]="HostCore auf:",[207]="(Drück • um die Moduldetails zu sehen)",[208]="hat den Farbetikett eingestellen",[209]="DU BIST DISQUALIFIZIERT.",[210]="Der Wettbewerbs Anführer hat Sie disqualifiziert.",[211]="Du kannst das Stammeshaus verlassen.",[212]="wurde disqualifiziert.",[213]="hat jetzt den Status eines Wettbewerb Anführers.",[214]="hat jetzt den Status eines Wettbeverbasissten.",[215]="hat nicht mehr den Status eines Wettbewerb Anführers.",[216]="hat nicht mehr den Status eines Wettbeverbasissten.",[217]="Ungültiges commando oder Sie haben nicht genügend Rechte um es auszuführen.",[218]="Ungültiger Spielemodus: Ändern Sie den SETUP.challengemode in den entsprechenden Modus.",[219]="hat die mape neu gestartet.",[220]="'s Cursor Koordinaten sind -",[221]="[SYSTEM]",[222]="Anführer des Wettbewerbs, willkommen zu dieser Version des Moduls.",[223]="Version:",[224]="Identifikator:",[225]="ist gestorben ;(",[226]="ist gestorben.",[227]="Überlebens Herausforderung hat begonnen!",[228]="<i>Überlebens Herausforderung</i> ist aktiv.",[229]="runde",[230]="Letzte runde",[231]="hat gewonnen!",[232]="runde hat geendet:",[233]="runde -",[234]="Die Ohne Nagel Herausforderung hat begonnen!",[235]="Systemsteuerung wurde geöffnet.",[236]="Tastaturkürze",[237]="UNGÜLTIGE AUTORISIERUNG.",[238]="Dieser Code ist für",[239]="Du bist disqualifiziert.",[240]="[hilfe]",[241]="Über",[242]="[schließen]",[243]="Erstellt von <CH>Syrius#8114</CH>.",[244]="\n\nDanke an <CH>Yeet#7143</CH>,<CH>Creativemice#7925</CH>, <CH>Sanija#1187</CH>, <CH>Acmexitee#0000</CH> und andere <CH>La Cros Nostra</CH> Stammesmitglieder für Hilfe bei der Modulentwicklung.",[245]="Wiederbelebung (alle)",[246]="Löschen",[247]="<font size='50'>Vielen Dank für Ihre Teilnahme.",[248]="Alle sind gestorben ;(",[249]="Bist du dir sicher?",[250]="hat das Stammeshaus verlassen.",[251]="Eine Nachricht von",[252]="Übersetzung",[253]="Sie können einen Anführer oder Assistenten nicht disqualifizieren.",[254]="Disqualifizieren",[255]="Karten Autoplay:",[256]="SETUP.autorespawn ist aufgeblieben!",[257]="Benutzernamfarbe einstellen",[258]="Linienfarbe einstellen",[259]="Farbetikett definieren",[260]="Anführer Einstellungen",[261]="[s.s. Position ändern]",[262]="Status:",[263]="Gemeinshaft:",[264]="Objekt Limit überschritten! Objekte:",[265]="[infopanel]",[266]="[Systemsteuerung]",[267]="Die Ulticore-Transparenz ändern",[268]="[die Uc. Transp. ändern]",[269]="Grund:",[270]="Fehler",[271]="Hat sich verwandelt:",[272]="Du bist jetzt ein Zuschauer.",[273]="Sie können einen Anführer nicht zum Zuschauer Machen!",[274]="[hoher Kontrast uc.]",[275]="Welchen Wettbewerb wirst du anführen?",[276]="Wettbewerb name",[277]="Wettbewerb beschreibung" ,[278]="Angepasst",[279]="Barrierendichte überschritten! Dichte:",[280]="(Trainingsmods)",[281]="Erdfarbe einstellen",[282]="Was ist deine Meinung über diesem Wettbewerb?",[283]="Diese Funktion ist in dieser Sprache nicht verfügbar.",[284]="Anführer",[285]="Assistent",[286]="Fehlergeschichte",[287]="Kommandogeschichte",[288]="Aktiongeschichte",[289]="Warnung",[290]="Seitenbarrieren funktionieren nur dann korrekt, wenn die Höhe der Karte 2050 Pixel nicht überschreitet!",[291]="Dieser Befehl wird in diesem Funktionsargument nicht unterstützt.",[292]="technische Information",[293]="zurück",[294]="Die Aktion",[295]="ist nicht verfügbar. Verwenden Sie stattdessen",[296]="Jetzt werden nur <i>superpowers</i> unterstützt.",[297]="kann jetzt Aktionen durchführen",[298]="kann nicht mehr Aktionen durchführen",[299]="Karte neu einladen",[300]="Nächste Karte",[301]="Als XML neu einladen",[302]="Set",[303]="Benutzerdaten"},debug={}}
+for i=0,400 do t.debug[i] = "["..i.."]" end
 local trans = t[tfm.get.room.community] or t[SETUP.lang]
 
 cmdlog = ""
@@ -51,7 +52,7 @@ local colqueue
 
 -- customcolortag bibliotēka
 local setColorTag do local colors = {} setColorTag = function(tag, color) assert(tag, "Missing tag.") assert(color, "Missing color.") if type(color) == "number" then color = string.format("#%06x", color) else color = tostring(color) if not string.find(color, '#') then color = "#" .. color end end tag = tostring(tag) if not string.find(tag, "^<.->$") then tag = "<" .. tag .. ">" end colors[#colors + 1] = { tag = tag, color = color } end local putColors = function(str) for i = 1, #colors do str = string.gsub(str, colors[i].tag, "<font color=\"" .. colors[i].color .. "\">") end return str end local addTextArea, updateTextArea, chatMessage, p = ui.addTextArea, ui.updateTextArea, tfm.exec.chatMessage, print ui.addTextArea = function(id, str, ...) return addTextArea(id, putColors(str), ...) end ui.updateTextArea = function(id, str, ...) return updateTextArea(id, putColors(str), ...) end tfm.exec.chatMessage = function(str, ...) return chatMessage(putColors(str), ...) end print = function(str) return p(putColors(str)) end end
-setColorTag("warn", 0xeb1d51) setColorTag("purp", 0x8A2BE2) setColorTag("grbl",0x84b7d1) setColorTag("lgrbl",0x84a7f1) setColorTag("brp", 0x6e6eff) setColorTag("lbrp", 0xb3b3ff) setColorTag("black", 0x000001)
+setColorTag("warn", 0xeb1d51) setColorTag("purp", 0x8A2BE2) setColorTag("grbl",0x84b7d1) setColorTag("lgrbl",0x84a7f1) setColorTag("brp", 0x6e6eff) setColorTag("lbrp", 0xb3b3ff) setColorTag("black", 0x000001) setColorTag("wy", 0xffaf00)
 
 -- Noklusējuma iestatījumi
 function startMap() tfm.exec.newGame('<C><P DS="m;200,170" APS="'..SETUP.lsimage..',0,0,0,0,100,50,40" /><Z><S><S P="0,0,0.3,0.2,0,0,0,0" X="0" L="3000" o="'..theme[SETUP.theme].startScreenColor..'" H="3000" c="4" Y="0" T="'..theme[SETUP.theme].startScreenGround..'" /><S P="0,0,0.3,0.2,0,0,0,0" L="40" o="'..theme[SETUP.theme].startScreenColor..'" H="10" X="200" Y="240" T="12" /><S P="0,0,0.3,0.2,90,0,0,0" L="40" o="'..theme[SETUP.theme].startScreenColor..'" H="10" X="215" Y="225" T="12" /><S P="0,0,0.3,0.2,90,0,0,0" L="40" o="000022" H="10" X="2500" Y="225" T="12" /><S P="0,0,0.3,0.2,90,0,0,0" L="40" o="'..theme[SETUP.theme].startScreenColor..'" H="10" X="185" Y="225" T="12" /><S P="0,0,0.3,0.2,0,0,0,0" L="40" o="'..theme[SETUP.theme].startScreenColor..'" H="10" X="200" Y="210" T="12" /></S><D><DS Y="225" X="200" /></D><O /></Z></C>') 
@@ -64,7 +65,7 @@ tfm.exec.disableAfkDeath(true)
 tfm.exec.disableAutoScore(true)
 tfm.exec.disableAutoNewGame(true)
 tfm.exec.disableMortCommand(true)
-math.randomseed(os.time())
+math.randomseed(os.time()%576)
 
 -- Apmācību režīms
 tclog = "" errlog = ""
@@ -82,6 +83,21 @@ ui.updateTextArea(52, tclog, nil)
 if SETUP.logcallbacks == true then print("<"..userData[executor].ncol.."><b>[@"..tostring(executor).."]</"..userData[executor].ncol.."></font></b><A:ACTIVE> "..tostring(action).."</A:ACTIVE>") end
 end
 
+-- Testēšanas log
+debdata={log="",open={},userdata={}}
+function deb(name,mode,arg1,arg2)
+	if string.len(debdata.log) > 1765 then debdata.log = "" end
+	arg1 = arg1 or "<warn><b>[ERR]</b> inv arg1</font>"
+	arg2 = arg2 or "<warn><b>[ERR]</b> inv arg2</font>"
+	if SETUP.debug==true then 
+		if debdata.open[name] == true then ui.addTextArea(200, "<PT><font face='Lucida Console,Monaco'>#LCN "..version.."\nDebug mode", name, 5, 25, nil, nil, 0x000001, 0x000001, 0.05, true) else end
+		if mode=="remove" then debdata.open[name] = false ui.removeTextArea(200,name) end
+		if mode=="debdata" then debdata.log = debdata.log.."\n"..arg1 end
+		if mode=="debdisplay" then ui.updateTextArea(200,"<PT><font face='Lucida Console,Monaco'>#LCN "..version.."\nDebug mode</PT>\n"..debdata.log,name) end
+		if mode=="force" then debdata.open[name] = true ui.addTextArea(200, "<PT><font face='Lucida Console,Monaco'>#LCN "..version.."\nDebug mode", name, 5, 25, nil, nil, 0x000001, 0x000001, 0.05, true) end
+		if mode=="clear" then debdata.log = "" end
+	end
+end
 -- UtilCore
 function utilcore(name)
 	for name,player in pairs(tfm.get.room.playerList) do
@@ -92,6 +108,9 @@ end
 
 -- Automātiska ziņojuma parādīšanās
 function eventNewPlayer(name)
+	debdata.open[name] = true
+	debdata.userdata[name] = ""
+	deb(name)
 	utilcore(name)
 	if SETUP.nocontrast == true then ui.removeTextArea(33,name) end
 	contestants[name] = true
@@ -107,14 +126,17 @@ function eventNewPlayer(name)
 		showcmdbuffer = false,
 		hc = false,
 		hc_tabbed = false,
-		hipstate = SETUP.panelpos or 1
+		hipstate = SETUP.panelpos or 4,
+		visualScoreboard = false,
+		keyset = 1,
+		allowedSuperpowers = {launch=false,conjuration=false,instaspawn=false,teleport=false,explosion=false,getcoordinates=true}
 	}
 	annonce(miscpref..name.." "..trans[200])
 	if hosts[name] then userData[name].role = "host" userData[name].ncol = "rose" end
 	if helpers[name] then userData[name].role = "helper" userData[name].ncol = "o" end
 	if hosts[name] or contestants[name] then
-		ui.addTextArea(8880, "<bv>"..trans[100].."</bv> <grbl>"..version.."</grbl>\n\n<grbl><font size='14'><v><font face='Wingdings 3'>u</font></v> "..trans[101].."</font></grbl>\n\n<bv>"..trans[102].."\n"..trans[103].."</bv>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<rose><p align='right'><a href='event:user.nowelcome'>"..trans[242], name, 440, 80, 340, 330, theme[SETUP.theme].welcomeScreenColor, theme[SETUP.theme].windowBorderColor, 1, true)
-		ui.addTextArea(8881, "", name, 440, 190, 340, 100, theme[SETUP.theme].welcomeScreenColor, theme[SETUP.theme].windowBorderColor, 1, true)
+		ui.addTextArea(8880, "<"..theme[SETUP.theme].welcomeScreenTextColor..">"..trans[100].."</"..theme[SETUP.theme].welcomeScreenTextColor.."></font> <"..theme[SETUP.theme].welcomeScreenHeadingColor..">"..version.."</"..theme[SETUP.theme].welcomeScreenTextColor.."></font>\n\n<font size='14'><"..theme[SETUP.theme].welcomeScreenDecoColor.."><font face='Wingdings 3'>u</font></"..theme[SETUP.theme].welcomeScreenDecoColor.."><"..theme[SETUP.theme].welcomeScreenHeadingColor.."> "..trans[101].."</"..theme[SETUP.theme].welcomeScreenHeadingColor.."></font></font>\n\n<"..theme[SETUP.theme].welcomeScreenTextColor..">"..trans[102].."\n"..trans[103].."</font>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<rose><p align='right'><a href='event:user.nowelcome'>"..trans[242], name, 440, 80, 340, 330, theme[SETUP.theme].welcomeScreenColor, theme[SETUP.theme].welcomeScreenColor, 1, true)
+		ui.addTextArea(8881, "", name, 440, 190, 340, 100, theme[SETUP.theme].welcomeScreenColor, theme[SETUP.theme].welcomeScreenColor, 1, true)
 		if name == tfm.get.room.owner then
 			startmenu(name)
 		end
@@ -126,6 +148,8 @@ function eventNewPlayer(name)
 	--	tfm.exec.setPlayerScore(name,-32767)
 	end
 		system.bindKeyboard(name, 69, false, true)
+		system.bindKeyboard(name, 76, false, true)
+		system.bindKeyboard(name, 120, false, true)
 	for i=187,192 do
 		system.bindKeyboard(name, i, false, true)
 	end
@@ -135,27 +159,30 @@ function eventNewPlayer(name)
 	for i=9,17 do
 		system.bindKeyboard(name, i, false, true)
 	end
-  system.bindMouse(name, true)
+	system.bindMouse(name, true)
+	eventRole(name)
 end
 -- Testēšana
-
 -- Starta izvēlne hostiem
 local startmenuy = 200
 function startmenu(name)
 	if SETUP.challengemode == "survival" then
-		ui.addTextArea(8888, "<grbl><font size='14'><v><font face='Webdings'>@</font></v> "..trans[275].."</font></grbl>\n\n<bv><li><a href='event:cn.survival'>"..trans[83].."</a></li><li><a href='event:cn.iziz'>"..trans[88].."</li><li><a href='event:cn.custom'>"..trans[278].."</li>\n</bv>\n\n", name, 440, startmenuy, 340, 100, 0x000033, 0x000066, 1, true)
+		ui.addTextArea(8888, "<"..theme[SETUP.theme].welcomeScreenHeadingColor.."><font size='14'><v><font face='Webdings'>@</font></v> "..trans[275].."</font></"..theme[SETUP.theme].welcomeScreenHeadingColor.."></font>\n\n<bv><li><a href='event:cn.survival'>"..trans[83].."</a></li><li><a href='event:cn.iziz'>"..trans[88].."</li><li><a href='event:cn.custom'>"..trans[278].."</li>\n</bv>\n\n", name, 440, startmenuy, 340, 100, theme[SETUP.theme].contestSelWindowColor, theme[SETUP.theme].contestSelWindowBorder, theme[SETUP.theme].contestSelWindowTransparency, true)
 	end
 	if SETUP.challengemode == "vanilla" then
-		ui.addTextArea(8888, "<grbl><font size='14'><v><font face='Webdings'>@</font></v> "..trans[275].."</font></grbl>\n\n<bv><li><a href='event:cn.nonail'>"..trans[81].."</a></li><li><a href='event:cn.divine'>"..trans[82].."</a></li><li><a href='event:cn.iziz'>"..trans[88].."</li><li><a href='event:cn.custom'>"..trans[278].."</li>\n</bv>\n\n", name, 440, startmenuy, 340, 100, 0x000033, 0x000066, 1, true)
+		ui.addTextArea(8888, "<"..theme[SETUP.theme].welcomeScreenHeadingColor.."><font size='14'><v><font face='Webdings'>@</font></v> "..trans[275].."</font></"..theme[SETUP.theme].welcomeScreenHeadingColor.."></font>\n\n<bv><li><a href='event:cn.nonail'>"..trans[81].."</a></li><li><a href='event:cn.divine'>"..trans[82].."</a></li><li><a href='event:cn.iziz'>"..trans[88].."</li><li><a href='event:cn.custom'>"..trans[278].."</li>\n</bv>\n\n", name, 440, startmenuy, 340, 100, theme[SETUP.theme].contestSelWindowColor, theme[SETUP.theme].contestSelWindowBorder, theme[SETUP.theme].contestSelWindowTransparency, true)
 	end
 	if SETUP.challengemode == "pkg" then
-		ui.addTextArea(8888, "<grbl><font size='14'><v><font face='Webdings'>@</font></v> "..trans[275].."</font></grbl>\n\n<bv><li><a href='event:cn.racing'>"..trans[84].."</a></li><li><a href='event:cn.defilante'>"..trans[85].."</a></li><li><a href='event:cn.iziz'>"..trans[88].."</li><li><a href='event:cn.custom'>"..trans[278].."</li>\n</bv>\n\n", name, 440, startmenuy, 340, 100, 0x000033, 0x000066, 1, true)
+		ui.addTextArea(8888, "<"..theme[SETUP.theme].welcomeScreenHeadingColor.."><font size='14'><v><font face='Webdings'>@</font></v> "..trans[275].."</font></"..theme[SETUP.theme].welcomeScreenHeadingColor.."></font>\n\n<bv><li><a href='event:cn.racing'>"..trans[84].."</a></li><li><a href='event:cn.defilante'>"..trans[85].."</a></li><li><a href='event:cn.iziz'>"..trans[88].."</li><li><a href='event:cn.custom'>"..trans[278].."</li>\n</bv>\n\n", name, 440, startmenuy, 340, 100, theme[SETUP.theme].contestSelWindowColor, theme[SETUP.theme].contestSelWindowBorder, theme[SETUP.theme].contestSelWindowTransparency, true)
 	end
 	if SETUP.challengemode == "build" then
-		ui.addTextArea(8888, "<grbl><font size='14'><v><font face='Webdings'>@</font></v> "..trans[275].."</font></grbl>\n\n<bv><li><a href='event:cn.build'>"..trans[87].."</a></li><li><a href='event:cn.iziz'>"..trans[88].."</li><li><a href='event:cn.custom'>"..trans[278].."</li>\n</bv>\n\n", name, 440, startmenuy, 340, 100, 0x000033, 0x000066, 1, true)
+		ui.addTextArea(8888, "<font size='14'><"..theme[SETUP.theme].welcomeScreenDecoColor.."><font face='Webdings'>@</font></"..theme[SETUP.theme].welcomeScreenDecoColor.."><"..theme[SETUP.theme].welcomeScreenHeadingColor.."> "..trans[275].."</"..theme[SETUP.theme].welcomeScreenHeadingColor.."></font></font>\n\n<"..theme[SETUP.theme].welcomeScreenTextColor.."><li><a href='event:cn.build'>"..trans[87].."</a></li><li><a href='event:cn.iziz'>"..trans[88].."</li><li><a href='event:cn.custom'>"..trans[278].."</li>\n</"..theme[SETUP.theme].welcomeScreenTextColor..">\n\n", name, 440, startmenuy, 340, 100, theme[SETUP.theme].contestSelWindowColor, theme[SETUP.theme].contestSelWindowBorder, theme[SETUP.theme].contestSelWindowTransparency, true)
 	end
 	if SETUP.challengemode == "thirty" then
-		ui.addTextArea(8888, "<grbl><font size='14'><v><font face='Webdings'>@</font></v> "..trans[275].."</font></grbl>\n\n<bv><li><a href='event:cn.thirty'>"..trans[86].."</a></li><li><a href='event:cn.iziz'>"..trans[88].."</li><li><a href='event:cn.custom'>"..trans[278].."</li>\n</bv>\n\n", name, 440, startmenuy, 340, 100, 0x000033, 0x000066, 1, true)
+		ui.addTextArea(8888, "<"..theme[SETUP.theme].welcomeScreenHeadingColor.."><font size='14'><v><font face='Webdings'>@</font></v> "..trans[275].."</font></"..theme[SETUP.theme].welcomeScreenHeadingColor.."></font>\n\n<bv><li><a href='event:cn.thirty'>"..trans[86].."</a></li><li><a href='event:cn.iziz'>"..trans[88].."</li><li><a href='event:cn.custom'>"..trans[278].."</li>\n</bv>\n\n", name, 440, startmenuy, 340, 100, theme[SETUP.theme].contestSelWindowColor, theme[SETUP.theme].contestSelWindowBorder, theme[SETUP.theme].contestSelWindowTransparency, true)
+	end
+	if SETUP.challengemode == "mono" then
+		ui.addTextArea(8888, "<font size='14'><"..theme[SETUP.theme].welcomeScreenDecoColor.."><font face='Webdings'>@</font></"..theme[SETUP.theme].welcomeScreenDecoColor.."><"..theme[SETUP.theme].welcomeScreenHeadingColor.."> "..trans[275].."</"..theme[SETUP.theme].welcomeScreenHeadingColor.."></font></font>\n\n<"..theme[SETUP.theme].welcomeScreenTextColor.."><li><a href='event:cn.mono'>"..trans[89].."</a></li><li><a href='event:cn.iziz'>"..trans[88].."</li><li><a href='event:cn.custom'>"..trans[278].."</li>\n</"..theme[SETUP.theme].welcomeScreenTextColor..">\n\n", name, 440, startmenuy, 340, 100, theme[SETUP.theme].contestSelWindowColor, theme[SETUP.theme].contestSelWindowBorder, theme[SETUP.theme].contestSelWindowTransparency, true)
 	end
 end
 
@@ -168,6 +195,7 @@ if fail==true then for i=0,9000 do ui.removeTextArea(i,nil) end end
 
 tp = {} 
 replaceobj = {}
+notepad = {}
 
 -- Errlog
 function errbuf(output)
@@ -175,9 +203,94 @@ if string.len(errlog) > 1900 then errlog = "" end
 errlog = output .. "\n" .. errlog
 ui.updateTextArea(53, errlog, nil)
 end
+
+-- eventRole
+function eventRole(name)
+	if SETUP.disablesuperpowers then
+	else 
+		if hosts[name] or helpers[name] then
+			userData[name].allowedSuperpowers.launch=true
+			userData[name].allowedSuperpowers.explosion=true
+			userData[name].allowedSuperpowers.instaspawn=true
+			userData[name].allowedSuperpowers.conjuration=true
+			userData[name].allowedSuperpowers.teleport=true
+			userData[name].allowedSuperpowers.getcoordinates=true
+		else
+			userData[name].allowedSuperpowers.launch=false
+			userData[name].allowedSuperpowers.explosion=false
+			userData[name].allowedSuperpowers.instaspawn=false
+			userData[name].allowedSuperpowers.conjuration=false
+			userData[name].allowedSuperpowers.teleport=false
+			userData[name].allowedSuperpowers.getcoordinates=true
+		end
+	end
+	deb(nil,"debdata","<V><b>[eventRole]</b></V> <BL>"..tostring(name))
+	deb(nil,"debdisplay")
+end
+
+-- Izvēlne vadītājiem
+function hostmenu(targ)
+		ui.addTextArea(5678, "<p align='center'>\n<rose><a href='event:getInfo'>"..trans[265].."</a> <a href='event:keybinds'>["..trans[236].."]</a> <a href='event:hi'>"..trans[266].."</a> <a href='event:clsconf'>"..trans[242].."</a></p>\n", targ, 200, 175, 400, 50, 0x000022, 0x000022, 0.6, true)
+		trainingcore(targ,"hostcore:menu")
+end
+-- Infopanelis
+infodata={setup="",misc="",kb={[1]="<font size='16'><"..theme[SETUP.theme].windowHeadingColor.."><b>"..trans[302].." 1 <font size='12'>("..trans[74]..")</font></b></"..theme[SETUP.theme].windowHeadingColor.."></font>\n</BV>\n<BV>["..trans[142].."]</BV> <CH>"..trans[300].."</CH>\n<BV>["..trans[143].."]</BV> <CH>"..trans[299].."</CH>\n\n<font size='16'><"..theme[SETUP.theme].windowHeadingColor.."><b><a href='event:kbuser2'>"..trans[302].." 2</a></b></"..theme[SETUP.theme].windowHeadingColor.."></font>\n\n<BV>["..trans[142].."]</BV> <CH>"..trans[300].."</CH>\n<BV>["..trans[143].."]</BV> <CH>"..trans[245].."</CH>\n<BV>["..trans[141].."]</BV> <CH>"..trans[299].."</CH>",[2]="<font size='16'><"..theme[SETUP.theme].windowHeadingColor.."><b><a href='event:kbuser1'>"..trans[302].." 1</a></b></"..theme[SETUP.theme].windowHeadingColor.."></font>\n</BV>\n<BV>["..trans[142].."]</BV> <CH>"..trans[300].."</CH>\n<BV>["..trans[143].."]</BV> <CH>"..trans[299].."</CH>\n\n<font size='16'><"..theme[SETUP.theme].windowHeadingColor.."><b>"..trans[302].." 2 <font size='12'>("..trans[74]..")</font></b></"..theme[SETUP.theme].windowHeadingColor.."></font>\n\n<BV>["..trans[142].."]</BV> <CH>"..trans[300].."</CH>\n<BV>["..trans[143].."]</BV> <CH>"..trans[245].."</CH>\n<BV>["..trans[141].."]</BV> <CH>"..trans[299].."</CH>"}}
+function hostinfo(mode,target)
+		ui.removeTextArea(5678,target)
+		trainingcore(target,"hostcore:about;"..tostring(mode))
+		infodata.setup=""
+		if userData[target].hc==false then trans1=0.5 trans2=0 else trans1=1 trans2=1 end		
+		ui.addTextArea(600, "", target, -3695, -1847, 8192, 4096, theme[SETUP.theme].windowColor2, theme[SETUP.theme].windowColor2, trans1, true)
+		ui.addTextArea(603, "", target, -803, -953, 8192, 1000, theme[SETUP.theme].highlightedWindowColor, theme[SETUP.theme].highlightedWindowColor, trans2, true)
+	if mode==0 then --par
+		ui.addTextArea(602, "<font size='16'><"..theme[SETUP.theme].windowHeadingColor.."><b>"..trans[241].."</b></"..theme[SETUP.theme].windowHeadingColor.."></font>\n___________________________\n\n<BV>"..trans[243]..trans[244].."\n\n</BV>", target, 275, 100, 250, 200, 0x000022, 0x000022, 0, true)
+		ui.addTextArea(604, "<ROSE><p align='left'><b><grbl><font face='Webdings'>i</font> "..trans[241]:lower().."</font></b></a> <vi>|</vi> <a href='event:setupinf'><font face='Webdings'>@</font> "..trans[292].."</a></p> ", target, 8, 25, 300, 20, 0x000022, 0x000022, 0, true)
+		ui.addTextArea(601, "<ROSE><p align='right'><a href='event:infclose'><font face='Wingdings 3'>|</font> "..trans[293].."</a></p>", target, 656, 27, 140, 20, 0x000022, 0x000022, 0, true)
+	end
+	if mode==1 then --tehniskā informācija
+		for k,v in next,SETUP do infodata.setup = infodata.setup.."\n<BV>"..tostring(k)..": <D>"..tostring(v) end
+		ui.addTextArea(602, "<font size='16'><"..theme[SETUP.theme].windowHeadingColor.."><b>SETUP</b></"..theme[SETUP.theme].windowHeadingColor.."></font>\n___________________________\n</BV>"..infodata.setup, target, 275, 100, 250, 200, 0x000022, 0x000022, 0, true)
+		ui.addTextArea(604, "<ROSE><p align='left'><a href='event:getInfo'><font face='Webdings'>i</font> "..trans[241]:lower().."</a> <vi>|</vi> <b><grbl><font face='Webdings'>@</font> "..trans[292].."</b></font></p> ", target, 8, 25, 300, 20, 0x000022, 0x000022, 0, true)
+		ui.addTextArea(601, "<ROSE><p align='right'><a href='event:infclose'><font face='Wingdings 3'>|</font> "..trans[293].."</a></p>", target, 656, 27, 140, 20, 0x000022, 0x000022, 0, true)
+	end
+	if mode==2 then --īsinājumtaustiņi
+		ui.addTextArea(602, infodata.kb[userData[target].keyset], target, 200, 100, 400, 200, 0x000022, 0x000022, 0, true)
+		ui.addTextArea(604, "<ROSE><p align='left'><b><grbl><font face='Wingdings'>7</font> "..trans[236].."</b></font></p> ", target, 8, 26, 300, 20, 0x000022, 0x000022, 0, true)
+		ui.addTextArea(601, "<ROSE><p align='right'><a href='event:infclose'><font face='Wingdings 3'>|</font> "..trans[293].."</a></p>", target, 656, 27, 140, 20, 0x000022, 0x000022, 0, true)
+	end
+	if mode==3 then --lietotāja dati
+		ui.addTextArea(602, debdata.userdata[target], target, 200, 100, 400, 300, 0x000022, 0x000022, 0, true)
+		ui.addTextArea(604, "<b><grbl><font face='Wingdings'>5</font> "..trans[303].."</b></font></p> ", target, 8, 28, 300, 20, 0x000022, 0x000022, 0, true)
+		ui.addTextArea(601, "<ROSE><p align='right'><a href='event:infclose'><font face='Wingdings 3'>|</font> "..trans[293].."</a></p>", target, 656, 27, 140, 20, 0x000022, 0x000022, 0, true)
+		end
+end
+
+-- Logu interfeisi
+function fieldui(mode,targ,header,miscdata)
+	miscdata={field1 = miscdata.field1 or "",field2 = miscdata.field2 or "",field3 = miscdata.field3 or "",actions = miscdata.actions or "",score = miscdata.score or ""}
+	mode = mode or "single"
+	header = header or ""
+	if mode=="single" then
+		ui.addTextArea(350, "", targ, 100, 85, 600, 250, theme[SETUP.theme].windowColor, theme[SETUP.theme].windowBorderColor, 0.6, true)
+		ui.addTextArea(351, "<font size='30'>"..header, targ, 100, 85, 600, 40, 0x324650, 0x000000, 0, true)
+		ui.addTextArea(352, miscdata.field1, targ, 100, 125, 600, 150, 0x324650, 0x000000, 0, true)
+		ui.addTextArea(353, "<p align='right'><font size='14'>"..miscdata.score, targ, 625, 85, 75, 20, theme[SETUP.theme].windowColor, 0x000000, 0, true)
+		ui.addTextArea(354, "<p align='right'>"..miscdata.actions, targ, 560, 315, 140, 20, 0x324650, 0x000000, 0, true)
+	end
+	if mode=="tricolumn" then
+		ui.addTextArea(350, "", targ, 100, 85, 600, 250, 0x000022, 0x000022, 0.6, true)
+		ui.addTextArea(351, "<font size='30'><p align='center'>"..header, targ, 100, 90, 600, 40, 0x324650, 0x000000, 0, true)
+		ui.addTextArea(352, miscdata.field1, targ, 110, 140, 180, 150, 0x000022, 0x000000, 0.5, true)
+		ui.addTextArea(353, "<p align='right'><font size='14'>"..miscdata.score, targ, 625, 85, 75, 20, 0x000022, 0x000000, 0, true)
+		ui.addTextArea(354, "<p align='right'>"..miscdata.actions, targ, 560, 315, 140, 20, 0x324650, 0x000000, 0, true)
+		ui.addTextArea(355, miscdata.field2, targ, 310, 140, 180, 150, 0x000022, 0x000000, 0.5, true)
+		ui.addTextArea(356, miscdata.field3, targ, 510, 140, 180, 150, 0x000022, 0x000000, 0.5, true)
+	end
+end
+
 -- Profils
 function profile(target,executor)
-ui.addTextArea(288, "<font size='16'><grbl><a href='event:pr.cls'>X</a></font> <"..theme[SETUP.theme].windowHeadingColor.."><b>"..tostring(target).."</b></"..theme[SETUP.theme].windowHeadingColor.."></font></font>\n___________________________\n\n<BV>"..tostring(trans[263]).."</BV> <CS>"..tostring(userData[target].lang).."</CS>\n<BV>"..tostring(trans[262]).."</BV> <CS>"..tostring(userData[target].role).."</CS>\n<BV>ID:</BV> <CS>"..tostring(userData[target].id).."</CS>\n<BV>"..tostring(trans[271]).."</BV> <CS>"..tostring(userData[target].tfm).."</CS>", executor, 300, 110, 200, 180, 0x000022, 0x000022, 0.6, true) 
+ui.addTextArea(288, "<font size='16'><grbl><a href='event:pr.cls'>X</a></font> <"..theme[SETUP.theme].windowHeadingColor.."><b>"..tostring(target).."</b></"..theme[SETUP.theme].windowHeadingColor.."></font></font>\n___________________________\n\n<BV>"..tostring(trans[263]).."</BV> <CS>"..tostring(userData[target].lang).."</CS>\n<BV>"..tostring(trans[262]).."</BV> <CS>"..tostring(userData[target].role).."</CS>\n<BV>ID:</BV> <CS>"..tostring(userData[target].id).."</CS>\n<BV>"..tostring(trans[271]).."</BV> <CS>"..tostring(userData[target].tfm).."</CS>\n<BV>"..tostring(trans[302])..":</BV> <CS>"..tostring(userData[target].keyset).."</CS>", executor, 300, 110, 200, 180, 0x000022, 0x000022, 0.6, true) 
 end
 
 -- Hostcore log
@@ -192,7 +305,7 @@ function showbuffer(mode,name) -- -1=hctabview,0=actionlog,1=errorlog,2=commandl
 	end
 	if mode==0 and hosts[name] and userData[name].hc == true then 
 		if userData[name].showactionbuffer == false then 
-			ui.addTextArea(52, tclog, name, 5, 64, 0, 0, 0x324650, 0x000000, 0, true) 
+			ui.addTextArea(52, tclog, name, theme[SETUP.theme].bcX, 64, 0, 0, 0x324650, 0x000000, 0, true) 
 			ui.removeTextArea(50,name) 
 			ui.removeTextArea(51,name) 
 			ui.removeTextArea(53,name) 
@@ -216,7 +329,7 @@ function showbuffer(mode,name) -- -1=hctabview,0=actionlog,1=errorlog,2=commandl
 	end
 	if mode==1 and hosts[name] and userData[name].hc == true then 
 		if userData[name].showerrorbuffer == false then 
-			ui.addTextArea(53, errlog, name, 5, 64, 0, 0, 0x324650, 0x000000, 0, true) 
+			ui.addTextArea(53, errlog, name, theme[SETUP.theme].bcX, 64, 0, 0, 0x324650, 0x000000, 0, true) 
 			ui.removeTextArea(52,name) 
 			ui.removeTextArea(54,name) 
 			userData[name].showcmdbuffer = false 
@@ -235,7 +348,7 @@ function showbuffer(mode,name) -- -1=hctabview,0=actionlog,1=errorlog,2=commandl
 	end
 	if mode==2 and hosts[name] and userData[name].hc == true then 
 		if userData[name].showcmdbuffer == false then 
-			ui.addTextArea(54, cmdlog, name, 5, 64, 0, 0, 0x324650, 0x000000, 0, true) 
+			ui.addTextArea(54, cmdlog, name, theme[SETUP.theme].bcX, 64, 0, 0, 0x324650, 0x000000, 0, true) 
 			ui.removeTextArea(53,name) 
 			ui.removeTextArea(52,name) 
 			userData[name].showcmdbuffer = true 
@@ -254,9 +367,11 @@ function showbuffer(mode,name) -- -1=hctabview,0=actionlog,1=errorlog,2=commandl
 	end
 end
 
+fielddata={header,field1,field2,field3,actions,score,repmode="ovr"}
+colqueue = {}
 -- Komandas
 function eventChatCommand(name,cmd)
-if cmd== cmd then annonce("<"..userData[name].ncol.."><b>[~"..name.."]</b></"..userData[name].ncol.."> <A:ACTIVE>!"..cmd) end
+annonce("<"..userData[name].ncol.."><b>[~"..name.."]</b></"..userData[name].ncol.."> <A:ACTIVE>!"..cmd)
 if cmd:sub(1,1) == "s" and hosts[name] or helpers[name] and cmd:sub(1,1) == "s" then tfm.exec.setShaman(cmd:sub(3)) end
 if cmd:sub(1,2) == "ce" and hosts[name] or helpers[name] and cmd:sub(1,1) == "ce" then tfm.exec.giveCheese(cmd:sub(4)) end
 if cmd:sub(1,3) == "ce*" and hosts[name] or helpers[name] and cmd:sub(1,3) == "ce*" then tfm.exec.removeCheese(cmd:sub(5)) end
@@ -268,8 +383,8 @@ if cmd:sub(1,4) == "end*" and hosts[name] then startMap() 		ui.addTextArea(8880,
 if cmd:sub(1,4) == "kill" and hosts[name] then tfm.exec.killPlayer(cmd:sub(6)) end
 if cmd:sub(1,4) == "test" and hosts[name] then test() end
 if cmd:sub(1,5) == "sname" and hosts[name] then ui.setShamanName(string.gsub(string.gsub(cmd:sub(7), "&gt;", ">"), "&lt;", "<")) end
-if cmd:sub(1,2) == "uc" and hosts[name] then ui.updateTextArea(33,"<black>["..name.."] "..string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<"),nil) ui.updateTextArea(32,"<V>["..name.."]<A:ACTIVE> "..string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<"),nil) end
-if cmd:sub(1,3) == "uc*" and hosts[name] then ui.updateTextArea(33,"<black> "..string.gsub(string.gsub("<b>• ["..name.."]</b> "..cmd:sub(5), "&gt;", ">"), "&lt;", "<"),nil) ui.updateTextArea(32,"<ROSE> "..string.gsub(string.gsub("<b>• ["..name.."]</b> "..cmd:sub(5), "&gt;", ">"), "&lt;", "<"),nil) end
+if cmd:sub(1,2) == "uc" and hosts[name] then if SETUP.elevatedmode==true then tfm.exec.chatMessage("<FC>"..string.gsub(string.gsub("<V>["..name.."]<A:ACTIVE> "..cmd:sub(4), "&gt;", ">"), "&lt;", "<"),nil) else ui.updateTextArea(33,"<black>["..name.."] "..string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<"),nil) ui.updateTextArea(32,"<V>["..name.."]<A:ACTIVE> "..string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<"),nil) end end
+if cmd:sub(1,3) == "uc*" and hosts[name] then if SETUP.elevatedmode==true then tfm.exec.chatMessage("<FC>"..string.gsub(string.gsub("<b>• ["..name.."]</b> "..cmd:sub(5), "&gt;", ">"), "&lt;", "<"),nil) else ui.updateTextArea(33,"<black> "..string.gsub(string.gsub("<b>• ["..name.."]</b> "..cmd:sub(5), "&gt;", ">"), "&lt;", "<"),nil) ui.updateTextArea(32,"<FC> "..string.gsub(string.gsub("<b>• ["..name.."]</b> "..cmd:sub(5), "&gt;", ">"), "&lt;", "<"),nil) end end
 -- 'all' komandas
 if cmd:sub(1,5) == "s all" and hosts[name] then table.foreach(tfm.get.room.playerList, tfm.exec.setShaman) end
 if cmd:sub(1,5) == "r all" and hosts[name] then table.foreach(tfm.get.room.playerList, tfm.exec.respawnPlayer) end
@@ -280,7 +395,7 @@ if cmd:sub(1,8) == "kill all" and hosts[name] then table.foreach(tfm.get.room.pl
 -- [[DEBUG]]
 debug = {}
 
-validcmds = {contestants={["pr"]=true,["i"]=true,["spawn"]=true},helpers={["bc"]=true,["meep"]=true,["f"]=true,["f*"]=true,["ce"]=true,["ce*"]=true,["clear"]=true,["i"]=true,["hc"]=true,["r"]=true,["r"]=true,["s"]=true,["s*"]=true,["size"]=true,["smode"]=true},hosts={["bc*"]=true,["end"]=true,["end*"]=true,["kill"]=true,["test"]=true,["sname"]=true,["uc"]=true,["uc*"]=true,["next"]=true,["c"]=true,["spawn*"]=true,["r*"]=true,["md"]=true,["md*"]=true,["np"]=true,["np*"]=true,["g"]=true,["g*"]=true,["barrier"]=true,["col"]=true,["sp"]=true,["score"]=true,["add"]=true,["link"]=true,["link*"]=true,["tfm"]=true,["defcol"]=true,["startfrom"]=true,["tfm*"]=true,["d"]=true,["d*"]=true,["cd"]=true,["map"]=true,["defcol"]=true,["tr"]=true,["debug"]=true,["role"]=true,["p"]=true,["play"]=true,["msg"]=true,["txt"]=true,["settp"]=true,["replace"]=true}}
+validcmds = {contestants={["pr"]=true,["i"]=true,["spawn"]=true},helpers={["bc"]=true,["meep"]=true,["f"]=true,["f*"]=true,["ce"]=true,["ce*"]=true,["clear"]=true,["i"]=true,["hc"]=true,["r"]=true,["r"]=true,["s"]=true,["s*"]=true,["size"]=true,["smode"]=true},hosts={["bc*"]=true,["end"]=true,["end*"]=true,["kill"]=true,["test"]=true,["sname"]=true,["uc"]=true,["uc*"]=true,["next"]=true,["c"]=true,["spawn*"]=true,["r*"]=true,["md"]=true,["md*"]=true,["np"]=true,["np*"]=true,["g"]=true,["g*"]=true,["barrier"]=true,["col"]=true,["sp"]=true,["score"]=true,["add"]=true,["link"]=true,["link*"]=true,["tfm"]=true,["defcol"]=true,["startfrom"]=true,["tfm*"]=true,["d"]=true,["d*"]=true,["cd"]=true,["map"]=true,["defcol"]=true,["tr"]=true,["debug"]=true,["role"]=true,["p"]=true,["f1"]=true,["f2"]=true,["f3"]=true,["fa"]=true,["fs"]=true,["fieldui"]=true,["fh"]=true,["play"]=true,["msg"]=true,["txt"]=true,["settp"]=true,["action"]=true,["mp"]=true}}
 
 -- Challenge-specfiskas komandas
 if cmd == "next" then nm(name) end
@@ -288,7 +403,7 @@ if cmd == "toggle sail" and hosts[name] and SETUP.challengemode=="build" then tf
 elseif cmd=="toggle sail" and hosts[name] then error0x2(name)
 elseif cmd=="toggle sail" then error0x1(name,cmd) end
 if cmd == "toggle f" and hosts[name] and SETUP.challengemode=="build" then buildshipready() end
-if cmd == "toggle border" and hosts[name] and SETUP.challengemode=="build" then buildborder() end
+if cmd == "toggle border" and hosts[name] and SETUP.challengemode=="build" then buildborder(name) end
 
 -- Augsta līmeņa komandas
     local c = { }
@@ -321,7 +436,7 @@ if helpers[name] or hosts[name] then
 	if c[1] == "hc" then
 		userData[name].hc_tabbed = false
 		if c[2] ~="-b" and c[2] ~="-e" and c[2] ~="-c" then hostcore(name) userData[name].hc = true end
-		if c[2] ~= "-t" and c[2] ~= "-b" and c[2] ~= "-e" and c[2] ~= "-c" then annonce2(infpref..trans[206].." <grbl>"..name.."</grbl></lbrp>     <N2><font size='10'>"..trans[207].."</font><N2>") end
+		if c[2] ~= "-t" and c[2] ~= "-b" and c[2] ~= "-e" and c[2] ~= "-c" then annonce2(infpref..trans[206].." <"..theme[SETUP.theme].commonColor1..">"..name.."</"..theme[SETUP.theme].commonColor1.."></font></lbrp>     <N2><font size='10'>"..trans[207].."</font><N2>") end
 		if c[2] == "-t" and hosts[name] then annonce2(infpref..trans[206].." <grbl>"..name.."</grbl>  <D><font size='10'>"..trans[280].."</font></D>") exectrcore(name) end
 		if c[2] == "-b" then showbuffer(0,name) end
 		if c[2] == "-e" then showbuffer(1,name) end
@@ -371,6 +486,9 @@ if helpers[name] or hosts[name] then
     end
     if c[1] == "clear" then
 		clear()
+    end
+    if c[1] == "menu" then
+		hostmenu(name)
     end
     if c[1] == "smode" then
     if c[2] == "all" then
@@ -435,6 +553,51 @@ if hosts[name] then
 		  	if c[8] then c[8] = tonumber(c[8],16) end
         	tfm.exec.addJoint("880"..c[2],1,1,{type=0,point1=c[3]..","..c[4],point2=c[5]..","..c[6],line=c[7],color=c[8],alpha=c[9],foreground=true})
     end
+    if c[1] == "f1" then
+		if fielddata.repmode=="ovr" then
+			fielddata.field1 = string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<")
+		elseif fielddata.repmode=="concat" then
+			fielddata.field1 = fielddata.field1.." "..string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<")
+		end
+    end
+    if c[1] == "f2" then
+		if fielddata.repmode=="ovr" then
+			fielddata.field2 = string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<")
+		elseif fielddata.repmode=="concat" then
+			fielddata.field2 = fielddata.field2.." "..string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<")
+		end
+    end
+    if c[1] == "f3" then
+		if fielddata.repmode=="ovr" then
+			fielddata.field3 = string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<")
+		elseif fielddata.repmode=="concat" then
+			fielddata.field3 = fielddata.field3.." "..string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<")
+		end   end
+    if c[1] == "fh" then
+		if fielddata.repmode=="ovr" then
+			fielddata.header = string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<")
+		elseif fielddata.repmode=="concat" then
+			fielddata.header = fielddata.header.." "..string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<")
+		end
+    end
+    if c[1] == "fs" then
+		if fielddata.repmode=="ovr" then
+			fielddata.score = string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<")
+		elseif fielddata.repmode=="concat" then
+			fielddata.score = fielddata.score.." "..string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<")
+		end    end
+	if c[1] == "fa" then
+		if fielddata.repmode=="ovr" then
+			fielddata.actions = string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<")
+		elseif fielddata.repmode=="concat" then
+			fielddata.actions = fielddata.actions.." "..string.gsub(string.gsub(cmd:sub(4), "&gt;", ">"), "&lt;", "<")
+		end    
+	end
+    if c[1] == "fieldui" then
+		if c[2] == "remove" then for i=350,356 do ui.removeTextArea(i,c[3]) end
+		elseif c[2] == "repmode" then if fielddata.repmode=="ovr" then fielddata.repmode="concat" elseif fielddata.repmode=="concat" then fielddata.repmode="ovr" end
+		else fieldui(c[2],c[3],fielddata.header,{actions=fielddata.actions,score=fielddata.score,field1=fielddata.field1,field2=fielddata.field2,field3=fielddata.field3}) end
+    end
     if c[1] == "np" then
 		tfm.exec.newGame(c[2])
     end
@@ -478,29 +641,40 @@ if hosts[name] then
 		end
     end
     if c[1] == "barrier" and hosts[name] then
+		if type(tonumber(c[2]))=="number" then c[2]=tonumber(c[2]) else c[2]=0 end
+		if type(tonumber(c[3]))=="number" then c[3]=tonumber(c[3]) else c[3]=0 end
 		for i = 1, c[2] - 1 do
-        tfm.exec.addPhysicObject(-968 .. i * 1000,math.floor(c[3]/(c[2]) * i),400,{type=9,restitution=0.2,friction=5,angle=0,width=10,height=3000,dynamic=false,mass=0,miceCollision=true})
+			tfm.exec.addPhysicObject(-968 .. i * 1000,math.floor(c[3]/(c[2]) * i),400,{type=9,restitution=0.2,friction=5,angle=0,width=10,height=3000,dynamic=false,mass=0,miceCollision=true})
 			print("<o>"..math.floor(c[3]/(c[2]) * i).." <V>".. -968 .. i * 1000)
+			if c[3] / c[2] < 1.5 then error0x8(name,(c[3]/c[2])^-1,1.5^-1) break end
+			if c[2] > 400 then break end
 		end
     end
-    if c[1] == "col" and hosts[name] then
-        colqueue = c[2]
+	if c[1] == "col" and hosts[name] then
+		colqueue = {}
+		for i=2,#c do
+        colqueue[#colqueue+1] = c[i]
+		end
         ui.showColorPicker(300,name,0x000022,trans[257])
     end
-    if c[1] == "sp" and hosts[name] then
-		if c[2] == tfm.get.room.owner and name == tfm.get.room.owner then
-			spectators[c[2]] = true
-			tfm.exec.killPlayer(c[2])
-			tfm.exec.setPlayerScore(c[2],-100,false)
-			ui.updateTextArea(0,"<CE>"..trans[251].." "..trans[221]..":<CS> "..trans[272],c[2])
-		end
-		if hosts[c[2]] or helpers[c[2]] then if c[2] ~= tfm.get.room.owner then error0x5(name) end
+	if c[1] == "userdata" and hosts[name] then
+		c[2] = c[2] or name
+		if not contestants[c[2]] then 
 		else
-			spectators[c[2]] = true
-			tfm.exec.killPlayer(c[2])
-			tfm.exec.setPlayerScore(c[2],-100,false)
-			ui.updateTextArea(0,"<CE>"..trans[251].." "..trans[221]..":<CS> "..trans[272],c[2])
+			debdata.userdata[name] = ""
+			for k,v in next,userData[c[2]] do debdata.userdata[name] = debdata.userdata[name].."<BV>"..tostring(k)..": <D>"..tostring(v).."\n" end
+			hostinfo(3,name)
+		end		
+	end
+    if c[1] == "sp" and hosts[name] then
+		for i=2,#c do
+			spectators[c[i]] = true
+			tfm.exec.killPlayer(c[i])
+			tfm.exec.setPlayerScore(c[i],-100,false)
+			ui.updateTextArea(0,"<CE>"..trans[251].." "..trans[221]..":<CS> "..trans[272],c[i])
 		end
+		deb(nil,"debdata","<V><b>[eventRole]</b></V> <BL>"..tostring(name))
+		deb(nil,"debdisplay")
     end
     if c[1] == "score" and hosts[name] then
 		if c[2] == "all" then
@@ -569,6 +743,12 @@ if hosts[name] then
         	defqueue = c[2]
 			ui.showColorPicker(302,name,0x000022,trans[259])
     end
+    if c[1] == "action" and hosts[name] then 
+			if c[2]:sub(1,12)=="superpowers:" then 
+				if userData[c[3]].allowedSuperpowers[c[2]:sub(13)]==false then userData[c[3]].allowedSuperpowers[c[2]:sub(13)]=true annonce2(infpref..c[3].." "..trans[297].." "..c[2]..".") else userData[c[3]].allowedSuperpowers[c[2]:sub(13)]=false annonce2(infpref..c[3].." "..trans[298].." "..c[2]..".") end
+			else error0x6(name)
+			end
+    end
     if c[1] == "startfrom" and hosts[name] then
 		c[2] = tonumber(c[2])
 		if type(c[2]) == "number" then
@@ -613,6 +793,20 @@ if hosts[name] then
 				tfm.exec.addPhysicObject(-888 - i,1500 + (i * 3000),c[4] - 25,{type=c[6],width=3000,height=50,restitution=0.2,friction=0.3,color=c[7]})
 			end
     end
+	if c[1] == "mp" and hosts[name] then
+		c[2] = c[2] or 0 --mgoc
+		c[3] = c[3] or "space" --preset
+		if c[3] == "space" then tfm.exec.newGame('<C><P meta="Syrius#8114,901" L="1800" H="1012" G="0,4" mgoc="'..c[2]..'" bh=""/><Z><S><S X="900" Y="506" T="5" L="10" H="10" P="0,0,0.3,0.2,0,0,0,0" c="4" i="-895,-501,16caa1a14c3.png"/></S><D/><O/><L/></Z></C>') inheritmgoc = c[2] inheritwidth = 1800 inheritheight = 1012 inheritbg = -1 inherittype = 14 inheritcolor = 0 end 
+		if c[3] == "spacelarge" then tfm.exec.newGame('<C><P meta="Syrius#8114,902" L="3840" H="1400" G="0,4" mgoc="'..c[2]..'" bh=""/><Z><S><S X="1925" Y="705" T="14" L="10" H="10" P="0,0,0.3,0.2,0,0,0,0" c="4" i="-1920,-700,171083c3cd2.jpg"/></S><D/><O/><L/></Z></C>') inheritmgoc = c[2] inheritwidth = 3840 inheritheight = 1400 inheritbg = -1 inherittype = 14 inheritcolor = 0 end 
+		if c[3] == "bluemoon" then tfm.exec.newGame('<C><P meta="Syrius#8114,903" L="3840" H="1200" mgoc="'..c[2]..'" bh=""/><Z><S><S X="1925" Y="605" T="3" L="10" H="10" P="0,0,0,20,0,0,0,0" c="4" i="-1920,-600,17131549f22.jpg"/></S><D/><O/><L/></Z></C>') md() tfm.exec.addJoint(-19865,1,1,{type=0,point1="1,1175",point2="3840,1175",line=50,color=0x204080,alpha=0.5,foreground=true}) inheritmgoc = c[2] inheritwidth = 3840 inheritheight = 1200 inheritbg = -1 inherittype = 7 inheritcolor = 0 end 
+		if c[3] == "winter" then tfm.exec.newGame('<C><P meta="Syrius#8114,904" L="3720" H="750" mgoc="'..c[2]..'" bh=""/><Z><S><S X="1870" Y="380" T="3" L="10" H="10" P="0,0,0,20,0,0,0,0" c="4" i="-1865,-375,171317b7194.png"/></S><D/><O/><L/></Z></C>') inheritmgoc = c[2] inheritwidth = 3720 inheritheight = 760 inheritbg = -1 inherittype = 14 inheritcolor = 0 end 
+		for i=0,math.ceil((inheritwidth/3000)-1) do
+			tfm.exec.addPhysicObject(-888 - i,1500 + (i * 3000),inheritheight - 25,{type=inherittype,width=3000,height=50,restitution=0.2,friction=0.3,color=inheritcolor})
+		end
+	end
+	if c[1] == "notepad" and hosts[name] then
+		if notepad[tonumber(c[2])] then fieldui("single",name,"",{field1=notepad[tonumber(c[2])],score=c[2],actions="<ROSE><a href='event:rmfieldui'>"..trans[242].."</a></ROSE>"}) end
+	end
     if c[1] == "tr" and hosts[name] then
 			annonce2(infpref..trans[252].." "..c[2].." - "..tostring(trans[tonumber(c[2])]))
     end
@@ -623,11 +817,11 @@ if hosts[name] then
     end
     if c[1] == "role" and hosts[name] then
 		    if c[2] == "+" then
-				if c[3] == "host" then if contestants[c[4]] then hosts[c[4]] = true annonce2(infpref..c[4].." "..trans[213]) userData[c[4]].role = "host" userData[c[4]].ncol = "rose" end end
-				if c[3] == "helper" then if contestants[c[4]] then helpers[c[4]] = true annonce2(infpref..c[4].." "..trans[214]) userData[c[4]].role = "helper" userData[c[4]].ncol = "o" end end end
+				if c[3] == "host" then if contestants[c[4]] then hosts[c[4]] = true eventRole(c[4]) annonce2(infpref..c[4].." "..trans[213]) userData[c[4]].role = "host" userData[c[4]].ncol = "rose" end end
+				if c[3] == "helper" then if contestants[c[4]] then helpers[c[4]] = true eventRole(c[4]) annonce2(infpref..c[4].." "..trans[214]) userData[c[4]].role = "helper" userData[c[4]].ncol = "o" end end end
 		    if c[2] == "-" then
-				if c[3] == "host" then if contestants[c[4]] then hosts[c[4]] = false annonce2(infpref..c[4].." "..trans[215]) userData[c[4]].role = "default" userData[c[4]].ncol = "n2" end end
-				if c[3] == "helper" then if contestants[c[4]] then helpers[c[4]] = false annonce2(infpref..c[4].." "..trans[216]) userData[c[4]].role = "default" userData[c[4]].ncol = "n2" end end end
+				if c[3] == "host" then if contestants[c[4]] then hosts[c[4]] = false eventRole(c[4]) annonce2(infpref..c[4].." "..trans[215]) userData[c[4]].role = "default" userData[c[4]].ncol = "n2" end end
+				if c[3] == "helper" then if contestants[c[4]] then helpers[c[4]] = false eventRole(c[4]) annonce2(infpref..c[4].." "..trans[216]) userData[c[4]].role = "default" userData[c[4]].ncol = "n2" end end end
 		end
     if c[1] == "p" and hosts[name] then
         ui.addPopup(c[2], c[3],string.gsub(string.gsub(string.gsub(c[4], "&gt;", ">"), "&lt;", "<"), "|", " "),nil, nil, 100, 250, 400, true)
@@ -643,6 +837,10 @@ if hosts[name] then
     if c[1] == "msg" and hosts[name] then
         ui.updateTextArea(0,"<CE>"..trans[251].." "..name..":<CS> "..string.gsub(string.gsub(string.gsub(tostring(c[3]), "&gt;", ">"), "&lt;", "<"), "|", " "),c[2])
     end
+    if c[1] == "t" and hosts[name] then
+		tfm.exec.setGameTime(c[2])
+    end
+
 end
 end
 -- Slēptās komandas
@@ -675,29 +873,60 @@ end
 
 function error0x1(name,cmd,id)
 errn1 = name errc1 = cmd erri1 = id or 0
-ui.updateTextArea(33,"<black><b>• ["..name.."]</b> "..trans[217],nil)
-ui.updateTextArea(32,"<warn><b>• <a href='event:error0x1'>["..name.."]</a></b> "..trans[217],nil)
-errbuf("<warn><b>• ["..name.."]</b> "..trans[217].." <BL><font size='10'>("..errc1..","..erri1..")</font></BL>")
+ui.updateTextArea(33,"<black><b>• [$"..name.."]</b> "..trans[217],nil)
+ui.updateTextArea(32,"<warn><b>• <a href='event:error0x1'>[$"..name.."]</a></b> "..trans[217],nil)
+errbuf("<warn><b>• [$"..name.."]</b> "..trans[217].." <BL><font size='10'>("..errc1..","..erri1..")</font></BL>")
+deb(nil,"debdata","<warn><b>[ERR]</b> 0x1 "..tostring(name).." «"..tostring(cmd).."» "..tostring(id))
+deb(nil,"debdisplay")
 end
 function error0x2(name,cmd)
-ui.updateTextArea(33,"<black><b>• ["..name.."]</b> "..trans[218],nil)
-ui.updateTextArea(32,"<warn><b>• ["..name.."]</b> "..trans[218],nil)
-errbuf("<warn><b>• ["..name.."]</b> "..trans[218])
+ui.updateTextArea(33,"<black><b>• [$"..name.."]</b> "..trans[218],nil)
+ui.updateTextArea(32,"<warn><b>• [$"..name.."]</b> "..trans[218],nil)
+errbuf("<warn><b>• [$"..name.."]</b> "..trans[218])
+deb(nil,"debdata","<warn><b>[ERR]</b> 0x2 "..tostring(name).." «"..tostring(cmd).."»")
+deb(nil,"debdisplay")
 end
 function error0x3(name)
-ui.updateTextArea(33,"<black><b>• ["..name.."]</b> "..trans[253],nil)
-ui.updateTextArea(32,"<warn><b>• ["..name.."]</b> "..trans[253],nil)
-errbuf("<warn><b>• ["..name.."]</b> "..trans[253])
+ui.updateTextArea(33,"<black><b>• [$"..name.."]</b> "..trans[253],nil)
+ui.updateTextArea(32,"<warn><b>• [$"..name.."]</b> "..trans[253],nil)
+errbuf("<warn><b>• [$"..name.."]</b> "..trans[253])
+deb(nil,"debdata","<warn><b>[ERR]</b> 0x3 "..tostring(name))
+deb(nil,"debdisplay")
 end
 function error0x4(name,placed,allowed)
-ui.updateTextArea(33,"<black><b>• ["..name.."]</b> "..trans[264].." "..placed.." / "..allowed,nil)
-ui.updateTextArea(32,"<warn><b>• ["..name.."]</b> "..trans[264].." "..placed.." / "..allowed,nil)
-errbuf("<warn><b>• ["..name.."]</b> "..trans[264].." "..placed.." / "..allowed)
+ui.updateTextArea(33,"<black><b>• [$"..name.."]</b> "..trans[264].." "..placed.." / "..allowed,nil)
+ui.updateTextArea(32,"<warn><b>• [$"..name.."]</b> "..trans[264].." "..placed.." / "..allowed,nil)
+errbuf("<warn><b>• [$"..name.."]</b> "..trans[264].." "..placed.." / "..allowed)
+deb(nil,"debdata","<warn><b>[ERR]</b> 0x4 "..tostring(name).." "..tostring(placed).." "..tostring(allowed))
+deb(nil,"debdisplay")
 end
 function error0x5(name)
-ui.updateTextArea(33,"<black><b>• ["..name.."]</b> "..trans[273],nil)
-ui.updateTextArea(32,"<warn><b>• ["..name.."]</b> "..trans[273],nil)
-errbuf("<warn><b>• ["..name.."]</b> "..trans[273])
+ui.updateTextArea(33,"<black><b>• [$"..name.."]</b> "..trans[273],nil)
+ui.updateTextArea(32,"<warn><b>• [$"..name.."]</b> "..trans[273],nil)
+errbuf("<warn><b>• [$"..name.."]</b> "..trans[273])
+deb(nil,"debdata","<warn><b>[ERR]</b> 0x5 "..tostring(name))
+deb(nil,"debdisplay")
+end
+function error0x6(name)
+ui.updateTextArea(33,"<black><b>• [$"..name.."]</b> "..trans[296],nil)
+ui.updateTextArea(32,"<warn><b>• [$"..name.."]</b> "..trans[296],nil)
+errbuf("<warn><b>• [$"..name.."]</b> "..trans[296])
+deb(nil,"debdata","<warn><b>[ERR]</b> 0x6 "..tostring(name))
+deb(nil,"debdisplay")
+end
+function error0x7(name)
+ui.updateTextArea(33,"<black><b>• ["..name.."]</b> "..trans[289]..": "..trans[290],nil)
+ui.updateTextArea(32,"<wy><b>• ["..name.."]</b> "..trans[289]..": "..trans[290],nil)
+errbuf("<wy><b>• ["..name.."]</b> "..trans[289]..": "..trans[290])
+deb(nil,"debdata","<warn><b>[ERR]</b> 0x7 "..tostring(name))
+deb(nil,"debdisplay")
+end
+function error0x8(name,placed,allowed)
+ui.updateTextArea(33,"<black><b>• [$"..name.."]</b> "..trans[279].." "..placed.." / "..allowed,nil)
+ui.updateTextArea(32,"<warn><b>• [$"..name.."]</b> "..trans[279].." "..placed.." / "..allowed,nil)
+errbuf("<warn><b>• [$"..name.."]</b> "..trans[264].." "..placed.." / "..allowed)
+deb(nil,"debdata","<warn><b>[ERR]</b> 0x8 "..tostring(name).." "..tostring(placed).." "..tostring(allowed))
+deb(nil,"debdisplay")
 end
 
 -- Hostu interfeiss
@@ -706,9 +935,9 @@ histate = 1
 hipos = {[1] = {x = -23,y = 27},[2] = {x=5,y=55},[3] = {x = 803,y = 27},[4] = {x=775,y=55}}
 function hostinterfaces(name)
 	if hosts[name] or helpers[name] then
-		ui.addTextArea(450, hidata[histate], name, hipos[userData[name].hipstate].x, hipos[userData[name].hipstate].y, 20, 165, 0x000022, 0x000030, 0.65, true)
+		ui.addTextArea(450, hidata[histate], name, hipos[userData[name].hipstate].x, hipos[userData[name].hipstate].y, 20, 165, theme[SETUP.theme].windowColor, theme[SETUP.theme].windowBorderColor, theme[SETUP.theme].bcTransparency, true)
 		if SETUP.challengemode == "build" then
-			ui.addTextArea(451, "<font size='14'><p align='center'><a href='event:toggleborder'><bv><font face='Wingdings 3'>F</font></bv></a>\n<a href='event:togglesailwater'><bv><font face='Wingdings'>h</font></bv></a>", name, hipos[userData[name].hipstate].x, hipos[userData[name].hipstate].y + 185, 20, 38, 0x000022, 0x000030, 0.65, true)
+			ui.addTextArea(451, "<font size='14'><p align='center'><a href='event:toggleborder'><"..theme[SETUP.theme].panelCommonItemColor.."><font face='Wingdings 3'>F</font></"..theme[SETUP.theme].panelCommonItemColor.."></a>\n<a href='event:togglesailwater'><"..theme[SETUP.theme].panelCommonItemColor.."><font face='Wingdings'>h</font></"..theme[SETUP.theme].panelCommonItemColor.."></a>", name, hipos[userData[name].hipstate].x, hipos[userData[name].hipstate].y + 185, 20, 38, theme[SETUP.theme].windowColor, theme[SETUP.theme].windowBorderColor, theme[SETUP.theme].bcTransparency, true)
 		end
 		annonce2(infpref..trans[235].." (<grbl>"..name.."</grbl><lbrp>)")
 	end
@@ -717,49 +946,84 @@ end
 -- Koordinātu printeris
 local shifting = {}
 local eing = {}
+local ling = {}
 local ctrling = {}
 local apoing = {}
 local oneing = {}
 local doting = {}
 local dashing = {}
+local debing = {}
+scorestring = ""
+
+function visualScoreboard(name)
+	scorestring = ""
+	for k,v in next,tfm.get.room.playerList do scorestring = scorestring.."<BV>"..tostring(k)..": <D>"..tostring(v.score).."\n" end
+	if userData[name].visualScoreboard==false then ui.addTextArea(17, scorestring, name, 30, 80, 300, nil, theme[SETUP.theme].windowColor2, theme[SETUP.theme].windowColor2, 0.65, true) userData[name].visualScoreboard=true
+	elseif userData[name].visualScoreboard==true then ui.removeTextArea(17,name) userData[name].visualScoreboard=false end
+end
 
 function eventKeyboard(n, key, down, x, y)
-if key==34 and hosts[n] then rel(n) trainingcore(n,"keyboard:reload")
+if key==34 and hosts[n] then 
+	if userData[n].keyset==1 then 
+		rel(n) trainingcore(n,"keyboard:reload")
+	elseif userData[n].keyset==2 then 
+		table.foreach(tfm.get.room.playerList, tfm.exec.respawnPlayer) trainingcore(n,"keyboard:respawnall")
+	end
 elseif key==0 and userData[n].tfm == true then if hosts[n] or helpers[n] then tfm.exec.movePlayer(n,0,0,true,-15,0,true) end
 elseif key==1 and userData[n].tfm == true then if hosts[n] or helpers[n] then tfm.exec.movePlayer(n,0,0,true,0,-16,true) end
 elseif key==2 and userData[n].tfm == true then if hosts[n] or helpers[n] then tfm.exec.movePlayer(n,0,0,true,15,0,true) end
 elseif key==3 and userData[n].tfm == true then if hosts[n] or helpers[n] then tfm.exec.movePlayer(n,0,0,true,0,16,true) end
 elseif key==17 or key==9 then ctrling[n] = down
-elseif key==33 then nm(n) trainingcore(n,"keyboard:nextmap")
+elseif key==33 then 
+	if userData[n].keyset==1 or userData[n].keyset==2 then 
+		nm(n) trainingcore(n,"keyboard:nextmap") 
+	end
 elseif key==16 then shifting[n] = down
+elseif key==18 and hosts[n] then 
+	if userData[n].keyset==2 then 
+		rel(n) trainingcore(n,"keyboard:reload")
+	end
+elseif key==67 then visualScoreboard(n)
 elseif key==69 then eing[n] = down
+elseif key==76 then ling[n] = down
+elseif key==120 then debing[n] = down
 elseif key==187 then oneing[n] = down
 elseif key==189 then dashing[n] = down
 elseif key==190 then doting[n] = down
 elseif key==192 then apoing[n] = down
-end end
+end 
+  if debing[n] and SETUP.debug==true then
+		if eing[n] then if debdata.open[n] == true then deb(n,"remove") else deb(n,"force") end end
+		if shifting[n] then deb(nil,"clear") deb(nil,"debdisplay") end
+  end
+end
 
 function eventMouse(n, x, y)
-  if shifting[n] then
+  if shifting[n] and userData[n].allowedSuperpowers.getcoordinates==true then
     trainingcore(n,"superpowers:getcoordinates;"..x..";"..y)
     ui.updateTextArea(33,"<black>• "..n .." "..trans[220].." X:" .. x .. ", Y:" .. y,nil)
     ui.updateTextArea(32,"<BV>• "..n .." "..trans[220].." X:" .. x .. ", Y:" .. y,nil)
     print("<BV>• "..n .." "..trans[220].." X:" .. x .. ", Y:" .. y)
   end
-  if apoing[n] and hosts[n] or apoing[n] and helpers[n] then
+  if apoing[n] and userData[n].allowedSuperpowers.conjuration==true then
     trainingcore(n,"superpowers:conjuration;"..x..";"..y)
     tfm.exec.addConjuration(x/10,y/10,9999999)
   end
-  if eing[n] and hosts[n] or eing[n] and helpers[n] then
+  if eing[n] and userData[n].allowedSuperpowers.explosion==true then
 		trainingcore(n,"superpowers:explosion;"..x..";"..y)
 		tfm.exec.explosion(x,y,20,50,false)
 		tfm.exec.displayParticle(12,x,y,0,0,0,0,nil)
   end
-  if ctrling[n] and hosts[n] or ctrling[n] and helpers[n] then
+	if ctrling[n] and userData[n].allowedSuperpowers.teleport==true then
 		trainingcore(n,"superpowers:teleport;"..x..";"..y)
 		tfm.exec.movePlayer(n,x,y)
 		tfm.exec.displayParticle(36,x,y,0,0,0,0,nil)
-  end
+	end
+	if ling[n] and userData[n].allowedSuperpowers.launch==true then
+		trainingcore(n,"superpowers:launch;"..x..";"..y..";"..x-tfm.get.room.playerList[n].x..";"..y-tfm.get.room.playerList[n].y)
+		tfm.exec.movePlayer(n,0,0,true,(x-tfm.get.room.playerList[n].x),(y-tfm.get.room.playerList[n].y))
+		tfm.exec.displayParticle(26,x,y,(x-tfm.get.room.playerList[n].x),(y-tfm.get.room.playerList[n].y))
+	end
 end
 
 table.foreach(tfm.get.room.playerList, eventNewPlayer)
@@ -768,13 +1032,17 @@ table.foreach(tfm.get.room.playerList, eventNewPlayer)
 function hostcore(name)
 ui.addTextArea(10, "", name,theme[SETUP.theme].bcX, 25, theme[SETUP.theme].bcWidth, theme[SETUP.theme].hcHeight, theme[SETUP.theme].bcBackground, theme[SETUP.theme].windowBorderColor, theme[SETUP.theme].bcTransparency, true)
 ui.addTextArea(65, miscpref..trans[222], name, theme[SETUP.theme].bcX, 25, theme[SETUP.theme].bcWidth, 20, 0x324650, 0x000000, 0, true)
-ui.addTextArea(0, "<p align='center'><font size='"..theme[SETUP.theme].bcFontSize.."'><ROSE>"..title.."</font></p>",name,5, -25, 790, 22, 0x000022, 0x000022, 0.65, true)
+ui.addTextArea(0, "<p align='center'><font size='"..theme[SETUP.theme].bcFontSize.."'><ROSE>"..title.."</font></p>",name,theme[SETUP.theme].bcX, -tonumber(theme[SETUP.theme].bcHeight), theme[SETUP.theme].bcWidth, theme[SETUP.theme].bcHeight, theme[SETUP.theme].bcBackground, theme[SETUP.theme].windowBorderColor, theme[SETUP.theme].bcTransparency, true)
 ui.addTextArea(64, infpref..trans[223].." <V>"..version.."</V> / "..trans[224].." <V>"..tfm.get.room.owner.."</V>", name, theme[SETUP.theme].bcX, 40, theme[SETUP.theme].bcWidth, 20, 0x324650, 0x000000, 0, true)
 end
 
 -- eventPlayerDied
 
 function eventPlayerDied(name)
+	if SETUP.challengemode=="mono" then
+		tfm.exec.setPlayerScore(name,5,true)
+		if disq[name] or spectators[name] then else tfm.exec.respawnPlayer(name) end 
+	end
 	if SETUP.challengemode=="survival" then
     local count, winner = 0
     for k, v in next, tfm.get.room.playerList do
@@ -782,7 +1050,7 @@ function eventPlayerDied(name)
             count = count + 1
             winner = k
         end
- end
+	end
     if count == 1 then
         winnerFunction(winner)
     end
@@ -804,8 +1072,8 @@ survtest = [[<C><P H="800" L="1600" /><Z><S /><D><P X="0" P="0,0" C="5d6582" Y="
 
 if SETUP.challengemode == "survival" then
 survrounds = 0
---##########################$201###$202####$703#####$701#####$203###$204####$205####$206
-survrot = {7482494,7602083,7602098,7605138,7605136,7622015,7637491,7645184,7645263}
+--###################$201###$202####$703#####$701#####$203###$204####$205####$206###$207####$208#####$209
+survrot = {7482494,7602083,7602098,7605138,7605136,7622015,7637491,7645184,7645263,7694355,7694357,7694359}
 function survutils(name)
 ui.updateTextArea(0,"<VP><font size='"..theme[SETUP.theme].bcFontSize.."'>"..trans[227].."</font>", nil)
 survRound()
@@ -857,7 +1125,8 @@ tfm.exec.removePhysicObject(-4801)
 tfm.exec.removePhysicObject(-4802)
 end
 
-function buildborder()
+function buildborder(name)
+if tonumber(inheritheight) > 2050 then error0x7(name) end
 tfm.exec.addPhysicObject(-3600,0,0,{type=2,restitution=3,friction=3,width=8,height=15000,groundCollision=true,miceCollision=true})
 tfm.exec.addPhysicObject(-3601,inheritwidth,0,{type=2,restitution=3,friction=3,width=8,height=15000,groundCollision=true,miceCollision=true})
 end
@@ -872,6 +1141,14 @@ end
 
 -- eventPlayerWon
 function eventPlayerWon(playerName, timeElapsed, timeElapsedSinceRespawn)
+	if SETUP.challengemode == "mono" then
+		tfm.exec.respawnPlayer(playerName)
+		if monorounds%10==0 then
+			tfm.exec.setPlayerScore(playerName,-50,true)
+		else
+			tfm.exec.setPlayerScore(playerName,-10,true)
+		end
+	end
 	if SETUP.challengemode == "pkg" then
 		first = first + 1
 		if first == 1 then
@@ -884,17 +1161,50 @@ function eventPlayerWon(playerName, timeElapsed, timeElapsedSinceRespawn)
 	end
 end
 
---##########$302#####$303#####$304###$307###$308#####$309####$310###$311###$312####$313######$314###$315####$316#####$317####$318##$319####$320######$321####$322####$323###$324####$325#####$326#####$327###$328####$329###$330###$331######$332####$333####$334
-threerot = {7612717,6265169,6847550,6370623,6333089,6565399,7612788,6975155,7574375,7612773,7612785,6370622,6334320,7612776,7612782,7574389,7574667,7574973,7574975,7574982,7574984,7574997,7574999,7576032,7575113,7576033,7576035,7576224,7576229,7614125,7620702}
+-- [[30 SEKUNŽU CHALLENGE UTILIJAS]]
+--##########$302#####$303#####$304###$307###$308#####$309####$310###$311###$312####$313######$314###$315####$316#####$317####$318##$319####$320######$321####$322####$323###$324####$325#####$326#####$327###$328####$329###$330###$331######$332####$333####$334#####$335####$336####$337####$338
+threerot = {7612717,6265169,6847550,6370623,6333089,6565399,7612788,6975155,7574375,7612773,7612785,6370622,6334320,7612776,7612782,7574389,7574667,7574973,7574975,7574982,7574984,7574997,7574999,7576032,7575113,7576033,7576035,7576224,7576229,7614125,7620702,7695859,7695860,7695873,7695875}
 
 function newMap()
-	tfm.exec.newGame(threerot[math.random(#threerot)]) end
+	tfm.exec.newGame(threerot[math.random(#threerot)]) 
+end
 
-	directivecooldown = 3
+-- [[VIENZEMJU CHALLENGE UTILIJAS]]
+
+--################$801#####$803####$804###$806####$810#####812####$814####$815####$818####$821####$822####$824####$825####$826####$833####$835####$837####$838####$839####$840####$843####$846####$849####$851####$871####$872
+monorot_easy = {7653375,7653377,7653379,7653488,7653493,7653503,7653505,7653518,7653532,7653562,7653563,7653567,7653569,7653570,7653637,7653674,7653676,7653677,7653697,7653698,7653825,7653835,7653839,7654114,7752415,7752416}
+--##########$802#####$805###$807####$808#####$809####$811####$813####$817####$819####$820####$823####$828####$829####$830####$831####$834####$836####$842####$848####$850####$852####$854####$855####$856####$857####$858####$859####$860####$861####$863####$868###$870####$873
+monorot = {7653376,7653487,7653489,7653490,7653491,7653494,7653504,7653520,7653533,7653561,7653565,7653630,7653631,7653633,7653635,7653638,7653675,7653824,7653837,7654113,7654115,7698172,7698174,7698177,7698178,7698179,7698180,7698182,7698183,7698424,7700193,7752414,7752417}
+--################$816###$827######$832####$841####$844####$845####$847####$853###$862####$864#####$865###$866####$867#####$869
+monorot_hard = {7653519,7653571,7653636,7653699,7653826,7653834,7653836,7698164,7698422,7698426,7698836,7698964,7700191,7700196}
+
+monorounds=0
+if SETUP.challengemode == "mono" then tfm.exec.disableAutoTimeLeft(true) end
+function nextMonoMap()
+	monorounds=monorounds+1
+	if monorounds%10==0 then 
+		tfm.exec.newGame(monorot_hard[math.random(#monorot_hard)]) 
+		deb(nil,"debdata","<V><b>[nextMonoMap]</b></V> <O>"..tostring(monorounds).." "..tostring(monorounds%10).." monorot_hard")			
+	elseif monorounds%3==0 then 	
+		tfm.exec.newGame(monorot[math.random(#monorot)]) 
+		deb(nil,"debdata","<V><b>[nextMonoMap]</b></V> <O>"..tostring(monorounds).." "..tostring(monorounds%3).." monorot")			
+	else
+		tfm.exec.newGame(monorot_easy[math.random(#monorot_easy)])
+		deb(nil,"debdata","<V><b>[nextMonoMap]</b></V> <O>"..tostring(monorounds).." monorot_easy") 
+	end
+		deb(nil,"debdisplay") 
+end
 
 function eventNewGame()
 	if SETUP.challengemode=="thirty" then
 		tfm.exec.setGameTime(30)
+ 		ui.addTextArea(24,"", nil, 745, 25, 70, 40, 0x000022, 0x000022, 0, true)
+	end
+	if SETUP.challengemode=="mono" then
+      for name,player in next,tfm.get.room.playerList do
+          tfm.exec.freezePlayer(name,false)
+      end
+		if monorounds%10==0 then tfm.exec.setGameTime(120) elseif monorounds%3==0 then tfm.exec.setGameTime(60) else tfm.exec.setGameTime(30) end
  		ui.addTextArea(24,"", nil, 745, 25, 70, 40, 0x000022, 0x000022, 0, true)
 	end
 		local Ptag = string.match(tfm.get.room.xmlMapInfo.xml, "<P (.-)/>") 
@@ -902,7 +1212,8 @@ function eventNewGame()
 		local mapName
 	if meta then
 		mapName = string.gsub(meta, ",", "<BL> - $", 1).."</BL>"
-		print(meta)
+		deb(nil,"debdata","<J><b>[meta]</b> "..meta.."</J>")
+		deb(nil,"debdisplay")
     	ui.setMapName(mapName)
 	end
 		if Ptag:find('directive="LoadAsXML"') then tfm.exec.newGame(tfm.get.room.xmlMapInfo.xml) end
@@ -935,6 +1246,11 @@ function eventLoop(elaps,rmng)
  		if rmng <= 0 then table.foreach(tfm.get.room.playerList,tfm.exec.killPlayer) end
  		if rmng <= -3 and SETUP.autoplay == true then newMap() end
 	end
+	if SETUP.challengemode=="mono" then
+ 		ui.updateTextArea(24, "<p align='center'><font size='14'><D>"..math.ceil(rmng/1000), nil)
+ 		if rmng <= 0 then table.foreach(tfm.get.room.playerList,tfm.exec.freezePlayer) end
+ 		if rmng <= -3 and SETUP.autoplay == true then nextMonoMap() end
+	end
 	if SETUP.challengemode=="survival" then
  		if rmng <= -3 and SETUP.autoplay == true then survRound() end
 	end
@@ -964,7 +1280,7 @@ function eventTextAreaCallback(textAreaID, playerName, callback)
 	end
 	if callback=="toggleborder" then
 		trainingcore(playerName,"panel:toggleborder")
-		buildborder()
+		buildborder(playerName)
 	end
 	if callback=="togglesailwater" then
 		trainingcore(playerName,"panel:togglesailwater")
@@ -997,49 +1313,65 @@ function eventTextAreaCallback(textAreaID, playerName, callback)
 		trainingcore(playerName,"panel:clear")
 	end
 	if callback=="getInfo" then
-		ui.removeTextArea(5678,playerName)
-		ui.addTextArea(600, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<p align='right'><rose><a href='event:infclose'>"..trans[242].."</a></rose></p>\n", playerName, 50, 90, 700, 260, 0x000022, 0x000022, 0.6, true)
-		ui.addTextArea(601, "<p align='center'><font size='16' ><S><b>SETUP</b></S></font>\n<PS>－－－－－－－－－－－－－－－</PS></p><ul><li>autoplay: <lbrp>"..tostring(SETUP.autoplay).."</font></li><li>challengemode: <lbrp>"..SETUP.challengemode.."</font></li><li>autorespawn: <lbrp>"..tostring(SETUP.autorespawn).."</font></li><li>lang: <lbrp>"..tostring(SETUP.lang).."</font></li><li>nocontrast: <lbrp>"..tostring(SETUP.nocontrast).."</font></li>", playerName, 70, 110, 200, 100, 0x000022, 0x000022, 0.3, true)
-		ui.addTextArea(603, "<p align='center'><font size='16' ><S><b>"..trans[241].."</b></S></font>\n<PS>－－－－－－－－－－－－－－－</PS></p>"..trans[243]..trans[244], playerName, 290, 110, 440, 100, 0x000022, 0x000022, 0.3, true)
-		trainingcore(playerName,"hostcore:about")
+		hostinfo(0,playerName)
+ end
+	if callback=="setupinf" then
+		hostinfo(1,playerName)
+ end
+	if callback=="keybinds" then
+		hostinfo(2,playerName)
+ end
+	if callback=="kbuser1" then
+		userData[playerName].keyset=1
+		trainingcore(playerName,"hostcore:keyset;"..userData[playerName].keyset)
+		hostinfo(2,playerName)
+ end
+	if callback=="kbuser2" then
+		userData[playerName].keyset=2
+		trainingcore(playerName,"hostcore:keyset;"..userData[playerName].keyset)
+		hostinfo(2,playerName)
  end
  	if callback=="infclose" then
-		ui.removeTextArea(600,playerName) ui.removeTextArea(601,playerName) ui.removeTextArea(602,playerName) ui.removeTextArea(603,playerName) trainingcore(playerName,"hostcore:about_close")
+		for i=600,605 do ui.removeTextArea(i,playerName) end trainingcore(playerName,"hostcore:about_close")
 	end
  	if callback=="about" then
 		ui.updateTextArea(600, trans[243]..trans[244], playerName)
 		trainingcore(playerName,"hostcore:about_legacy")
 	end
  	if callback=="cn.survival" then
-		ui.updateTextArea(8881,"<grbl><font size='14'><v><font face='Wingdings 3'>u</font></v> "..trans[104].."</font></grbl><lgrbl><font size='14'> "..trans[83].."</font></font>\n\n<bv>"..trans[183].."</bv>",nil)
+		ui.updateTextArea(8881,"<"..theme[SETUP.theme].welcomeScreenHeadingColor.."><font size='14'><"..theme[SETUP.theme].welcomeScreenDecoColor.."><font face='Wingdings 3'>u</font></"..theme[SETUP.theme].welcomeScreenDecoColor.."> "..trans[104].."</font></"..theme[SETUP.theme].welcomeScreenHeadingColor.."> <"..theme[SETUP.theme].welcomeScreenHighlightColor.."><font size='14'>"..trans[83].."</"..theme[SETUP.theme].welcomeScreenHighlightColor.."></font>\n\n<"..theme[SETUP.theme].welcomeScreenTextColor..">"..trans[183].."</"..theme[SETUP.theme].welcomeScreenTextColor..">",nil)
 		ui.removeTextArea(8888,nil)
 	end
  	if callback=="cn.iziz" then
-		ui.updateTextArea(8881,"<grbl><font size='14'><v><font face='Wingdings 3'>u</font></v> "..trans[104].."</font></grbl><lgrbl><font size='14'> "..trans[88].."</font></font>\n\n<bv>"..trans[188].."</bv>",nil)
+		ui.updateTextArea(8881,"<"..theme[SETUP.theme].welcomeScreenHeadingColor.."><font size='14'><"..theme[SETUP.theme].welcomeScreenDecoColor.."><font face='Wingdings 3'>u</font></"..theme[SETUP.theme].welcomeScreenDecoColor.."> "..trans[104].."</font></"..theme[SETUP.theme].welcomeScreenHeadingColor.."> <"..theme[SETUP.theme].welcomeScreenHighlightColor.."><font size='14'>"..trans[88].."</"..theme[SETUP.theme].welcomeScreenHighlightColor.."></font>\n\n<"..theme[SETUP.theme].welcomeScreenTextColor..">"..trans[188].."</"..theme[SETUP.theme].welcomeScreenTextColor..">",nil)
 		ui.removeTextArea(8888,nil)
 	end
  	if callback=="cn.build" then
-		ui.updateTextArea(8881,"<grbl><font size='14'><v><font face='Wingdings 3'>u</font></v> "..trans[104].."</font></grbl><lgrbl><font size='14'> "..trans[87].."</font></font>\n\n<bv>"..trans[187].."</bv>",nil)
+		ui.updateTextArea(8881,"<"..theme[SETUP.theme].welcomeScreenHeadingColor.."><font size='14'><"..theme[SETUP.theme].welcomeScreenDecoColor.."><font face='Wingdings 3'>u</font></"..theme[SETUP.theme].welcomeScreenDecoColor.."> "..trans[104].."</font></"..theme[SETUP.theme].welcomeScreenHeadingColor.."> <"..theme[SETUP.theme].welcomeScreenHighlightColor.."><font size='14'>"..trans[87].."</"..theme[SETUP.theme].welcomeScreenHighlightColor.."></font>\n\n<"..theme[SETUP.theme].welcomeScreenTextColor..">"..trans[187].."</"..theme[SETUP.theme].welcomeScreenTextColor..">",nil)
 		ui.removeTextArea(8888,nil)
 	end
  	if callback=="cn.divine" then
-		ui.updateTextArea(8881,"<grbl><font size='14'><v><font face='Wingdings 3'>u</font></v> "..trans[104].."</font></grbl><lgrbl><font size='14'> "..trans[82].."</font></font>\n\n<bv>"..trans[182].."</bv>",nil)
+		ui.updateTextArea(8881,"<"..theme[SETUP.theme].welcomeScreenHeadingColor.."><font size='14'><"..theme[SETUP.theme].welcomeScreenDecoColor.."><font face='Wingdings 3'>u</font></"..theme[SETUP.theme].welcomeScreenDecoColor.."> "..trans[104].."</font></"..theme[SETUP.theme].welcomeScreenHeadingColor.."> <"..theme[SETUP.theme].welcomeScreenHighlightColor.."><font size='14'>"..trans[82].."</"..theme[SETUP.theme].welcomeScreenHighlightColor.."></font>\n\n<"..theme[SETUP.theme].welcomeScreenTextColor..">"..trans[182].."</"..theme[SETUP.theme].welcomeScreenTextColor..">",nil)
 		ui.removeTextArea(8888,nil)
 	end
  	if callback=="cn.nonail" then
-		ui.updateTextArea(8881,"<grbl><font size='14'><v><font face='Wingdings 3'>u</font></v> "..trans[104].."</font></grbl><lgrbl><font size='14'> "..trans[81].."</font></font>\n\n<bv>"..trans[181].."</bv>",nil)
+		ui.updateTextArea(8881,"<"..theme[SETUP.theme].welcomeScreenHeadingColor.."><font size='14'><"..theme[SETUP.theme].welcomeScreenDecoColor.."><font face='Wingdings 3'>u</font></"..theme[SETUP.theme].welcomeScreenDecoColor.."> "..trans[104].."</font></"..theme[SETUP.theme].welcomeScreenHeadingColor.."> <"..theme[SETUP.theme].welcomeScreenHighlightColor.."><font size='14'>"..trans[81].."</"..theme[SETUP.theme].welcomeScreenHighlightColor.."></font>\n\n<"..theme[SETUP.theme].welcomeScreenTextColor..">"..trans[181].."</"..theme[SETUP.theme].welcomeScreenTextColor..">",nil)
 		ui.removeTextArea(8888,nil)
 	end
  	if callback=="cn.thirty" then
-		ui.updateTextArea(8881,"<grbl><font size='14'><v><font face='Wingdings 3'>u</font></v> "..trans[104].."</font></grbl><lgrbl><font size='14'> "..trans[86].."</font></font>\n\n<bv>"..trans[186].."</bv>",nil)
+		ui.updateTextArea(8881,"<"..theme[SETUP.theme].welcomeScreenHeadingColor.."><font size='14'><"..theme[SETUP.theme].welcomeScreenDecoColor.."><font face='Wingdings 3'>u</font></"..theme[SETUP.theme].welcomeScreenDecoColor.."> "..trans[104].."</font></"..theme[SETUP.theme].welcomeScreenHeadingColor.."> <"..theme[SETUP.theme].welcomeScreenHighlightColor.."><font size='14'>"..trans[86].."</"..theme[SETUP.theme].welcomeScreenHighlightColor.."></font>\n\n<"..theme[SETUP.theme].welcomeScreenTextColor..">"..trans[186].."</"..theme[SETUP.theme].welcomeScreenTextColor..">",nil)
 		ui.removeTextArea(8888,nil)
 	end
  	if callback=="cn.racing" then
-		ui.updateTextArea(8881,"<grbl><font size='14'><v><font face='Wingdings 3'>u</font></v> "..trans[104].."</font></grbl><lgrbl><font size='14'> "..trans[84].."</font></font>\n\n<bv>"..trans[184].."</bv>",nil)
+		ui.updateTextArea(8881,"<"..theme[SETUP.theme].welcomeScreenHeadingColor.."><font size='14'><"..theme[SETUP.theme].welcomeScreenDecoColor.."><font face='Wingdings 3'>u</font></"..theme[SETUP.theme].welcomeScreenDecoColor.."> "..trans[104].."</font></"..theme[SETUP.theme].welcomeScreenHeadingColor.."> <"..theme[SETUP.theme].welcomeScreenHighlightColor.."><font size='14'>"..trans[84].."</"..theme[SETUP.theme].welcomeScreenHighlightColor.."></font>\n\n<"..theme[SETUP.theme].welcomeScreenTextColor..">"..trans[184].."</"..theme[SETUP.theme].welcomeScreenTextColor..">",nil)
 		ui.removeTextArea(8888,nil)
 	end
  	if callback=="cn.defilante" then
-		ui.updateTextArea(8881,"<grbl><font size='14'><v><font face='Wingdings 3'>u</font></v> "..trans[104].."</font></grbl><lgrbl><font size='14'> "..trans[85].."</font></font>\n\n<bv>"..trans[185].."</bv>",nil)
+		ui.updateTextArea(8881,"<"..theme[SETUP.theme].welcomeScreenHeadingColor.."><font size='14'><"..theme[SETUP.theme].welcomeScreenDecoColor.."><font face='Wingdings 3'>u</font></"..theme[SETUP.theme].welcomeScreenDecoColor.."> "..trans[104].."</font></"..theme[SETUP.theme].welcomeScreenHeadingColor.."> <"..theme[SETUP.theme].welcomeScreenHighlightColor.."><font size='14'>"..trans[85].."</"..theme[SETUP.theme].welcomeScreenHighlightColor.."></font>\n\n<"..theme[SETUP.theme].welcomeScreenTextColor..">"..trans[185].."</"..theme[SETUP.theme].welcomeScreenTextColor..">",nil)
+		ui.removeTextArea(8888,nil)
+	end
+ 	if callback=="cn.mono" then
+		ui.updateTextArea(8881,"<"..theme[SETUP.theme].welcomeScreenHeadingColor.."><font size='14'><"..theme[SETUP.theme].welcomeScreenDecoColor.."><font face='Wingdings 3'>u</font></"..theme[SETUP.theme].welcomeScreenDecoColor.."> "..trans[104].."</font></"..theme[SETUP.theme].welcomeScreenHeadingColor.."> <"..theme[SETUP.theme].welcomeScreenHighlightColor.."><font size='14'>"..trans[89].."</"..theme[SETUP.theme].welcomeScreenHighlightColor.."></font>\n\n<"..theme[SETUP.theme].welcomeScreenTextColor..">"..trans[189].."</"..theme[SETUP.theme].welcomeScreenTextColor..">",nil)
 		ui.removeTextArea(8888,nil)
 	end
  	if callback=="cn.custom" then
@@ -1080,8 +1412,7 @@ function eventTextAreaCallback(textAreaID, playerName, callback)
 		error("<ch>Konkurss beidzies. <D>("..playerName..")")
 	end
 	if callback=="hostmenu" then
-		trainingcore(playerName,"hostcore:menu")
-		ui.addTextArea(5678, "<p align='center'>\n<rose><a href='event:getInfo'>"..trans[265].."</a> <a href='event:hi'>"..trans[266].."</a> <a href='event:clsconf'>"..trans[242].."</a></p>\n", playerName, 275, 175, 250, 50, 0x000022, 0x000022, 0.6, true)
+		hostmenu(playerName)
 	end
 	if callback=="hi" then
 		trainingcore(playerName,"panel:open")
@@ -1132,11 +1463,17 @@ end
 		trainingcore(playerName,"profile:close")
 		ui.removeTextArea(288,playerName)
 	end 
+ 	if callback=="rmfieldui" then
+		trainingcore(playerName,"fieldui:close")
+		for i=350,356 do ui.removeTextArea(i,playerName) end
+	end 
 	if callback=="error0x1" then
 		trainingcore(playerName,"panel:error0x1;"..errn1)
 		ui.addTextArea(5678, "<font size='16'><grbl><a href='event:clsconf'>X</a></font> <"..theme[SETUP.theme].windowHeadingColor.."><b>"..trans[270].." 0x1</b></"..theme[SETUP.theme].windowHeadingColor.."></font></font>\n___________________________\n\n<BV><font size='14'>>> "..errn1.."</font></BV><V>\n\n!"..errc1, playerName, 300, 100, 200, 200, 0x000022, 0x00022, 0.65, true)
 		print(erri1)
 	end
+	deb(nil,"debdata","<V><b>[eventTextAreaCallback]</b></V> <BL>"..tostring(textAreaID).." "..tostring(playerName).." "..tostring(callback))
+	deb(nil,"debdisplay")
 end
 
 -- Nākošā mape
@@ -1145,16 +1482,17 @@ function nm(name)
 	if hosts[name] and SETUP.challengemode=="vanilla" then nextMap()
 	elseif hosts[name] and SETUP.challengemode=="survival" then survRound()
 	elseif hosts[name] and SETUP.challengemode=="thirty" then newMap()
+	elseif hosts[name] and SETUP.challengemode=="mono" then nextMonoMap()
 	elseif hosts[name] and SETUP.challengemode=="pkg" then tfm.exec.newGame("#"..pkg.data)
 end end
 
 -- eventPopupAnswer
 function eventPopupAnswer(popupID, name, answer)
-	if popupID==404 then print("<b><PT>["..name.."]</PT></b> <T>"..answer) end
+	if popupID==404 then if answer=="" and not SETUP.allowemptyfeedback==true then ui.addPopup(404, 2, "<p align='center'>"..trans[282].."</p>", name, 10, 310, 250, true) else print("<b><PT>["..name.."]</PT></b> <T>"..answer) end end
 	if popupID==480 then userData[name].uctrans = tonumber(answer) utilcore(name) trainingcore(name,"settings:utilcoretransparency;"..answer) end
 	if popupID==800 and hosts[name] then if contestants[answer] then d(answer,0.4,0x000022,5,25) trainingcore(name,"panel:disqualify;"..answer) end end
 	if popupID==960 and hosts[name] then trainingcore(name,"greeting:setcustomname") cname = answer ui.addPopup(961,2,"<p align='center'><font size='16' color='#84b7d1'><b>"..trans[277].."</b></font>",name,440,startmenuy,340,true) end
-	if popupID==961 and hosts[name] then trainingcore(name,"greeting:setcustomdescription") cdesc = answer ui.updateTextArea(8881,"<grbl><font size='14'><v><font face='Wingdings 3'>u</font></v> "..trans[104].."</font></grbl><lgrbl><font size='14'> "..cname.."</font></font>\n\n<bv>"..cdesc.."</bv>",nil) end
+	if popupID==961 and hosts[name] then trainingcore(name,"greeting:setcustomdescription") cdesc = answer 		ui.updateTextArea(8881,"<"..theme[SETUP.theme].welcomeScreenHeadingColor.."><font size='14'><"..theme[SETUP.theme].welcomeScreenDecoColor.."><font face='Wingdings 3'>u</font></"..theme[SETUP.theme].welcomeScreenDecoColor.."> "..trans[104].."</font></"..theme[SETUP.theme].welcomeScreenHeadingColor.."> <"..theme[SETUP.theme].welcomeScreenHighlightColor.."><font size='14'>"..cname.."</"..theme[SETUP.theme].welcomeScreenHighlightColor.."></font>\n\n<"..theme[SETUP.theme].welcomeScreenTextColor..">"..cdesc.."</"..theme[SETUP.theme].welcomeScreenTextColor..">",nil) end
 end
 
 -- Pārlādēt mapi
@@ -1188,12 +1526,19 @@ end
 -- eventColorPicked
 function eventColorPicked(id,name,color)
 	if id==300 then -- vārda krāsošana
-		trainingcore(name,"colorselector:colorname;"..colqueue..";"..color)
-		if colqueue == "all" then
-			for name,player in next,tfm.get.room.playerList do
-				tfm.exec.setNameColor(name,color)
+		queuedisplay = "" queuenotepad = ""
+		for i=1,#colqueue do 
+			queuenotepad = queuenotepad.."<br>"..colqueue[i]
+		end
+		if #colqueue==1 then queuedisplay = colqueue[1] else notepad[#notepad+1] = queuenotepad queuedisplay="$notepad"..#notepad end
+		trainingcore(name,"colorselector:colorname;"..queuedisplay..";"..color)
+		for k,v in next,colqueue do
+			if v == "all" then
+				for name,player in next,tfm.get.room.playerList do
+					tfm.exec.setNameColor(name,color)
+				end
+			else tfm.exec.setNameColor(v,color)
 			end
-		else tfm.exec.setNameColor(colqueue,color)
 		end
 	end
 	if id==302 then -- tagu definīcija
@@ -1217,15 +1562,14 @@ end
 
 -- eventSummoningStart
 function eventSummoningStart(name,type,x,y,angle)
-
 	if oneing[name] then
-		if hosts[name] or helpers[name] then
+		if userData[name].allowedSuperpowers.instaspawn==true then
 			trainingcore(name,"superpowers:instaspawn;"..type..";"..x..";"..y..";"..angle)
 			tfm.exec.addShamanObject(type,x,y,angle,0,0,false)
 		end
 	end
 	if dashing[name] then
-		if hosts[name] or helpers[name] then
+		if userData[name].allowedSuperpowers.instaspawn==true then
 			trainingcore(name,"superpowers:instaspawntransparent;"..type..";"..x..";"..y..";"..angle)
 			tfm.exec.addShamanObject(type,x,y,angle,0,0,true)
 		end
