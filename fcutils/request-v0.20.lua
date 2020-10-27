@@ -38,7 +38,7 @@ function displayReqMenu(targ)
 	if userData[targ].reqmenuwindowstate==0 then
 		ui.addTextArea(1, "", targ, 570, 55, 200, 150, 0x000001, 0x000000, 0.8, true)
 		ui.addTextArea(200, "<font size='20'><V><p align='center'><b>Make a request</b></p></V></font>", targ, 570, 55, 200, 30, 0x000001, 0x000000, 1, true)
-		ui.addTextArea(201, "<BL><font face='Lucida Console'><li><a href='event:requestSize'>change size</a></li><li>change nickname</li><li><a href='event:requestColorNick'>color nickname</a></li><li><a href='event:requestColorMouse'>color mouse</a></li><li><a href='event:tfm'>transform</a></li><li><a href='event:requestMeep'>meep</a></li>\n\n<p align='center'><ROSE><a href='event:req menu'>[close this window]</a></ROSE></p></font></BL>", targ, 570, 95, 200, 110, 0x000000, 0x000000, 0, true)
+		ui.addTextArea(201, "<BL><font face='Lucida Console'><li><a href='event:requestSize'>change size</a></li><li>change nickname</li><li><a href='event:requestColorNick'>color nickname</a></li><li><a href='event:requestColorMouse'>color mouse</a></li><li><a href='event:tfm'>transform</a></li><li><a href='event:req meep'>meep</a></li>\n\n<p align='center'><ROSE><a href='event:req menu'>[close this window]</a></ROSE></p></font></BL>", targ, 570, 95, 200, 110, 0x000000, 0x000000, 0, true)
 		userData[targ].reqmenuwindowstate=1
 	elseif userData[targ].reqmenuwindowstate==1 then
 		ui.addTextArea(1, "<V><p align='center'><a href='event:req menu'>make a request</a></p></V>", targ, 685, 380, 100, 100, 0x000001, 0x000000, 0.8, true)
@@ -165,6 +165,16 @@ function eventTextAreaCallback(id,name,callback)
 		if c[2]=="menu" then
 			displayReqMenu(c[3] and userData[c[3]] or name)
 		end
+		if c[2]=="meep" then
+			if userData[name].meep then 
+				ui.updateTextArea(201,"<BL><font face='Lucida Console'>You now have the meep ability.\n\n\n\n\n\n\n<p align='center'><ROSE><a href='event:req menu'>[close this window]</a></ROSE></p></font></BL>",name) 
+			else
+				ui.updateTextArea(201,"<BL><font face='Lucida Console'>You no longer have the meep ability.\n\n\n\n\n\n\n<p align='center'><ROSE><a href='event:req menu'>[close this window]</a></ROSE></p></font></BL>",name)
+			end
+			tfm.exec.giveMeep(name,not userData[name].meep)
+			userData[name].meep=not userData[name].meep
+			userData[name].reqmenuwindowstate=1
+		end
 	end
 	if c[1]=="handle" and userData[name].host then
 		if c[2]=="requests" then
@@ -175,18 +185,7 @@ function eventTextAreaCallback(id,name,callback)
 		if c[2]=="" then
 		end
 	end
-	if callback=="requestMeep" then
-		if userData[name].meep==false then 		
-			ui.updateTextArea(201,"<BL><font face='Lucida Console'>You now have the meep ability.\n\n\n\n\n\n\n<p align='center'><ROSE><a href='event:reqMenu'>[close this window]</a></ROSE></p></font></BL>",name)
-			tfm.exec.giveMeep(name)
-			userData[name].meep=true
-		else
-			ui.updateTextArea(201,"<BL><font face='Lucida Console'>You no longer have the meep ability.\n\n\n\n\n\n\n<p align='center'><ROSE><a href='event:reqMenu'>[close this window]</a></ROSE></p></font></BL>",name)
-			tfm.exec.giveMeep(name,false)
-			userData[name].meep=false
-		end
-		userData[name].reqmenuwindowstate=1
-	end
+
 	if callback=="tfm" then
 		if userData[name].tfm==false then 		
 			ui.updateTextArea(201,"<BL><font face='Lucida Console'>You now have the transformation ability.\n\n\n\n\n\n\n<p align='center'><ROSE><a href='event:reqMenu'>[close this window]</a></ROSE></p></font></BL>",name)
