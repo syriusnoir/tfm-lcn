@@ -214,3 +214,4 @@ function eventPlayerLeft(name)
 	players[name]=nil
 end
 for name,player in pairs(tfm.get.room.playerList) do eventNewPlayer(name) end
+
