@@ -2,7 +2,7 @@
 objects = {}
 conf = {noportals = false,flymode = false,debug = false}
 players = {} 
-info = {[-3]={i="17724b6f751.png",o=113},[-2]={i="175949a8539.png",o=271},[-1]={i="175947388fb.png",o=181},[0]={i="1759473a06e.png",o=215},[1]={i="1759473b7e1.png",o=165},[2]={i="1759474a24a.png",o=144},[3]={i="17594758cb4.png",o=105},[4]={i="175947630cf.png",o=153},[5]={i="1759476483f.png",o=175},[6]={i="17594765fb0.png",o=156},[7]={i="17594767722.png",o=158},[8]={i="175949b9da6.png",o=64},[9]={i="17594774a21.png",o=150},[10]={i="1759473cf50.png",o=104},[11]={i="1759473e6c3.png",o=223},[12]={i="1759473fe34.png",o=198},[13]={i="175947415a7.png",o=201},[14]={i="17594742d16.png",o=179},[15]={i="175949c1656.png",o=156},[16]={i="175a8fb12a7.png",o=205},[17]={i="17594745bf7.png",o=126},[18]={i="17594747368.png",o=73},[19]={i="17594748ad8.png",o=190},[20]={i="1759474b9be.png",o=42},[21]={i="1788f6cc432.png",o=265},[22]={i="1759474e89f.png",o=199},[23]={i="1759475000b.png",o=215},[24]={i="175949caf64.png",o=184},[25]={i="1759475177d.png",o=159},[26]={i="17634704d70.png",o=176},[27]={i="17594754661.png",o=230},[28]={i="17594755dd3.png",o=240},[29]={i="17594757544.png",o=239},[30]={i="1759475a425.png",o=245},[31]={i="1759475bb98.png",o=196},[32]={i="1759475d309.png",o=291},[33]={i="17779c3a559.png",o=305},[34]={i="175947601eb.png",o=256},[35]={i="175949dab64.png",o=282},[36]={i="17594761969.png",d="When %s fell down from heaven, (s)he died.",o=294},[37]={i="175d8194f97.png",o=231},[38]={i="175dd6f8e9a.png",d="%s fell to the depths of hell.",o=253},[39]={i="175f10578da.png",o=175},[40]={i="1760afeda95.png",o=183},[41]={i="1767248ad52.png",o=249},[42]={i="17677cb5c9f.png",o=299},[43]={i="176de55a831.png",o=287},[44]={i="176fe0e5a5c.png",o=274},[45]={i="177e5273691.png",o=260},[46]={i="177ff18a73b.png",o=202},[47]={i="17865f71b09.png",o=206},[48]={i="1788ef65cd7.png",o=175},[180]={i="17594768e92.png",o=74},[181]={i="1759476a603.png",o=64},[182]={i="1759476bd76.png",o=117},[183]={i="1759476e48b.png",o=78},[184]={i="175947703cc.png",o=78},[185]={i="17594771b40.png",o=187},[186]={i="175949e834b.png",o=115},[187]={i="17594744486.png",o=131},[188]={i="17594752eef.png",o=153},[189]={i="175947732b0.png",o=374},[190]={i="1759475ea7a.png",o=290},[191]={i="1759474d12b.png",o=402}}
+info = {[-3]={i="17724b6f751.png",o=113},[-2]={i="175949a8539.png",o=271},[-1]={i="175947388fb.png",o=181},[0]={i="1759473a06e.png",o=215},[1]={i="1759473b7e1.png",o=165},[2]={i="1759474a24a.png",o=144},[3]={i="17594758cb4.png",o=105},[4]={i="175947630cf.png",o=153},[5]={i="1759476483f.png",o=175},[6]={i="17594765fb0.png",o=156},[7]={i="17594767722.png",o=158},[8]={i="175949b9da6.png",o=64},[9]={i="17594774a21.png",o=150},[10]={i="1759473cf50.png",o=104},[11]={i="1759473e6c3.png",o=223},[12]={i="1759473fe34.png",o=198},[13]={i="175947415a7.png",o=201},[14]={i="17594742d16.png",o=179},[15]={i="175949c1656.png",o=156},[16]={i="175a8fb12a7.png",o=205},[17]={i="17594745bf7.png",o=126,c=0x220b00},[18]={i="17594747368.png",o=73},[19]={i="17594748ad8.png",o=190,c=0x002200},[20]={i="1759474b9be.png",o=42},[21]={i="1788f6cc432.png",o=265},[22]={i="1759474e89f.png",o=199,c=0x220b00},[23]={i="1759475000b.png",o=215},[24]={i="175949caf64.png",o=184},[25]={i="1759475177d.png",o=159,c=0x220b00},[26]={i="17634704d70.png",o=176},[27]={i="17594754661.png",o=230},[28]={i="17594755dd3.png",o=240},[29]={i="17594757544.png",o=239},[30]={i="1759475a425.png",o=245,c=0x002200},[31]={i="1759475bb98.png",o=196},[32]={i="1759475d309.png",o=291},[33]={i="17779c3a559.png",o=305},[34]={i="175947601eb.png",o=256},[35]={i="175949dab64.png",o=282},[36]={i="17594761969.png",d="When %s fell down from heaven, (s)he died.",o=294},[37]={i="175d8194f97.png",o=231,c=0x002200},[38]={i="175dd6f8e9a.png",d="%s fell to the depths of hell.",o=253,c=0x220b00},[39]={i="175f10578da.png",o=175},[40]={i="1760afeda95.png",o=183},[41]={i="1767248ad52.png",o=249},[42]={i="17677cb5c9f.png",o=299},[43]={i="176de55a831.png",o=287},[44]={i="176fe0e5a5c.png",o=274},[45]={i="177e5273691.png",o=260},[46]={i="177ff18a73b.png",o=202},[47]={i="17865f71b09.png",o=206,c=0x220b00},[48]={i="1788ef65cd7.png",o=175,c=0x140022},[180]={i="17594768e92.png",o=74},[181]={i="1759476a603.png",o=64},[182]={i="1759476bd76.png",o=117},[183]={i="1759476e48b.png",o=78},[184]={i="175947703cc.png",o=78},[185]={i="17594771b40.png",o=187},[186]={i="175949e834b.png",o=115},[187]={i="17594744486.png",o=131},[188]={i="17594752eef.png",o=153},[189]={i="175947732b0.png",o=374},[190]={i="1759475ea7a.png",o=290},[191]={i="1759474d12b.png",o=402}}
 
 for k,v in next, info do
 	info[k].d = info[k].d or "%s died."
@@ -125,12 +125,12 @@ function eventChatCommand(name,cmd,n)
 	end
 end
 function gui(name)
-ui.addTextArea(32, "<font size='10'><p align='center'>"..tostring(thismap).." <BL>|</BL> <J>no portals:<BL> "..tostring(conf.noportals).." <BL>|</BL> <J>mirrored map:<BL> "..tostring(tfm.get.room.mirroredMap).." |</BL> <J>able to fly:<BL> "..tostring(conf.flymode), name, 150, 380, 500, 27, 0x000022, 0x000022, 0.8, true)
+ui.addTextArea(32, "<font size='10'><p align='center'>"..tostring(thismap).." <BL>|</BL> <J>no portals:<BL> "..tostring(conf.noportals).." <BL>|</BL> <J>mirrored map:<BL> "..tostring(tfm.get.room.mirroredMap).." |</BL> <J>able to fly:<BL> "..tostring(conf.flymode), name, 150, 380, 500, 27, info[currentMap].c or 0x000022, info[currentMap].c or 0x000022, 0.8, true)
 ui.addTextArea(64, "<ROSE><a href='event:minimizePanel'><font size='10'>X</a>", nil, 640, 380, 20, 27, 0x000022, 0x000022, 0, true)
 end
 function rmgui(name)
 ui.removeTextArea(32,name) 
-ui.addTextArea(64, "<ROSE><p align='center'><a href='event:restorePanel'>+</a>", name, 6, 22, 12, 15, 0x000022, 0x000022, 0.8, true)
+ui.addTextArea(64, "<ROSE><p align='center'><a href='event:restorePanel'>+</a>", name, 6, 22, 12, 15, info[currentMap].c or 0x000022, info[currentMap].c or 0x000022, 0.8, true)
 end
 function eventNewPlayer(name)
 tfm.exec.bindKeyboard(name,1,true,true)
@@ -178,8 +178,8 @@ function atlas(page,targ)
 	page=page or 1
 	rmgui(targ)
 	for i=0,14 do ui.removeTextArea(i,targ) end
-	ui.addTextArea(-1,"",targ,-5000,-5000,10000,10000,0x000022,0x000022,0.8,true)
-	ui.addTextArea(65,"<font size='10'><p align='center'><font size='3'> </font>\n<a href='event:page ".. page-1 .."'><font face='Webdings'>3</font>previous</a> <a href='event:cls'>close</a> <a href='event:page ".. page+1 .."'>next<font face='Webdings'>4</font></a></p></font>",targ,5,10,790,32,0x000022,0x000022,1,true)
+	ui.addTextArea(-1,"",targ,-5000,-5000,10000,10000,info[currentMap].c or 0x000022,info[currentMap].c or 0x000022,0.8,true)
+	ui.addTextArea(65,"<font size='10'><p align='center'><font size='3'> </font>\n<a href='event:page ".. page-1 .."'><font face='Webdings'>3</font>previous</a> <a href='event:cls'>close</a> <a href='event:page ".. page+1 .."'>next<font face='Webdings'>4</font></a></p></font>",targ,5,10,790,32,info[currentMap].c or 0x000022,info[currentMap].c or 0x000022,1,true)
 	for k,v in next,ICR do tfm.exec.removeImage(v,targ) end
 	for i=0+(page-1)*15,(page-1)*15+14 do
 		if info[i] then
@@ -199,7 +199,7 @@ function metadata(page,targ)
 			display = display..string.format("%s\t%s\t%s\t\n",tostring(i),tostring(info[i].o) or "", tostring(info[i].d) or "")
 		end
 	end
-	ui.addTextArea(0, "<p align='center'><font size='11' face='Lucida Console'><ROSE><a href='event:pagem ".. page-1 .."'>[prev]</a><a href='event:pagem ".. page+1 .."'>[next]</a><a href='event:clsgen'>[close]</a></ROSE></font><br>_____________________________________</p><br><textformat tabstops='[0,30,60,90]'><D>ID</D>\t<D>OBJ</D>\t<D>DEATHMSG</D>\n"..display.."</textformat>", nil, 112, 50, 576, 320, 0x22, 0x22, 0.65, true)
+	ui.addTextArea(0, "<p align='center'><font size='11' face='Lucida Console'><ROSE><a href='event:pagem ".. page-1 .."'>[prev]</a><a href='event:pagem ".. page+1 .."'>[next]</a><a href='event:clsgen'>[close]</a></ROSE></font><br>_____________________________________</p><br><textformat tabstops='[0,30,60,90]'><D>ID</D>\t<D>OBJ</D>\t<D>DEATHMSG</D>\n"..display.."</textformat>", targ, 112, 50, 576, 320, info[currentMap].c or 0x000022, info[currentMap].c or 0x000022, 0.65, true)
 end
 
 function eventTextAreaCallback(id, name, callback)
