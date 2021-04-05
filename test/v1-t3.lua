@@ -12,7 +12,9 @@ TRANSLATIONS = {lv = {}}
 RESOURCES = {
 		TRANSLATIONS = TRANSLATIONS, 
 		THEMES = {LCN = {accentColor1 = 0xde1407,wTitleBgColor = 0x1c1b1b,wBgColor = 0x242323}}, 
-		GRAPHICS = {},
+		GRAPHICS = {
+			FLAGS = {lv = "1789935ac0e.png",en = "1789936a533.png",de = "17899365163.png"}
+		},
 		CACHE = {}
 }
 
