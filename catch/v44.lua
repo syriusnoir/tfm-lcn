@@ -79,7 +79,7 @@ eval = {
 tfm.exec.disableAutoNewGame(true)
 tfm.exec.disableAutoShaman(true)
 tfm.exec.disablePhysicalConsumables(true)
-tfm.exec.newGame(eval[math.random(-3,49)])
+tfm.exec.newGame(eval[math.random(-3,48)])
 function eventChatCommand(name,cmd,n)
     local c = { }
     string.gsub(cmd, "%S+", function(arg)
@@ -99,7 +99,7 @@ function eventChatCommand(name,cmd,n)
 			tfm.exec.chatMessage("<BV>The room's protection has been removed.") 
 		end
 	end
-	if c[1] == "map" then tfm.exec.newGame(eval[tonumber(c[2])]) if c[2] == "random" then tfm.exec.newGame(eval[math.random(-3,49)]) end end
+	if c[1] == "map" then tfm.exec.newGame(eval[tonumber(c[2])]) if c[2] == "random" then tfm.exec.newGame(eval[math.random(-3,48)]) end end
 	if c[1] == "choose" then 
 		cand=nil
 		cand={}
@@ -110,7 +110,7 @@ function eventChatCommand(name,cmd,n)
 		tfm.exec.setNameColor(catcher,0xeb1d51)
 		print("<BV>The catcher is: <CH>"..catcher) 
 	end
-	if c[1] == "map*" then tfm.exec.newGame(eval[tonumber(c[2])],true) if c[2] == "random" then tfm.exec.newGame(eval[math.random(-3,49)],true) end end
+	if c[1] == "map*" then tfm.exec.newGame(eval[tonumber(c[2])],true) if c[2] == "random" then tfm.exec.newGame(eval[math.random(-3,48)],true) end end
 	if c[1] == "atlas" then atlas(c[2],name) end
 	if c[1] == "atlas*" then metadata(c[2],name) end
 	if c[1] == "ls" and conf.debug then for k,v in next,_G[c[2]] do tfm.exec.chatMessage("<BV>"..tostring(k)..": <CH>"..tostring(v)) end end
