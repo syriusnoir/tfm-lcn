@@ -13,7 +13,9 @@ RESOURCES = {
 		TRANSLATIONS = TRANSLATIONS, 
 		THEMES = {LCN = {accentColor1 = 0xde1407,wTitleBgColor = 0x1c1b1b,wBgColor = 0x242323}}, 
 		GRAPHICS = {
-			FLAGS = {lv = "1789935ac0e.png",en = "1789936a533.png",de = "17899365163.png"}
+			FLAGS = {lv = "1789935ac0e.png",en = "1789936a533.png",de = "17899365163.png"},
+			greyBtnSide = "178dc45ffb3.png",
+			greyBtnBg = "178dc467486.png"
 		},
 		CACHE = {}
 }
@@ -46,6 +48,18 @@ function window(id,content,targ,width,height,DATA)
 		ui.addTextArea(150000+id, string.format("<font size='14'><p align='right'>%s</p></font>",DATA.rtoolbar), targ, DATA.x+(width)-100, DATA.y+4, 100, 30, 0x324650, 0x0, 0, true)
 		ui.addTextArea(200000+id, string.format("<font size='14'><p align='left'>%s</p></font>",DATA.ltoolbar), targ, DATA.x+(width)-200, DATA.y+4, 100, 30, 0x324650, 0x0, 0, true)
 	end
+	if targ then	
+		USERDATA[targ].WINDOWS[#USERDATA[targ].WINDOWS + 1] = id
+	else
+		for k,v in USERDATA do
+			USERDATA[k].WINDOWS[#USERDATA[k].WINDOWS + 1] = id
+		end
+	end
+	return id
+end
+
+function addBtn(id,content,DATA)
+--	tfm.exec.addImage()
 end
 
 function init()
