@@ -4,7 +4,7 @@ SETUP = {challengemode="build",title="lacrosnostra",autorespawn = false,lang="lv
 
 -- [[LCN: LV, EN, DE]]
 
-version = "v.b52.99 ~T3"
+version = "v.b52.99 ~T2"
 
 function errstp() fail = true ui.addTextArea(13000, "", nil, -2600, -2800, 6000, 6000, 0x6a7495, 0x000022, 1, false) ui.addTextArea(13001, "<V>[EN]</V> <A:ACTIVE>Invalid configuration! A SETUP variable has an invalid value or isn't existing.</A:ACTIVE>\n<V>[LV]</V> <A:ACTIVE>Nederīga konfigurācija! Kāds no SETUP mainīgajiem satur nederīgu vērtību vai neeksistē.</A:ACTIVE>", nil, 5, 25, 790, 30, 0x324650, 0x324650, 1, true) ui.addTextArea(13002, "<vp><p align='center'>"..version.."</p></vp>", nil, 5, 380, 790, 20, 0x324650, 0x324650, 1, true) end 
 if SETUP == nil then SETUP = {challengemode = "@",lang = "lv",title="lacrosnostra"} errstp() end if SETUP.lsimage==nil then SETUP.lsimage = "16f09800dd9.png" end if SETUP.challengemode == nil or type(SETUP.challengemode) == "boolean" then SETUP.challengemode = "@" errstp() end if SETUP.lang == "lv" or SETUP.lang == "en" or SETUP.lang == "de" or SETUP.lang == "debug" then else SETUP.lang = "lv" errstp() end if SETUP.title == nil or type(SETUP.title) == "boolean" then SETUP.title = "lacrosnostra" errstp() end do    local _, nickname = pcall(nil)    tfm.get.room.owner = string.match(nickname, "(.-)%.")end
@@ -1541,7 +1541,7 @@ end end
 
 -- eventPopupAnswer
 function eventPopupAnswer(popupID, name, answer)
-	if popupID==398 and hosts[name] then if answer~="" then iter(iterargs,{popupID,name,answer}) end end
+	if popupID==398 and hosts[name] then if answer~="" then iter(iterArgs,{popupID,name,answer}) end end
 	if popupID==404 then if answer=="" and not SETUP.allowemptyfeedback==true then ui.addPopup(404, 2, "<p align='center'>"..trans[282].."</p>", name, 10, 310, 250, true) else print("<b><PT>["..name.."]</PT></b> <T>"..answer) end end
 	if popupID==480 then userData[name].uctrans = tonumber(answer) utilcore(name) trainingcore(name,"settings:utilcoretransparency;"..answer) end
 	if popupID==800 and hosts[name] then if contestants[answer] then d(answer,0.4,0x000022,5,25) trainingcore(name,"panel:disqualify;"..answer) end end
@@ -1551,8 +1551,8 @@ end
 
 function iter(evtCC,evtPA)
 		counter = 0
-	for i=evtCC[2],evtCC[3],evtCC[4] do
-		eventChatCommand(string.gsub(evtPA[3],"%i",i))
+	for i=evtCC[1],evtCC[2],evtCC[3] do
+		eventChatCommand(evtCC[4],string.gsub(evtPA[3],"%%i",i))
 		counter=counter+1
 	end
 	annonce2(infpref..string.format(trans[308],"test3xx",counter))
