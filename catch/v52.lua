@@ -243,7 +243,7 @@ function mapdata(name,down,etc)
 	if down==true then
 		ui.addTextArea(81, "", name, -2600, -1840, 6000, 2000, info[currentMap].c or 0x000022, info[currentMap].c or 0x000022, 0.9,true)
 --		ui.addTextArea(82, "", name, 25, 50, 160, 90, 0xffffff, 0x22, 1, true)
-		ui.addTextArea(83, "<textformat tabstops='[0,220]'><"..col.."><font size='24'><b>Map "..displayMap.."</b></font></"..col..">\t<font size='13'><b>OPTIMIZED</b></i></font> <font face='Lucida Console'>"..tostring(chopt()).."</font></textformat><br><br><textformat tabstops='[0,40,100,160,220]'><font size='13'><b>WIDTH</b></font> <font face='Lucida Console'>200</font>\t<font size='13'><b>HEIGHT</b></font> <font face='Lucida Console'>200</font>\t<font size='13'><b>OBJECTS</b></font> <font face='Lucida Console'>"..info[currentMap].o.."</font></textformat><br><font size='13'><b>COLOR</b></font> <font face='Lucida Console'><font color='#"..tostring(string.format("%06x",tonumber(info[currentMap].c) or 0x000022)).."'>■</font>"..tostring(string.format("%06x",tonumber(info[currentMap].c) or 0x000022)) or 0x000022.."</font><br><font size='13'><b>DEATH MESSAGE</b></font> <font face='Lucida Console'>Player died</font>", name, 200, 50, 540, 100, 0x324650, 0x0, 0 ,true)
+		ui.addTextArea(83, "<textformat tabstops='[0,220]'><"..col.."><font size='24'><b>Map "..displayMap.."</b></font></"..col..">\t<font size='13'><b>OPTIMIZED</b></font> <font face='Lucida Console'>"..tostring(chopt()).."</font></textformat><br><br><textformat tabstops='[0,40,100,160,220]'><font size='13'><b>WIDTH</b></font> <font face='Lucida Console'>200</font>\t<font size='13'><b>HEIGHT</b></font> <font face='Lucida Console'>200</font>\t<font size='13'><b>OBJECTS</b></font> <font face='Lucida Console'>"..info[currentMap].o.."</font></textformat><br><textformat tabstops='[0,220]'><font size='13'><b>DATE</b></font> <font face='Lucida Console'>"..tostring(info[currentMap].C).."</font>\t<font size='13'><b>COLOR</b></font> <font face='Lucida Console'><font color='#"..tostring(string.format("%06x",tonumber(info[currentMap].c) or 0x000022)).."'>■</font>"..tostring(string.format("%06x",tonumber(info[currentMap].c) or 0x000022)) or 0x000022.."</font></textformat>", name, 200, 50, 540, 100, 0x324650, 0x0, 0 ,true)
 		players[name].ctrl = tfm.exec.addImage(info[displayMap].i,"&"..displayMap,25,50,name)
 	else
 		for i,v in ipairs({81,82,83}) do ui.removeTextArea(v,name) end
@@ -319,6 +319,7 @@ function atlas(page,targ)
 	ui.addTextArea(66,"",targ,5,10,790,32,info[currentMap].c or 0x000022,info[currentMap].c or 0x000022,1,true)
 	ui.addTextArea(65,"<font size='10'><p align='left'><font size='3'> </font>\n<a href='event:page ".. page-1 .."'><font face='Webdings'>3</font>previous</a> <a href='event:page ".. page+1 .."'>next<font face='Webdings'>4</font></a></p></font>",targ,5,10,300,32,0,0,0,true)
 	ui.addTextArea(64,"<font size='10'><p align='right'><font size='3'> </font>\n<a href='event:cls'>close<font size='3'> </font><font face='Webdings'>r</font></a></p></font>",targ,735,10,60,32,0,0,0,true)
+	ui.addTextArea(63,"<p align='center'><font size='9'><BV>less laggy  ▃<V>▄<VP>▅<J>▆<O>▇<R>█   more laggy</font></p>", targ, 150, 22, 500, 16, 0xffffff, 0x0, 0.08, true)
 	for k,v in next,ICR do tfm.exec.removeImage(v,targ) end
 	for i=0+(page-1)*15,(page-1)*15+14 do
 		local col
@@ -353,14 +354,16 @@ function metadata(page,targ)
 	for i=0+(page-1)*15,(page-1)*15+14 do 
 		if info[i]~=nil then
 			local qqq=string.format("%06x",tonumber(info[i].c) or 0x000022)
-			display = display..string.format("%s\t%s\t%s\t%s\t\n",
+			display = display..string.format("%s\t%s\t%s\t%s\t%s\t\n",
 				tostring(i),
 				tostring(info[i].o) or "",
 				"<font color='#"..tostring(qqq).."'>■</font>"..tostring(qqq) or 0x000022,
+				tostring(info[i].C) or "",
 				"<font face='Verdana' size='10'>"..tostring(info[i].d).."</font>" or "")
+
 		end
 	end
-	ui.addTextArea(0, "<p align='center'><font size='11' face='Lucida Console'><ROSE><a href='event:pagem ".. page-1 .."'>[prev]</a><a href='event:pagem ".. page+1 .."'>[next]</a><a href='event:clsgen'>[close]</a></ROSE></font><br>_____________________________________</p><br><font size='11' face='Lucida Console'><textformat tabstops='[0,30,60,120,150]'><D>ID</D>\t<D>OBJ</D>\t<D>COL</D>\t<D>DEATHMSG</D>\n"..display.."</textformat></font>", targ, 112, 50, 576, 320, info[currentMap].c or 0x000022, info[currentMap].c or 0x000022, 0.65, true)
+	ui.addTextArea(0, "<p align='center'><font size='11' face='Lucida Console'><ROSE><a href='event:pagem ".. page-1 .."'>[prev]</a><a href='event:pagem ".. page+1 .."'>[next]</a><a href='event:clsgen'>[close]</a></ROSE></font><br>_____________________________________</p><br><font size='11' face='Lucida Console'><textformat tabstops='[0,30,60,120,200]'><D>ID</D>\t<D>OBJ</D>\t<D>COL</D>\t<D>DATE</D>\t<D>DEATHMSG</D>\n"..display.."</textformat></font>", targ, 112, 50, 576, 320, info[currentMap].c or 0x000022, info[currentMap].c or 0x000022, 0.65, true)
 end
 
 function mapInfo(map,targ)
@@ -383,7 +386,7 @@ function eventTextAreaCallback(id, name, callback)
 	if c[1]=="clsgen" then ui.removeTextArea(id,c[2] or name) end
 	if c[1]=="cls" then 
 		for i=-1,14 do ui.removeTextArea(i,name) end
-		for i=64,66 do ui.removeTextArea(i,name) end
+		for i=63,66 do ui.removeTextArea(i,name) end
 		for i=320,334 do ui.removeTextArea(i,name) end
 		for k,v in next,ICR do tfm.exec.removeImage(v) end
 		gui(name)
