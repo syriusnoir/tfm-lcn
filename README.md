@@ -1,9 +1,19 @@
 # tfm-lcn
 
-Oficiālā repozitorija Transformice cilts menedžmenta skriptam #lachallengenostra. 
+Official repository for my Transformice tribe management script #LCN and other projects for the game.
 
-**Neliels pārskats:**<br>
-  test - *testa versijas* <br>
-  classified - *oficiālās versijas*<br>
-  catch - *ķereņu skripts*<br>
-  syreval - *evaluācijas skripts*<br>
+The repository is organized in folders with a separate one for each project:
+
+**#LCN**
+* classified - *#LCN stable releases*
+* test - *#LCN testing releases*
+* syreval - *XML review tool for #LCN*
+* lcndm - *custom version of #deathmatch*
+* lcnhub - *an experimental script to test having multiple scripts in one*
+
+**#bodykudo0catch**
+* catch - *catch module*
+
+**FunCorp**
+* fcutils - *utilities for hosting FunCorp activities*\
+* review - *unfinished module for reviewing exported maps*
