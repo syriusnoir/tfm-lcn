@@ -542,7 +542,7 @@ if helpers[name] or hosts[name] then
       end
     end
     if c[1] == "clear" then
-		clear()
+		clear(c[2])
     end
 	if c[1] == "notepad" then
 		if notepad[tonumber(c[2])] then fieldui("notepad",name,"",{field1=notepad[tonumber(c[2])],score=c[2],actions="<ROSE><a href='event:rmfieldui'>"..trans[242].."</a></ROSE>"}) end
@@ -974,9 +974,15 @@ end
 objects={}
 
 -- Clear
-function clear()
+function clear(type)
 	for k,v in pairs(tfm.get.room.objectList) do
-		table.insert(objects,k)
+		if tonumber(type)~=nil then 
+			if k.type==type then
+				table.insert(objects,k)
+			end
+		else
+			table.insert(objects,k)
+		end
 	end
 	for i,object in ipairs(objects) do
 		tfm.exec.removeObject(object)
@@ -1449,7 +1455,7 @@ function eventTextAreaCallback(textAreaID, playerName, callback)
 		if ctrling[playerName] then
 			notepad[#notepad+1] = "<font face='Lucida Console,Menlo' color='#b3b3ff' size='10'>&lt;P<br>"..Ptag.."<br>/&gt;</font>"
 			trainingcore(playerName,"panel:ptag;$notepad"..#notepad)
-		elseif shifting[playerName] then
+		elseif shifting[playerName] or #Ptag>120 then
 			fieldui("notepad",playerName,"",{field1="<font face='Lucida Console,Menlo' size='10' color='#b3b3ff'>&lt;P<br>"..Ptag.."<br>/&gt;</font>",actions="<ROSE><a href='event:rmfieldui'>"..trans[242].."</a></ROSE>"})
 			trainingcore(playerName,"panel:ptag*")
 		else
