@@ -367,12 +367,12 @@ function eventNewGame()
 		else info[currentMap].L = 800
 		end
 	end
-		if Ptag:find('portal') and conf.portals then
+	if Ptag:find('portal') and conf.portals then
 		for value in Ptag:gmatch('portal="(.+)"') do
 			print(value)      
 			if tfm.get.room.mirroredMap then      
-				tfm.exec.addShamanObject(26,(conf.legacyPortals and 0 or info[currentMap].L)-tonumber(value:match('(.-);'):match('(.-),')),tonumber(value:match('(.-);'):match(',(.+)')),0,0,0,false)
-				tfm.exec.addShamanObject(27,(conf.legacyPortals and 0 or info[currentMap].L)-tonumber(value:match(';(.+)'):match('(.-),')),tonumber(value:match(';(.+)'):match(',(.+)')),0,0,0,false)    
+				tfm.exec.addShamanObject(26,math.abs((conf.legacyPortals and 0 or info[currentMap].L)-tonumber(value:match('(.-);'):match('(.-),'))),tonumber(value:match('(.-);'):match(',(.+)')),0,0,0,false)
+				tfm.exec.addShamanObject(27,math.abs((conf.legacyPortals and 0 or info[currentMap].L)-tonumber(value:match(';(.+)'):match('(.-),'))),tonumber(value:match(';(.+)'):match(',(.+)')),0,0,0,false)    
 			else
 				tfm.exec.addShamanObject(26,tonumber(value:match('(.-);'):match('(.-),')),tonumber(value:match('(.-);'):match(',(.+)')),0,0,0,false)
 				tfm.exec.addShamanObject(27,tonumber(value:match(';(.+)'):match('(.-),')),tonumber(value:match(';(.+)'):match(',(.+)')),0,0,0,false)    
@@ -439,17 +439,18 @@ function metadata(page,targ)
 	for i=1+(page-1)*15,(page-1)*15+15 do 
 		if info[i]~=nil then
 			local qqq=string.format("%06x",tonumber(info[i].c) or 0x000022)
-			display = display..string.format("%s\t%s\t%s\t%s\t%s\t\n",
+			display = display..string.format("%s\t%s\t%s\t%s\t%s\t%s\t\n",
 				tostring(i),
 				tostring(info[i].o) or "",
 				"<font color='#"..tostring(qqq).."'>■</font>"..tostring(qqq) or 0x000022,
 				tostring(info[i].C) or "",
+				tostring(info[i].l and "<O>*</O>" or ""),
 				"<font face='Verdana' size='10'>"..tostring(info[i].d).."</font>" or "")
 
 		end
 		if math.abs(i)>1000 then break end
 	end
-	ui.addTextArea(0, "<p align='center'><font size='11' face='Lucida Console'><ROSE><a href='event:pagem ".. page-1 .."'>[prev]</a><a href='event:pagem ".. page+1 .."'>[next]</a><a href='event:clsgen'>[close]</a></ROSE></font><br>_____________________________________</p><br><font size='11' face='Lucida Console'><textformat tabstops='[0,30,60,120,200]'><D>ID</D>\t<D>OBJ</D>\t<D>COL</D>\t<D>DATE</D>\t<D>DEATHMSG</D>\n"..display.."</textformat></font>", targ, 112, 50, 576, 240, info[currentMap].c or 0x000022, info[currentMap].c or 0x000022, 0.65, true)
+	ui.addTextArea(0, "<p align='center'><font size='11' face='Lucida Console'><ROSE><a href='event:pagem ".. page-1 .."'>[prev]</a><a href='event:pagem ".. page+1 .."'>[next]</a><a href='event:clsgen'>[close]</a></ROSE></font><br>_____________________________________</p><br><font size='11' face='Lucida Console'><textformat tabstops='[0,30,60,120,200,215]'><D>ID</D>\t<D>OBJ</D>\t<D>COL</D>\t<D>DATE</D>\t<D>L</D>\t<D>DEATHMSG</D>\n"..display.."</textformat></font>", targ, 112, 50, 576, 240, info[currentMap].c or 0x000022, info[currentMap].c or 0x000022, 0.65, true)
 end
 
 function mapInfo(map,targ)
